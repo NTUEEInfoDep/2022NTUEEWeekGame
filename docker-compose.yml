@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  mongodb:
+    image: mongo
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=eeinfo
+    #   - MONGO_INITDB_ROOT_PASSWORD=R9ujPAQBk4X2fdkv
+    #   - MONGO_INITDB_DATABASE=2022-ntuee-week-game
+    #   - MONGO_USERNAME=eeweekgame
+    #   - MONGO_PASSWORD=aasdffasfgq24asd
+    ports:
+      - "27017:27017"
