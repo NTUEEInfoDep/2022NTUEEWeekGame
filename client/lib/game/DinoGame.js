@@ -14,7 +14,7 @@ import {
 import GameRunner from './GameRunner.js'
 
 export default class DinoGame extends GameRunner {
-  constructor(width, height) {
+  constructor(width, height, endGameRoute) {
     super()
 
     this.width = null
@@ -23,6 +23,7 @@ export default class DinoGame extends GameRunner {
     this.canvasCtx = this.canvas.getContext('2d')
     this.spriteImage = null
     this.spriteImageData = null
+    this.endGameRoute = endGameRoute
 
     /*
      * units
@@ -204,15 +205,16 @@ export default class DinoGame extends GameRunner {
       }
     )
 
-    this.paintSprite(
-      'replayIcon',
-      this.width / 2 - iconSprite.w / 4,
-      this.height / 2 - iconSprite.h / 4 + padding
-    )
+    // this.paintSprite(
+    //   'replayIcon',
+    //   this.width / 2 - iconSprite.w / 4,
+    //   this.height / 2 - iconSprite.h / 4 + padding
+    // )
 
     this.state.isRunning = false
     this.drawScore()
     this.stop()
+    setTimeout(this.endGameRoute, 1000);
   }
 
   increaseDifficulty() {
