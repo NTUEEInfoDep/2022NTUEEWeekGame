@@ -138,6 +138,8 @@ function showLeaderboard(){
     $id("leaderboard-table-container").appendChild(tr)
   })
   
+  $id("leaderboard-restart-button").onclick = restartGame;
+  
 }
 
 startHomePage();
