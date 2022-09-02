@@ -20,7 +20,7 @@ export default class Bird extends Actor {
   }
 
   nextFrame() {
-    this.x -= this.speed
+    this.x -= this.speed;
     this.determineSprite()
   }
 

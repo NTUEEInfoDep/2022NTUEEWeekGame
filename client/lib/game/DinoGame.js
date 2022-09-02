@@ -16,15 +16,15 @@ import GameRunner from "./GameRunner.js";
 
 export default class DinoGame extends GameRunner {
   constructor(width, height, endGameRoute) {
-    super()
+    super();
 
-    this.width = null
-    this.height = null
-    this.canvas = this.createCanvas(width, height)
-    this.canvasCtx = this.canvas.getContext('2d')
-    this.spriteImage = null
-    this.spriteImageData = null
-    this.endGameRoute = endGameRoute
+    this.width = null;
+    this.height = null;
+    this.canvas = this.createCanvas(width, height);
+    this.canvasCtx = this.canvas.getContext("2d");
+    this.spriteImage = null;
+    this.spriteImageData = null;
+    this.endGameRoute = endGameRoute;
 
     /*
      * units
@@ -44,7 +44,7 @@ export default class DinoGame extends GameRunner {
       dinoGroundOffset: 4, // px
       dinoLegsRate: 6, // fpa
       dinoLift: 10, // ppf
-      bulletSpawnRate: 10, // fpa
+      bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
       scoreBlinkRate: 20, // fpa
       scoreIncreaseRate: 6, // fpa
@@ -117,6 +117,7 @@ export default class DinoGame extends GameRunner {
     this.drawGround();
     this.drawClouds();
     this.drawDino();
+    this.drawBullets();
     this.drawScore();
 
     if (state.isRunning) {
@@ -126,14 +127,24 @@ export default class DinoGame extends GameRunner {
         this.drawBirds();
       }
 
-      if (this.state.dino.shooting) {
-        this.drawBullets();
-      }
-
       if (state.dino.hits([state.obstacles[0], state.birds[0]])) {
         playSound("game-over");
         state.gameOver = true;
       }
+
+      // bullets hit
+      state.bullets.forEach((bullet) => {
+        if (bullet.hits([state.obstacles[0]])) {
+          state.obstacles.shift();
+          bullet.destroy();
+          // playSound("hit");
+        }
+        if (bullet.hits([state.birds[0]])) {
+          state.birds.shift();
+          bullet.destroy();
+          // playSound("hit");
+        }
+      });
 
       if (state.gameOver) {
         this.endGame();
@@ -219,10 +230,10 @@ export default class DinoGame extends GameRunner {
     //   this.height / 2 - iconSprite.h / 4 + padding
     // )
 
-    this.state.isRunning = false
-    this.drawScore()
-    this.stop()
-    setTimeout(this.endGameRoute, 1000);
+    this.state.isRunning = false;
+    this.drawScore();
+    this.stop();
+    setTimeout(this.endGameRoute, 500);
   }
 
   increaseDifficulty() {
@@ -333,11 +344,14 @@ export default class DinoGame extends GameRunner {
     const { bullets, settings } = this.state;
 
     this.progressInstances(bullets);
-    if (this.frameCount % settings.bulletSpawnRate === 0) {
+    if (
+      this.frameCount % settings.bulletSpawnRate === 0 &&
+      this.state.dino.shooting
+    ) {
       const newBullet = new Bullet();
       newBullet.speed = settings.bulletSpeed;
       newBullet.x = this.state.dino.x + this.state.dino.width;
-      newBullet.y = this.state.dino.y + this.state.dino.height / 4;
+      newBullet.y = this.state.dino.y + this.state.dino.height / 2;
       bullets.push(newBullet);
       // console.log(bullets);
     }

@@ -12,7 +12,6 @@ export default {
   dinoLeftLeg: { h: 86, w: 80, x: 432, y: 31 },
   dinoRightLeg: { h: 86, w: 80, x: 514, y: 31 },
   bullet: { h: 10, w: 20, x: 0, y: 51 },
-  // bullet: { h: 1, w: 3, x: 0, y: 60 },
   ground: { h: 28, w: 2400, x: 0, y: 2 },
   replayIcon: { h: 60, w: 68, x: 0, y: 31 },
 };
