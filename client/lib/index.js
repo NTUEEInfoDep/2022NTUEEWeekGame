@@ -1,12 +1,12 @@
-import DinoGame from './game/DinoGame.js'
+import DinoGame from "./game/DinoGame.js";
 
 const $id = (element) => document.getElementById(element);
 
 const game = new DinoGame(600, 150, endGameRoute);
 const isTouchDevice =
-  'ontouchstart' in window ||
+  "ontouchstart" in window ||
   navigator.maxTouchPoints > 0 ||
-  navigator.msMaxTouchPoints > 0
+  navigator.msMaxTouchPoints > 0;
 
 
 const keycodes = {
