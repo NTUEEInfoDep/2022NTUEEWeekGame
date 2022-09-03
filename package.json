@@ -14,7 +14,8 @@
         "nodemon": "^2.0.19"
     },
     "scripts": {
-        "dev-server": "nodemon ./server/index.js",
+        "dev-server": "NODE_ENV=development nodemon  ./server/index.js",
+        "window-dev-server": "set NODE_ENV=development&&nodemon ./server/index.js",
         "start": "node ./server/index.js"
     }
 }

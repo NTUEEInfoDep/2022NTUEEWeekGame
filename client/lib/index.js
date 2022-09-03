@@ -2,6 +2,8 @@ import DinoGame from "./game/DinoGame.js";
 
 const $id = (element) => document.getElementById(element);
 
+const baseURL = "http://localhost:4000/api/"
+
 const game = new DinoGame(900, 300, endGameRoute);
 const isTouchDevice =
   "ontouchstart" in window ||
@@ -109,35 +111,24 @@ function showLeaderboard() {
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
 
-  // TODO: get data from backend
-  const dataList = [
-    {
-      name: "早安呀",
-      score: 110,
-      studentID: "B09901186",
-    },
-    {
-      name: "早安呀",
-      score: 110,
-      studentID: "B09901186",
-    },
-  ];
-
-  dataList.map((data) => {
-    const { name, score, studentID } = data;
-    var tr = document.createElement("tr");
-    tr.classList.add("leaderboard-tr-data");
-    [name, score, studentID].forEach((text) => {
-      var cell = document.createElement("td");
-      cell.appendChild(document.createTextNode(text));
-
-      tr.appendChild(cell);
+  fetch(`${baseURL}leaderBoard`).then(response=>response.json()).then(dataList => {
+    dataList.map((data) => {
+      const { name, score, studentID } = data;
+      var tr = document.createElement("tr");
+      tr.classList.add("leaderboard-tr-data");
+      [name, score, studentID].forEach((text) => {
+        var cell = document.createElement("td");
+        cell.appendChild(document.createTextNode(text));
+  
+        tr.appendChild(cell);
+      });
+      $id("leaderboard-table-container").appendChild(tr);
     });
-    $id("leaderboard-table-container").appendChild(tr);
-  });
+  })
+
 
   $id("leaderboard-restart-button").onclick = restartGame;
 }
 
-startHomePage();
-// showLeaderboard()
+// startHomePage();
+showLeaderboard()
