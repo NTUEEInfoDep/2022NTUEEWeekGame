@@ -19,8 +19,8 @@ export default class Bird extends Actor {
     this.wingsRate = null
   }
 
-  nextFrame() {
-    this.x -= this.speed;
+  nextFrame(speedRatio) {
+    this.x -= this.speed * speedRatio;
     this.determineSprite()
   }
 

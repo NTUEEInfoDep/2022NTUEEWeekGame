@@ -1,12 +1,7 @@
 import { randItem } from "../utils.js";
 import Actor from "./Actor.js";
 
-const VARIANTS = [
-  "obstacle",
-  "obstacleDouble",
-  "obstacleDoubleB",
-  "obstacleTriple",
-];
+const VARIANTS = ["guitar", "dance", "band", "eater", "week", "covid"];
 
 export default class Obstacle extends Actor {
   constructor(imageData) {
@@ -20,5 +15,9 @@ export default class Obstacle extends Actor {
 
   nextFrame(speedRatio) {
     this.x -= this.speed * speedRatio;
+  }
+
+  destroy() {
+    this.x = -100;
   }
 }

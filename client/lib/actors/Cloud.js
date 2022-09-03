@@ -12,7 +12,7 @@ export default class Cloud extends Actor {
     this.y = null;
   }
 
-  nextFrame() {
-    this.x -= this.speed * this.speedMod;
+  nextFrame(speedRatio) {
+    this.x -= this.speed * this.speedMod * speedRatio;
   }
 }

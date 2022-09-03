@@ -4,7 +4,8 @@ export default class Dino extends Actor {
   constructor(imageData) {
     super(imageData);
     this.isDucking = false;
-    this.shooting = false;
+    this.powerUp = "none";
+    this.powerUpTime = 0;
     this.legFrames = 0;
     this.legShowing = "Left";
     this.sprite = `dino${this.legShowing}Leg`;
@@ -27,6 +28,7 @@ export default class Dino extends Actor {
 
   reset() {
     this.isDucking = false;
+    this.powerUp = "none";
     this.legFrames = 0;
     this.legShowing = "Left";
     this.sprite = `dino${this.legShowing}Leg`;
@@ -46,11 +48,11 @@ export default class Dino extends Actor {
     this.isDucking = Boolean(value);
   }
 
-  nextFrame() {
+  nextFrame(speedRatio) {
     if (this.vVelocity !== null) {
       // use gravity to gradually decrease vVelocity
-      this.vVelocity += this.gravity;
-      this.relativeY += this.vVelocity;
+      this.vVelocity += this.gravity * speedRatio;
+      this.relativeY += this.vVelocity * speedRatio;
     }
 
     // stop falling once back down to the ground
