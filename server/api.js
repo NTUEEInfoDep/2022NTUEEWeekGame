@@ -36,7 +36,7 @@ router.post("/reportScore",
             originalScore = data.score;
             if (score > originalScore){
                 await mongo.GameScore.updateOne({studentID}, {name, score, time: Date.now(), try: data.try + 1});
-                
+                leaderBoard.addData({name, score, studentID});
             }else{
                 highestScore = originalScore;
                 update = false;
@@ -45,6 +45,7 @@ router.post("/reportScore",
             }
         }else{
             await new mongo.GameScore({studentID, name, score, time: Date.now()}).save();
+            leaderBoard.addData({name, score, studentID});
         }
         res.send({score, highestScore, update, originalScore, studentID, name: finalName});
     })

@@ -4,7 +4,7 @@ export default class Dino extends Actor {
   constructor(imageData) {
     super(imageData);
     this.isDucking = false;
-    this.shooting = true;
+    this.shooting = false;
     this.legFrames = 0;
     this.legShowing = "Left";
     this.sprite = `dino${this.legShowing}Leg`;

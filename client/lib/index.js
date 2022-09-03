@@ -24,11 +24,9 @@ const ontouchstart = ({ touches }) => {
     game.onInput("duck");
   }
 };
-
 const ontouchend = ({ touches }) => {
   game.onInput("stop-duck");
 };
-
 const onKeyDown = ({ keyCode }) => {
   if (keycodes.JUMP[keyCode]) {
     game.onInput("jump");
@@ -36,13 +34,11 @@ const onKeyDown = ({ keyCode }) => {
     game.onInput("duck");
   }
 };
-
 const onKeyUp = ({ keyCode }) => {
   if (keycodes.DUCK[keyCode]) {
     game.onInput("stop-duck");
   }
 };
-
 function keyStart() {
   if (isTouchDevice) {
     document.addEventListener("touchstart", ontouchstart);
@@ -54,7 +50,6 @@ function keyStart() {
     document.addEventListener("keyup", onKeyUp);
   }
 }
-
 function keyStop() {
   if (isTouchDevice) {
     document.removeEventListener("touchstart", ontouchstart);
@@ -67,6 +62,19 @@ function keyStop() {
   }
 }
 
+// TODO: Complete this function
+const checkStudentIDForm = (studentID)=>{
+  return studentID;
+}
+
+// TODO: 
+//    1. Check studentID is filled
+//    2. Check studentID is valid
+//    3. Ask player whether data is correct
+const checkUserData = ()=>{
+  startGame();
+}
+
 function startHomePage() {
   $id("home-page").classList.remove("hidden");
   $id("end-game-page").classList.add("hidden");
@@ -74,10 +82,10 @@ function startHomePage() {
   $id("name-input").focus();
   $id("name-input").value = "";
   keyStop();
-  $id("name-input").onkeydown = (e) => {
-    if (e.code === "Enter") startGame();
-  };
-  $id("start-button").onclick = startGame;
+  // $id("name-input").onkeydown = (e) => {
+  //   if (e.code === "Enter") startGame();
+  // };
+  $id("start-button").onclick = checkUserData;
 }
 
 function startGame() {
@@ -97,19 +105,53 @@ function restartGame() {
 }
 
 function endGameRoute() {
-  $id("leaderboard-page").classList.add("hidden");
-  $id("end-game-page").classList.remove("hidden");
-  $id("home-page").classList.add("hidden");
-  $id("score-bar").textContent = `Your score is ${game.state.score.value}`;
-  $id("leaderboard-button").onclick = showLeaderboard;
-  $id("restart-button").onclick = restartGame;
-  keyStop();
+  const studentID = $id("student-id-input").value;
+  const name = $id("name-input").value;
+  const score = game.state.score.value;
+  if (checkStudentIDForm(studentID)){
+    fetch(`${baseURL}reportScore`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({name, studentID, score})
+    }).then(()=>{
+      $id("leaderboard-page").classList.add("hidden");
+      $id("end-game-page").classList.remove("hidden");
+      $id("home-page").classList.add("hidden");
+      $id("score-bar").textContent = `Your score is ${score}`;
+      $id("leaderboard-button").onclick = showLeaderboard;
+      $id("restart-button").onclick = restartGame;
+      keyStop();
+    })  
+  }else{
+    $id("leaderboard-page").classList.add("hidden");
+    $id("end-game-page").classList.remove("hidden");
+    $id("home-page").classList.add("hidden");
+    $id("score-bar").textContent = `Your score is ${score}`;
+    $id("leaderboard-button").onclick = showLeaderboard;
+    $id("restart-button").onclick = restartGame;
+    keyStop();
+  }
 }
 
 function showLeaderboard() {
   $id("leaderboard-page").classList.remove("hidden");
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
+
+
+  var tr = document.createElement("tr");
+  tr.id = "leaderboard-tr-header";
+
+  $id("leaderboard-table-container").innerHTML = "";
+  ["Name", "Score", "StudentID"].forEach((text) => {
+    var cell = document.createElement("th");
+    cell.appendChild(document.createTextNode(text));
+    tr.appendChild(cell);
+  });
+  $id("leaderboard-table-container").appendChild(tr)
 
   fetch(`${baseURL}leaderBoard`).then(response=>response.json()).then(dataList => {
     dataList.map((data) => {
@@ -119,7 +161,6 @@ function showLeaderboard() {
       [name, score, studentID].forEach((text) => {
         var cell = document.createElement("td");
         cell.appendChild(document.createTextNode(text));
-  
         tr.appendChild(cell);
       });
       $id("leaderboard-table-container").appendChild(tr);
@@ -130,5 +171,5 @@ function showLeaderboard() {
   $id("leaderboard-restart-button").onclick = restartGame;
 }
 
-// startHomePage();
-showLeaderboard()
+startHomePage();
+// showLeaderboard()

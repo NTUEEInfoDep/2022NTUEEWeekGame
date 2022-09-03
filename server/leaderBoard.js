@@ -69,6 +69,7 @@ class LeaderBoard {
             const {name, score, studentID} = obj;
             return {name, score, studentID};
         })
+        this._number = data.length;
     }
 }
 
