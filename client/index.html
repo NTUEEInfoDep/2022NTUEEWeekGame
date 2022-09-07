@@ -1,74 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
     <title>Chrome Dino</title>
-    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/main.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        html,
-        body {
-            height: 100%;
-        }
-        
-        body {
-            align-items: center;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        align-items: center;
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Game -->
     <script type="module" src="./lib/index.js"></script>
 
     <!-- Creators -->
     <a href="https://github.com/NTUEEInfoDep">
-        <div id="creators">by&nbsp;EEInfo</div>
+      <div id="creators">by&nbsp;EEInfo</div>
     </a>
 
     <!-- Home Page -->
     <div id="home-page" class="hidden">
-
-        <div id="home-page-suptitle">
-            2022&nbsp;ntu&nbsp;EE&nbsp;week&nbsp;game
-        </div>
-        <div id="home-page-title">EE見鍾情</div>
-        <div id=""></div>
-        <input class="home-page-input" id="name-input" type="text" maxlength="18" placeholder="輸入遊戲名稱" />
-        <input class="home-page-input" id="student-id-input" type="text" maxlength="18" placeholder="輸入學號（才可顯示於排行榜上）" />
-        <button id="start-button">Game Start!</button>
+      <div id="home-page-suptitle">2022&nbsp;ntu&nbsp;EE&nbsp;week&nbsp;game</div>
+      <div id="home-page-title">EE見鍾情</div>
+      <div id=""></div>
+      <input
+        class="home-page-input"
+        id="name-input"
+        type="text"
+        maxlength="18"
+        placeholder="輸入遊戲名稱"
+      />
+      <input
+        class="home-page-input"
+        id="student-id-input"
+        type="text"
+        maxlength="18"
+        placeholder="輸入學號（才可顯示於排行榜上）"
+      />
+      <button id="start-button">Game Start!</button>
     </div>
-
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
-        <div id="end-game-page-title">GAME OVER</div>
-        <div id="score-bar"></div>
-        <div id=""></div>
-        <button id="leaderboard-button">Leaderboard</button>
-        <button id="restart-button">Restart</button>
+      <div id="end-game-page-title">GAME OVER</div>
+      <div id="score-bar"></div>
+      <div id=""></div>
+      <button id="leaderboard-button">Leaderboard</button>
+      <button id="restart-button">Restart</button>
     </div>
 
     <!-- Leaderboard Page -->
     <div id="leaderboard-page" class="hidden">
-        <div id="leaderboard-page-title">Leaderboard</div>
-        <table id="leaderboard-table-container">
-            
-        </table>
-        <button id="leaderboard-restart-button">Restart</button>
+      <div id="leaderboard-page-title">Leaderboard</div>
+      <table id="leaderboard-table-container"></table>
+      <button id="leaderboard-restart-button">Restart</button>
     </div>
-
-</body>
-
+  </body>
 </html>

@@ -6,13 +6,7 @@ import Bullet from "../actors/Bullet.js";
 import Item from "../actors/Item.js";
 import sprites from "../sprites.js";
 import { playSound } from "../sounds.js";
-import {
-  loadFont,
-  loadImage,
-  getImageData,
-  randBoolean,
-  randInteger,
-} from "../utils.js";
+import { loadFont, loadImage, getImageData, randBoolean, randInteger } from "../utils.js";
 import GameRunner from "./GameRunner.js";
 
 export default class DinoGame extends GameRunner {
@@ -168,11 +162,10 @@ export default class DinoGame extends GameRunner {
         if (item.hits([state.dino])) {
           item.destroy();
           state.dino.powerUp = item.sprite;
-          state.dino.powerUpTime =
-            state.settings.powerUpTimes[item.sprite] * this.frameRate;
+          state.dino.powerUpTime = state.settings.powerUpTimes[item.sprite] * this.frameRate;
           playSound("level-up");
 
-          switch (this,state.dino.powerUp) {
+          switch ((this, state.dino.powerUp)) {
             case "guitar":
               break;
             case "dance":
@@ -256,18 +249,13 @@ export default class DinoGame extends GameRunner {
     const iconSprite = sprites.replayIcon;
     const padding = 15;
 
-    this.paintText(
-      "G A M E  O V E R",
-      this.width / 2,
-      this.height / 2 - padding,
-      {
-        font: "PressStart2P",
-        size: "12px",
-        align: "center",
-        baseline: "bottom",
-        color: "#535353",
-      }
-    );
+    this.paintText("G A M E  O V E R", this.width / 2, this.height / 2 - padding, {
+      font: "PressStart2P",
+      size: "12px",
+      align: "center",
+      baseline: "bottom",
+      color: "#535353",
+    });
 
     // this.paintSprite(
     //   'replayIcon',
@@ -413,10 +401,7 @@ export default class DinoGame extends GameRunner {
     const { bullets, settings } = this.state;
 
     this.progressInstances(bullets);
-    if (
-      this.frameCount % settings.bulletSpawnRate === 0 &&
-      this.state.dino.powerUp === "guitar"
-    ) {
+    if (this.frameCount % settings.bulletSpawnRate === 0 && this.state.dino.powerUp === "guitar") {
       const newBullet = new Bullet();
       newBullet.speed = settings.bulletSpeed;
       newBullet.x = this.state.dino.x + this.state.dino.width;
@@ -573,17 +558,7 @@ export default class DinoGame extends GameRunner {
 
   paintSprite(spriteName, dx, dy) {
     const { h, w, x, y } = sprites[spriteName];
-    this.canvasCtx.drawImage(
-      this.spriteImage,
-      x,
-      y,
-      w,
-      h,
-      dx,
-      dy,
-      w / 2,
-      h / 2
-    );
+    this.canvasCtx.drawImage(this.spriteImage, x, y, w, h, dx, dy, w / 2, h / 2);
   }
 
   paintText(text, x, y, opts) {

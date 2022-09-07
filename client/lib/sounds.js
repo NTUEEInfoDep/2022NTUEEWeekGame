@@ -28,8 +28,7 @@ function loadBuffer(filepath) {
 
     request.open("GET", filepath);
     request.responseType = "arraybuffer";
-    request.onload = () =>
-      audioContext.decodeAudioData(request.response, resolve);
+    request.onload = () => audioContext.decodeAudioData(request.response, resolve);
     request.onerror = reject;
     request.send();
   });
@@ -41,4 +40,5 @@ function playBuffer(buffer) {
   source.buffer = buffer;
   source.connect(audioContext.destination);
   source.start();
+  AudioContext.resume(); //added
 }
