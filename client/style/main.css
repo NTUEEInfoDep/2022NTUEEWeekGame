@@ -142,6 +142,21 @@ td {
     transition: all 0.4s ease 0s;
 }
 
+#prop-button {
+    color: black;
+    background-color: white;
+    font-size: 2rem;
+    font-family: "Righteous", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s ease 0s;
+}
+
+#prop-button:hover {
+    letter-spacing: 1rem;
+    margin-right: -1rem;
+    transition: all 0.4s ease 0s;
+}
 
 /* End Game Page */
 
@@ -209,6 +224,7 @@ td {
 }
 
 
+
 /* Leaderboard Page */
 
 #leaderboard-page {
@@ -253,6 +269,152 @@ td {
 .leaderboard-tr-data:hover {
     background-color: coral;
 }
+
+/*Prop Page*/
+#prop-page {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    width: 800px;
+    height: fit-content;
+    max-width: 80%;
+    min-height: fit-content;
+    padding: 3rem;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border: 5px solid black;
+}
+
+.prop-header {
+    width: 800px;
+    max-width: 90%;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 5px solid black;
+    margin-top: 20px;
+}
+
+#prop-page-title {
+    margin: 0 0 0;
+    overflow: visible;
+    font-size: 4rem;
+    font-family: "Pdark", sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+#prop-close-button {
+    color: red;
+    text-align: center;
+    font-size: 4.5rem;
+    font-family: "Righteous", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s ease 0s;
+    outline: none;
+    background: none;
+    border: none;
+    font-weight: bold;
+    position:absolute;
+    top: -25px;
+    right: 0px;
+    
+    /*
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    border:4px solid red;
+    margin:0 0 0 0;
+    */
+}
+
+#prop-close-button:hover {
+    transition: all 0.4s ease 0s;
+    font-size: 5rem;
+    /*
+    width:60px;
+    height:60px;
+    */
+}
+
+#prop-page-main {
+    width: fit-content;
+    height: fit-content;
+    max-height: 300px;
+    font-size: 1.5rem;
+    font-family: "Righteous", sans-serif;
+    margin: 1rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color:white;
+    border: 5px solid black;
+    padding: 10px;
+}
+
+.prop-list {
+    background-color:transparent;
+}
+
+.item {
+    background: white;
+	border: 5px solid black;
+	padding: 10px 15px;
+    margin: 10px; 
+	display: flex;
+	align-items: center;
+    height: 100%;
+    vertical-align: center;
+    max-height: 150px;
+}
+
+.item:last-child {
+    border-bottom: 5px solid black;
+}
+
+.left {
+    width: 20%;
+}
+
+.right { 
+    border: 4px solid #001116;
+    width: 80%;
+    height: 100%;
+    margin: 15px;
+}
+.gadget{
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+    font-size: 24px;
+    padding-bottom: none;
+    
+}
+
+.functionality{
+    margin: 10px;
+	font-size: 18px;
+    text-align: left;
+	line-height: 20px;
+	font-weight: 200;
+    margin-left: 30px;
+    margin-top: 0px;
+}
+
+#prop-img{
+    border: 4px solid #001116;
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    margin-bottom: -6px;
+}
+
 
 
 /* Other Stuff */
