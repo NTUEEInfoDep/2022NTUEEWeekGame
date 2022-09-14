@@ -75,6 +75,13 @@ export default class DinoGame extends GameRunner {
         isBlinking: false,
         value: 0,
       },
+      props: {
+        dance: 0,
+        band: 0,
+        eater: 0,
+        week: 0,
+        guitar: 0,
+      },
     };
   }
 
@@ -167,16 +174,21 @@ export default class DinoGame extends GameRunner {
 
           switch ((this, state.dino.powerUp)) {
             case "guitar":
+              this.state.props.guitar++;
               break;
             case "dance":
+              this.state.props.dance++;
               this.state.speedRatio = 2;
               break;
             case "band":
+              this.state.props.band++;
               this.state.speedRatio = 0.5;
               break;
             case "eater":
+              this.state.props.eater++;
               break;
             case "week":
+              this.state.props.week++;
               break;
             case "covid":
               break;

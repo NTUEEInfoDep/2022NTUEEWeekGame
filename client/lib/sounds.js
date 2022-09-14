@@ -40,5 +40,4 @@ function playBuffer(buffer) {
   source.buffer = buffer;
   source.connect(audioContext.destination);
   source.start();
-  AudioContext.resume(); //added
 }
