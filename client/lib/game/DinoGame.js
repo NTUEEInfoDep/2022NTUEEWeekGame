@@ -145,8 +145,10 @@ export default class DinoGame extends GameRunner {
       spawnedItem = this.drawItems(spawnedObstacle, spawnedBird);
 
       if (state.dino.hits([state.obstacles[0], state.birds[0]])) {
-        playSound("game-over");
-        state.gameOver = true;
+        if (this.state.dino.powerUp !== "band") {
+          playSound("game-over");
+          state.gameOver = true;
+        }
       }
 
       // bullets hit
@@ -172,7 +174,7 @@ export default class DinoGame extends GameRunner {
             state.settings.powerUpTimes[item.sprite] * this.frameRate;
           playSound("level-up");
 
-          switch (this,state.dino.powerUp) {
+          switch ((this, state.dino.powerUp)) {
             case "guitar":
               break;
             case "dance":
@@ -180,6 +182,7 @@ export default class DinoGame extends GameRunner {
               break;
             case "band":
               this.state.speedRatio = 0.5;
+              state.dino.blinking(true);
               break;
             case "eater":
               break;
@@ -392,6 +395,7 @@ export default class DinoGame extends GameRunner {
           case "dance":
           case "band":
             this.state.speedRatio = 1;
+            this.state.dino.blinking(false);
             break;
           case "eater":
             break;

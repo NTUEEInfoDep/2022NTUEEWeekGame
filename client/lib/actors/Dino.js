@@ -16,6 +16,8 @@ export default class Dino extends Actor {
     this.legsRate = null;
     this.lift = null;
     this.gravity = null;
+    this.blink = false;
+    this.shine = 0;
   }
 
   get y() {
@@ -34,6 +36,8 @@ export default class Dino extends Actor {
     this.sprite = `dino${this.legShowing}Leg`;
     this.vVelocity = null;
     this.relativeY = 0;
+    this.blink = false;
+    this.shine = 0;
   }
 
   jump() {
@@ -42,6 +46,10 @@ export default class Dino extends Actor {
       return true;
     }
     return false;
+  }
+
+  blinking(value) {
+    this.blink = Boolean(value);
   }
 
   duck(value) {
@@ -65,6 +73,16 @@ export default class Dino extends Actor {
   }
 
   determineSprite() {
+    if (this.blink) {
+      console.log("owo");
+      this.shine += 1;
+      if (this.shine < 20) {
+        this.sprite = `dinodisappear`;
+        return;
+      } else if (this.shine > 40) {
+        this.shine = 0;
+      }
+    }
     if (this.relativeY < 0) {
       // in the air stiff
       this.sprite = "dino";
