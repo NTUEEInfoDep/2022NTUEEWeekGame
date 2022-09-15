@@ -51,7 +51,6 @@ export default class DinoGame extends GameRunner {
         band: 3,
         eater: 3,
         week: 3,
-        covid: 3,
       },
       scoreBlinkRate: 20, // fpa
       scoreIncreaseRate: 6, // fpa
@@ -218,7 +217,7 @@ export default class DinoGame extends GameRunner {
               break;
             case "band":
               this.state.props.band++;
-              this.state.speedRatio = 0.5;
+              this.state.speedRatio = 0.8;
               state.dino.blinking(true);
               break;
             case "eater":
@@ -226,8 +225,6 @@ export default class DinoGame extends GameRunner {
               break;
             case "week":
               this.state.props.week++;
-              break;
-            case "covid":
               break;
           }
         }
@@ -293,6 +290,13 @@ export default class DinoGame extends GameRunner {
         isBlinking: false,
         value: 0,
       },
+      props: {
+        guitar: 0,
+        dance: 0,
+        band: 0,
+        eater: 0,
+        week: 0,
+      }
     });
 
     this.start();
