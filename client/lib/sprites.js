@@ -24,6 +24,7 @@ export default {
   dinoDuckRightLeg: { h: 52, w: 110, x: 596, y: 85 },
   dinoLeftLeg: { h: 86, w: 80, x: 432, y: 31 },
   dinoRightLeg: { h: 86, w: 80, x: 514, y: 31 },
+  dinodisappear: { h: 86, w: 80, x: 1300, y: 31 },
 
   // other
   cloud: { h: 28, w: 92, x: 794, y: 31 },
