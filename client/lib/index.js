@@ -79,7 +79,7 @@ const checkUserData = () => {
 function startHomePage() {
   $id("home-page").classList.remove("hidden");
   $id("end-game-page").classList.add("hidden");
-
+  $id("prop-page").classList.add("hidden"); //Lawra
   $id("name-input").focus();
   $id("name-input").value = "";
   keyStop();
@@ -87,12 +87,14 @@ function startHomePage() {
   //   if (e.code === "Enter") startGame();
   // };
   $id("start-button").onclick = checkUserData;
+  $id("prop-button").onclick = showPropList; //Lawra
 }
 
 function startGame() {
   $id("leaderboard-page").classList.add("hidden");
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
+  $id("prop-page").classList.add("hidden"); //Lawra
   game.start().catch(console.error);
   keyStart();
 }
@@ -101,6 +103,7 @@ function restartGame() {
   $id("leaderboard-page").classList.add("hidden");
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
+  $id("prop-page").classList.add("hidden"); //Lawra
   game.resetGame();
   keyStart();
 }
@@ -154,6 +157,7 @@ function endGameRoute() {
       $id("end-game-page").classList.remove("hidden");
       $id("home-page").classList.add("hidden");
       //print本次遊玩的成績
+      $id("prop-page").classList.add("hidden");//Lawra
       $id("score-bar").textContent = `Your score is ${score}`;
       $id("props-dance").textContent = `You have ${dance} dances`;
       $id("props-band").textContent = `You have ${band} bands`;
@@ -213,6 +217,7 @@ function endGameRoute() {
     $id("leaderboard-page").classList.add("hidden");
     $id("end-game-page").classList.remove("hidden");
     $id("home-page").classList.add("hidden");
+    $id("prop-page").classList.add("hidden");//Lawra
     $id("score-bar").textContent = `Your score is ${score}`;
     $id("props-dance").textContent = `You have ${dance} dances`;
     $id("props-band").textContent = `You have ${band} bands`;
@@ -225,11 +230,22 @@ function endGameRoute() {
     keyStop();
   }
 }
+function showPropList(){ //Lawra
+  $id("leaderboard-page").classList.add("hidden");
+  $id("home-page").classList.remove("hidden");
+  $id("end-game-page").classList.add("hidden");
+  $id("prop-page").classList.remove("hidden");//Lawra
+
+  $id("prop-close-button").onclick = startHomePage;
+}
+
+
 
 function showLeaderboard() {
   $id("leaderboard-page").classList.remove("hidden");
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
+  $id("prop-page").classList.add("hidden");//Lawra
 
   var tr = document.createElement("tr");
   tr.id = "leaderboard-tr-header";
@@ -259,6 +275,7 @@ function showLeaderboard() {
     });
 
   $id("leaderboard-restart-button").onclick = restartGame;
+  
 }
 
 startHomePage();
