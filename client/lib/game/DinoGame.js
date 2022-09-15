@@ -42,6 +42,8 @@ export default class DinoGame extends GameRunner {
       bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
       itemSpawnRate: 200, // fpa
+      speedRatio: 1,
+      scoreRatio: 1,
       powerUpTimes: {
         // seconds
         guitar: 3,
@@ -69,6 +71,7 @@ export default class DinoGame extends GameRunner {
       isRunning: false,
       level: 0,
       speedRatio: 1,
+      scoreRatio: 1,
       score: {
         blinkFrames: 0,
         blinks: 0,
@@ -202,11 +205,14 @@ export default class DinoGame extends GameRunner {
 
           switch ((this, state.dino.powerUp)) {
             case "guitar":
+              this.state.speedRatio = 1;
+              this.state.scoreRatio = 1;
               this.state.props.guitar++;
               break;
             case "dance":
               this.state.props.dance++;
               this.state.speedRatio = 2;
+              this.state.scoreRatio = 5;
               break;
             case "band":
               this.state.props.band++;
@@ -271,8 +277,12 @@ export default class DinoGame extends GameRunner {
       settings: { ...this.defaultSettings },
       birds: [],
       obstacles: [],
+      bullets: [],
+      items: [],
       gameOver: false,
       isRunning: true,
+      speedRatio: 1,
+      scoreRatio: 1,
       level: 0,
       score: {
         blinkFrames: 0,
@@ -348,7 +358,7 @@ export default class DinoGame extends GameRunner {
     if (this.frameCount % state.settings.scoreIncreaseRate === 0) {
       const oldLevel = state.level;
 
-      state.score.value++;
+      state.score.value += state.scoreRatio;
       state.level = Math.floor(state.score.value / 100);
 
       if (state.level !== oldLevel) {
@@ -418,6 +428,9 @@ export default class DinoGame extends GameRunner {
           case "guitar":
             break;
           case "dance":
+            this.state.speedRatio= 1;
+            this.state.scoreRatio= 1;
+            break;
           case "band":
             this.state.speedRatio = 1;
             break;
