@@ -87,6 +87,7 @@ function startHomePage() {
   //   if (e.code === "Enter") startGame();
   // };
   $id("start-button").onclick = checkUserData;
+  $id("start-leaderboard-button").onclick = showLeaderboard;
   $id("prop-button").onclick = showPropList; //Lawra
 }
 
@@ -245,34 +246,49 @@ function showLeaderboard() {
   $id("leaderboard-page").classList.remove("hidden");
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
+
+  const gameStudentID = $id("student-id-input").value;
+  const gameName = $id("name-input").value;
+  const gameScore = game.state.score.value;
   $id("prop-page").classList.add("hidden");//Lawra
 
+  var rankCount = 1;
   var tr = document.createElement("tr");
   tr.id = "leaderboard-tr-header";
 
   $id("leaderboard-table-container").innerHTML = "";
-  ["Name", "Score", "StudentID"].forEach((text) => {
+  ["Rank", "Name", "Score", "StudentID"].forEach((text) => {
     var cell = document.createElement("th");
     cell.appendChild(document.createTextNode(text));
     tr.appendChild(cell);
   });
-  $id("leaderboard-table-container").appendChild(tr);
+  $id("leaderboard-table-container").appendChild(tr)
 
-  fetch(`${baseURL}leaderBoard`)
-    .then((response) => response.json())
-    .then((dataList) => {
-      dataList.map((data) => {
-        const { name, score, studentID } = data;
-        var tr = document.createElement("tr");
-        tr.classList.add("leaderboard-tr-data");
-        [name, score, studentID].forEach((text) => {
-          var cell = document.createElement("td");
-          cell.appendChild(document.createTextNode(text));
-          tr.appendChild(cell);
-        });
-        $id("leaderboard-table-container").appendChild(tr);
+  fetch(`${baseURL}leaderBoard`).then(response=>response.json()).then(dataList => {
+    console.log(dataList)
+    dataList.map((data) => {
+      const { name, score, studentID } = data;
+      var tr = document.createElement("tr");
+      tr.classList.add("leaderboard-tr-data");
+      [rankCount, name, score, studentID].forEach((text) => {
+        var cell = document.createElement("td");
+        cell.appendChild(document.createTextNode(text));
+        tr.appendChild(cell);
       });
+      $id("leaderboard-table-container").appendChild(tr);
+      rankCount += 1;
     });
+  })
+  if(gameScore != 0){
+    var tr = document.createElement("tr");
+      tr.classList.add("leaderboard-game-tr-data");
+      ["your score", gameName, gameScore, gameStudentID].forEach((text) => {
+        var cell = document.createElement("td");
+        cell.appendChild(document.createTextNode(text));
+        tr.appendChild(cell);
+      });
+      $id("leaderboard-table-container").appendChild(tr);
+  }
 
   $id("leaderboard-restart-button").onclick = restartGame;
   

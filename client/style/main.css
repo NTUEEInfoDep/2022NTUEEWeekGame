@@ -270,6 +270,13 @@ td {
     background-color: coral;
 }
 
+.leaderboard-game-tr-data {
+    background-color: coral;
+}
+
+.leaderboard-game-tr-data:hover {
+    background-color: white;
+}
 /*Prop Page*/
 #prop-page {
     top: 50%;
