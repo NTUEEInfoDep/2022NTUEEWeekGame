@@ -518,8 +518,9 @@ export default class DinoGame extends GameRunner {
   }
 
   drawItems(spawnedObstacle, spawnedBird) {
+    //spawn產生
     const { state } = this;
-    const { items, settings } = this.state;
+    const { items, settings, obstacles } = this.state;
     let spawned = false;
 
     this.progressInstances(items);
@@ -528,8 +529,21 @@ export default class DinoGame extends GameRunner {
         spawned = true;
         const newItem = new Item();
         newItem.speed = settings.bgSpeed;
-        newItem.x = this.width;
-        newItem.y = state.dino.baseY - newItem.height - 100 * randInteger(0, 2);
+        //newItem.x = this.width;
+        //newItem.y = this.height - newItem.height - 50 * randInteger(0, 2);
+        var len = obstacles.length;
+        if (len === 0) len = 1;
+
+        var randint = randInteger(0, 5);
+        newItem.y = this.height - newItem.height - 20 * randint;
+
+        if (randint === 0) newItem.x = obstacles[len - 1].x - 50;
+        else if (randint === 1) newItem.x = obstacles[len - 1].x - 40;
+        else if (randint === 2) newItem.x = obstacles[len - 1].x - 30;
+        else if (randint === 3) newItem.x = obstacles[len - 1].x - 20;
+        else if (randint === 4) newItem.x = obstacles[len - 1].x - 10;
+        else newItem.x = obstacles[len - 1].x;
+
         if (spawnedObstacle) {
           newItem.y = state.dino.baseY - newItem.height - 250;
         }
