@@ -158,6 +158,40 @@ td {
     transition: all 0.4s ease 0s;
 }
 
+#leaderboard-close-button {
+    color: red;
+    text-align: center;
+    font-size: 4.5rem;
+    font-family: "Righteous", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s ease 0s;
+    outline: none;
+    background: none;
+    border: none;
+    font-weight: bold;
+    position: absolute;
+    top: -25px;
+    right: 0px;
+    /*
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    border:4px solid red;
+    margin:0 0 0 0;
+    */
+}
+
+#leaderboard-close-button:hover {
+    transition: all 0.4s ease 0s;
+    font-size: 5rem;
+    /*
+    width:60px;
+    height:60px;
+    */
+}
+
+
 /* End Game Page */
 
 #end-game-page {
@@ -186,7 +220,7 @@ td {
     font-family: "Pdark", sans-serif;
 }
 
-#leaderboard-button {
+.leaderboard-button {
     color: black;
     background-color: white;
     font-size: 2rem;
@@ -196,7 +230,7 @@ td {
     transition: all 0.4s ease 0s;
 }
 
-#leaderboard-button:hover {
+.leaderboard-button:hover {
     letter-spacing: 1rem;
     margin-right: -1rem;
     transition: all 0.4s ease 0s;
@@ -224,7 +258,6 @@ td {
 }
 
 
-
 /* Leaderboard Page */
 
 #leaderboard-page {
@@ -244,6 +277,7 @@ td {
     text-align: center;
     background-color: white;
     color: black;
+    z-index: 10;
 }
 
 #leaderboard-page-title {
@@ -277,7 +311,10 @@ td {
 .leaderboard-game-tr-data:hover {
     background-color: white;
 }
+
+
 /*Prop Page*/
+
 #prop-page {
     top: 50%;
     left: 50%;
@@ -329,10 +366,9 @@ td {
     background: none;
     border: none;
     font-weight: bold;
-    position:absolute;
+    position: absolute;
     top: -25px;
     right: 0px;
-    
     /*
     width:40px;
     height:40px;
@@ -360,22 +396,22 @@ td {
     margin: 1rem;
     overflow: hidden;
     overflow-y: scroll;
-    background-color:white;
+    background-color: white;
     border: 5px solid black;
     padding: 10px;
 }
 
 .prop-list {
-    background-color:transparent;
+    background-color: transparent;
 }
 
 .item {
     background: white;
-	border: 5px solid black;
-	padding: 10px 15px;
-    margin: 10px; 
-	display: flex;
-	align-items: center;
+    border: 5px solid black;
+    padding: 10px 15px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
     height: 100%;
     vertical-align: center;
     max-height: 150px;
@@ -389,39 +425,38 @@ td {
     width: 20%;
 }
 
-.right { 
+.right {
     border: 4px solid #001116;
     width: 80%;
     height: 100%;
     margin: 15px;
 }
-.gadget{
+
+.gadget {
     font-weight: 600;
     padding: 10px;
     text-align: left;
     font-size: 24px;
     padding-bottom: none;
-    
 }
 
-.functionality{
+.functionality {
     margin: 10px;
-	font-size: 18px;
+    font-size: 18px;
     text-align: left;
-	line-height: 20px;
-	font-weight: 200;
+    line-height: 20px;
+    font-weight: 200;
     margin-left: 30px;
     margin-top: 0px;
 }
 
-#prop-img{
+#prop-img {
     border: 4px solid #001116;
     border-radius: 8px;
     max-width: 90%;
     max-height: 90%;
     margin-bottom: -6px;
 }
-
 
 
 /* Other Stuff */

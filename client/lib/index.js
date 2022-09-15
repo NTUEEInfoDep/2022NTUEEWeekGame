@@ -1,6 +1,7 @@
 import DinoGame from "./game/DinoGame.js";
 
 const $id = (element) => document.getElementById(element);
+const $class = (element) => document.getElementsByClassName(element);
 
 const baseURL = "http://localhost:4000/api/";
 
@@ -39,8 +40,8 @@ const onKeyUp = ({ keyCode }) => {
   }
 };
 function keyStart() {
-  console.log("start");
-  console.log(isTouchDevice);
+  // console.log("start");
+  // console.log(isTouchDevice);
   if (isTouchDevice) {
     document.addEventListener("touchstart", ontouchstart);
 
@@ -87,7 +88,6 @@ function startHomePage() {
   //   if (e.code === "Enter") startGame();
   // };
   $id("start-button").onclick = checkUserData;
-  $id("start-leaderboard-button").onclick = showLeaderboard;
   $id("prop-button").onclick = showPropList; //Lawra
 }
 
@@ -165,7 +165,6 @@ function endGameRoute() {
       $id("props-eater").textContent = `You have ${eater} eaters`;
       $id("props-week").textContent = `You have ${week} weeks`;
       $id("props-guitar").textContent = `You have ${guitar} guitars`;
-      $id("leaderboard-button").onclick = showLeaderboard;
       $id("restart-button").onclick = restartGame;
       $id("endgame-button").onclick = startHomePage; //傅渝翔 新增
       keyStop();
@@ -225,7 +224,6 @@ function endGameRoute() {
     $id("props-eater").textContent = `You have ${eater} eaters`;
     $id("props-week").textContent = `You have ${week} weeks`;
     $id("props-guitar").textContent = `You have ${guitar} guitars`;
-    $id("leaderboard-button").onclick = showLeaderboard;
     $id("restart-button").onclick = restartGame;
     $id("endgame-button").onclick = startHomePage; //傅渝翔 新增
     keyStop();
@@ -244,13 +242,14 @@ function showPropList(){ //Lawra
 
 function showLeaderboard() {
   $id("leaderboard-page").classList.remove("hidden");
-  $id("home-page").classList.add("hidden");
-  $id("end-game-page").classList.add("hidden");
+  // $id("home-page").classList.add("hidden");
+  // $id("end-game-page").classList.add("hidden");
+  // $id("prop-page").classList.add("hidden");//Lawra
+  $id("leaderboard-close-button").onclick = () =>{$id("leaderboard-page").classList.add("hidden")};
 
   const gameStudentID = $id("student-id-input").value;
   const gameName = $id("name-input").value;
   const gameScore = game.state.score.value;
-  $id("prop-page").classList.add("hidden");//Lawra
 
   var rankCount = 1;
   var tr = document.createElement("tr");
@@ -265,7 +264,7 @@ function showLeaderboard() {
   $id("leaderboard-table-container").appendChild(tr)
 
   fetch(`${baseURL}leaderBoard`).then(response=>response.json()).then(dataList => {
-    console.log(dataList)
+    // console.log(dataList)
     dataList.map((data) => {
       const { name, score, studentID } = data;
       var tr = document.createElement("tr");
@@ -279,20 +278,23 @@ function showLeaderboard() {
       rankCount += 1;
     });
   })
-  if(gameScore != 0){
-    var tr = document.createElement("tr");
-      tr.classList.add("leaderboard-game-tr-data");
-      ["your score", gameName, gameScore, gameStudentID].forEach((text) => {
-        var cell = document.createElement("td");
-        cell.appendChild(document.createTextNode(text));
-        tr.appendChild(cell);
-      });
-      $id("leaderboard-table-container").appendChild(tr);
-  }
+  // if(gameScore != 0){
+  //   var tr = document.createElement("tr");
+  //     tr.classList.add("leaderboard-game-tr-data");
+  //     ["your score", gameName, gameScore, gameStudentID].forEach((text) => {
+  //       var cell = document.createElement("td");
+  //       cell.appendChild(document.createTextNode(text));
+  //       tr.appendChild(cell);
+  //     });
+  //     $id("leaderboard-table-container").appendChild(tr);
+  // }
 
-  $id("leaderboard-restart-button").onclick = restartGame;
+  // $id("leaderboard-restart-button").onclick = restartGame;
   
 }
+
+// Global function
+[].forEach.call($class("leaderboard-button"), (node =>{node.onclick = showLeaderboard;}))
 
 startHomePage();
 // showLeaderboard()
