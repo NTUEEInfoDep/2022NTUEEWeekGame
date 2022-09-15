@@ -152,12 +152,40 @@ export default class DinoGame extends GameRunner {
       // bullets hit
       state.bullets.forEach((bullet) => {
         if (bullet.hits([state.obstacles[0]])) {
-          state.obstacles.shift();
+          //to-do
+          switch (state.obstacles[0].sprite) {
+            case "obstacle": {
+              state.obstacles[0].sprite = "obstacleHit";
+            }
+
+            case "obstacleDouble": {
+              state.obstacles[0].sprite = "obstacleDoubleHit";
+            }
+
+            case "obstacleDoubleB": {
+              state.obstacles[0].sprite = "obstacleDoubleBHit";
+            }
+
+            case "obstacleTriple": {
+              state.obstacles[0].sprite = "obstacleTripleHit";
+            }
+          }
+          setTimeout(() => {
+            state.obstacles.shift();
+          }, 120);
           bullet.destroy();
+
+          //to do
           // playSound("hit");
         }
         if (bullet.hits([state.birds[0]])) {
-          state.birds.shift();
+          //to-do
+          state.obstacles[0].sprite = "birdHit";
+          //to-do
+
+          setTimeout(() => {
+            state.birds.shift();
+          }, 120);
           bullet.destroy();
           // playSound("hit");
         }
@@ -172,7 +200,7 @@ export default class DinoGame extends GameRunner {
             state.settings.powerUpTimes[item.sprite] * this.frameRate;
           playSound("level-up");
 
-          switch (this,state.dino.powerUp) {
+          switch ((this, state.dino.powerUp)) {
             case "guitar":
               break;
             case "dance":
