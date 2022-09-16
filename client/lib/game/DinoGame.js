@@ -16,6 +16,8 @@ import {
 } from "../utils.js";
 import GameRunner from "./GameRunner.js";
 
+import { week } from "../card.js";
+
 export default class DinoGame extends GameRunner {
   constructor(width, height, endGameRoute) {
     super();
@@ -262,6 +264,9 @@ export default class DinoGame extends GameRunner {
               break;
             case "week":
               this.state.props.week++;
+              const week_plus = Math.floor(Math.random() * 100)+1;
+              week(`+${week_plus}`);
+              this.state.score.value+=week_plus;//碰到電機週，加分!
               break;
           }
         }
