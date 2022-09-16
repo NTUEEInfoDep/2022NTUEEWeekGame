@@ -7,7 +7,9 @@ const baseURL = "http://localhost:4000/api/";
 
 const game = new DinoGame(900, 300, endGameRoute);
 const isTouchDevice =
-  "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+  "ontouchstart" in window ||
+  navigator.maxTouchPoints > 0 ||
+  navigator.msMaxTouchPoints > 0;
 
 const keycodes = {
   // up, spacebar
@@ -81,6 +83,7 @@ function startHomePage() {
   $id("home-page").classList.remove("hidden");
   $id("end-game-page").classList.add("hidden");
   $id("prop-page").classList.add("hidden"); //Lawra
+  $id("rule-page").classList.add("hidden"); //lichun
   $id("name-input").focus();
   $id("name-input").value = "";
   keyStop();
@@ -89,6 +92,7 @@ function startHomePage() {
   // };
   $id("start-button").onclick = checkUserData;
   $id("prop-button").onclick = showPropList; //Lawra
+  $id("rule-button").onclick = showRule; //lichun
 }
 
 function startGame() {
@@ -96,6 +100,7 @@ function startGame() {
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
   $id("prop-page").classList.add("hidden"); //Lawra
+  $id("rule-page").classList.add("hidden"); //lichun
   game.start().catch(console.error);
   keyStart();
 }
@@ -105,6 +110,7 @@ function restartGame() {
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
   $id("prop-page").classList.add("hidden"); //Lawra
+  $id("rule-page").classList.add("hidden"); //lichun
   game.resetGame();
   keyStart();
 }
@@ -158,7 +164,7 @@ function endGameRoute() {
       $id("end-game-page").classList.remove("hidden");
       $id("home-page").classList.add("hidden");
       //print本次遊玩的成績
-      $id("prop-page").classList.add("hidden");//Lawra
+      $id("prop-page").classList.add("hidden"); //Lawra
       $id("score-bar").textContent = `Your score is ${score}`;
       $id("props-dance").textContent = `You have ${dance} dances`;
       $id("props-band").textContent = `You have ${band} bands`;
@@ -181,7 +187,9 @@ function endGameRoute() {
       .then((response) => response.json())
       .then((data) => {
         const highestScore = data.score;
-        $id("highestScore").textContent = `Your highest score is ${highestScore}`;
+        $id(
+          "highestScore"
+        ).textContent = `Your highest score is ${highestScore}`;
         if (highestScore !== 0 && score < highestScore) {
           $id("encouragement").textContent = "退步了, 加油EE點好嗎?";
         } else if (highestScore !== 0 && score > highestScore) {
@@ -217,7 +225,7 @@ function endGameRoute() {
     $id("leaderboard-page").classList.add("hidden");
     $id("end-game-page").classList.remove("hidden");
     $id("home-page").classList.add("hidden");
-    $id("prop-page").classList.add("hidden");//Lawra
+    $id("prop-page").classList.add("hidden"); //Lawra
     $id("score-bar").textContent = `Your score is ${score}`;
     $id("props-dance").textContent = `You have ${dance} dances`;
     $id("props-band").textContent = `You have ${band} bands`;
@@ -229,23 +237,34 @@ function endGameRoute() {
     keyStop();
   }
 }
-function showPropList(){ //Lawra
+function showRule() {
+  //lichun
   $id("leaderboard-page").classList.add("hidden");
   $id("home-page").classList.remove("hidden");
   $id("end-game-page").classList.add("hidden");
-  $id("prop-page").classList.remove("hidden");//Lawra
+  $id("rule-page").classList.remove("hidden"); //lichun
+
+  $id("rule-close-button").onclick = startHomePage;
+}
+
+function showPropList() {
+  //Lawra
+  $id("leaderboard-page").classList.add("hidden");
+  $id("home-page").classList.remove("hidden");
+  $id("end-game-page").classList.add("hidden");
+  $id("prop-page").classList.remove("hidden"); //Lawra
 
   $id("prop-close-button").onclick = startHomePage;
 }
-
-
 
 function showLeaderboard() {
   $id("leaderboard-page").classList.remove("hidden");
   // $id("home-page").classList.add("hidden");
   // $id("end-game-page").classList.add("hidden");
   // $id("prop-page").classList.add("hidden");//Lawra
-  $id("leaderboard-close-button").onclick = () =>{$id("leaderboard-page").classList.add("hidden")};
+  $id("leaderboard-close-button").onclick = () => {
+    $id("leaderboard-page").classList.add("hidden");
+  };
 
   const gameStudentID = $id("student-id-input").value;
   const gameName = $id("name-input").value;
@@ -261,23 +280,25 @@ function showLeaderboard() {
     cell.appendChild(document.createTextNode(text));
     tr.appendChild(cell);
   });
-  $id("leaderboard-table-container").appendChild(tr)
+  $id("leaderboard-table-container").appendChild(tr);
 
-  fetch(`${baseURL}leaderBoard`).then(response=>response.json()).then(dataList => {
-    // console.log(dataList)
-    dataList.map((data) => {
-      const { name, score, studentID } = data;
-      var tr = document.createElement("tr");
-      tr.classList.add("leaderboard-tr-data");
-      [rankCount, name, score, studentID].forEach((text) => {
-        var cell = document.createElement("td");
-        cell.appendChild(document.createTextNode(text));
-        tr.appendChild(cell);
+  fetch(`${baseURL}leaderBoard`)
+    .then((response) => response.json())
+    .then((dataList) => {
+      // console.log(dataList)
+      dataList.map((data) => {
+        const { name, score, studentID } = data;
+        var tr = document.createElement("tr");
+        tr.classList.add("leaderboard-tr-data");
+        [rankCount, name, score, studentID].forEach((text) => {
+          var cell = document.createElement("td");
+          cell.appendChild(document.createTextNode(text));
+          tr.appendChild(cell);
+        });
+        $id("leaderboard-table-container").appendChild(tr);
+        rankCount += 1;
       });
-      $id("leaderboard-table-container").appendChild(tr);
-      rankCount += 1;
     });
-  })
   // if(gameScore != 0){
   //   var tr = document.createElement("tr");
   //     tr.classList.add("leaderboard-game-tr-data");
@@ -290,14 +311,12 @@ function showLeaderboard() {
   // }
 
   // $id("leaderboard-restart-button").onclick = restartGame;
-  
 }
 
 // Global function
-[].forEach.call($class("leaderboard-button"), (node =>{node.onclick = showLeaderboard;}))
-
-// Global function
-[].forEach.call($class("leaderboard-button"), (node =>{node.onclick = showLeaderboard;}))
+[].forEach.call($class("leaderboard-button"), (node) => {
+  node.onclick = showLeaderboard;
+});
 
 startHomePage();
 // showLeaderboard()
