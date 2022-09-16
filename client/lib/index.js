@@ -2,7 +2,7 @@ import DinoGame from "./game/DinoGame.js";
 
 const $id = (element) => document.getElementById(element);
 
-const baseURL = "http://localhost:4000/api/"
+const baseURL = "http://localhost:4000/api/";
 
 const game = new DinoGame(900, 300, endGameRoute);
 const isTouchDevice =
@@ -63,17 +63,17 @@ function keyStop() {
 }
 
 // TODO: Complete this function
-const checkStudentIDForm = (studentID)=>{
+const checkStudentIDForm = (studentID) => {
   return studentID;
-}
+};
 
-// TODO: 
+// TODO:
 //    1. Check studentID is filled
 //    2. Check studentID is valid
 //    3. Ask player whether data is correct
-const checkUserData = ()=>{
+const checkUserData = () => {
   startGame();
-}
+};
 
 function startHomePage() {
   $id("home-page").classList.remove("hidden");
@@ -86,6 +86,9 @@ function startHomePage() {
   //   if (e.code === "Enter") startGame();
   // };
   $id("start-button").onclick = checkUserData;
+  $id("leaderBoard-button").onclick = showLeaderboard;
+  // showing prop page
+  //$id("porp-button").onclick = showPropPage;
 }
 
 function startGame() {
@@ -108,15 +111,15 @@ function endGameRoute() {
   const studentID = $id("student-id-input").value;
   const name = $id("name-input").value;
   const score = game.state.score.value;
-  if (checkStudentIDForm(studentID)){
+  if (checkStudentIDForm(studentID)) {
     fetch(`${baseURL}reportScore`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({name, studentID, score})
-    }).then(()=>{
+      body: JSON.stringify({ name, studentID, score }),
+    }).then(() => {
       $id("leaderboard-page").classList.add("hidden");
       $id("end-game-page").classList.remove("hidden");
       $id("home-page").classList.add("hidden");
@@ -124,8 +127,8 @@ function endGameRoute() {
       $id("leaderboard-button").onclick = showLeaderboard;
       $id("restart-button").onclick = restartGame;
       keyStop();
-    })  
-  }else{
+    });
+  } else {
     $id("leaderboard-page").classList.add("hidden");
     $id("end-game-page").classList.remove("hidden");
     $id("home-page").classList.add("hidden");
@@ -141,7 +144,6 @@ function showLeaderboard() {
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
 
-
   var tr = document.createElement("tr");
   tr.id = "leaderboard-tr-header";
 
@@ -151,22 +153,23 @@ function showLeaderboard() {
     cell.appendChild(document.createTextNode(text));
     tr.appendChild(cell);
   });
-  $id("leaderboard-table-container").appendChild(tr)
+  $id("leaderboard-table-container").appendChild(tr);
 
-  fetch(`${baseURL}leaderBoard`).then(response=>response.json()).then(dataList => {
-    dataList.map((data) => {
-      const { name, score, studentID } = data;
-      var tr = document.createElement("tr");
-      tr.classList.add("leaderboard-tr-data");
-      [name, score, studentID].forEach((text) => {
-        var cell = document.createElement("td");
-        cell.appendChild(document.createTextNode(text));
-        tr.appendChild(cell);
+  fetch(`${baseURL}leaderBoard`)
+    .then((response) => response.json())
+    .then((dataList) => {
+      dataList.map((data) => {
+        const { name, score, studentID } = data;
+        var tr = document.createElement("tr");
+        tr.classList.add("leaderboard-tr-data");
+        [name, score, studentID].forEach((text) => {
+          var cell = document.createElement("td");
+          cell.appendChild(document.createTextNode(text));
+          tr.appendChild(cell);
+        });
+        $id("leaderboard-table-container").appendChild(tr);
       });
-      $id("leaderboard-table-container").appendChild(tr);
     });
-  })
-
 
   $id("leaderboard-restart-button").onclick = restartGame;
 }
