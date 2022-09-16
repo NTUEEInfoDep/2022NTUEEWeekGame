@@ -57,25 +57,112 @@
         placeholder="輸入學號（才可顯示於排行榜上）"
       />
       <button id="start-button">Game Start!</button>
-
-      <button id="leaderBoard-button">LEADERBOARD</button>
-      <button id="porp-button">Checkout Props</button>
+      <button class="leaderboard-button">Leaderboard!</button>
+      <button id="prop-button">Prop List!</button>
     </div>
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
       <div id="end-game-page-title">GAME OVER</div>
       <div id="score-bar"></div>
+      <div id="highestScore"></div>
+      <div id="encouragement"></div>
+      <li id="props-list" style="list-style-type: none">
+        <ul id="props-dance"></ul>
+        <ul id="props-band"></ul>
+        <ul id="props-eater"></ul>
+        <ul id="props-week"></ul>
+        <ul id="props-guitar"></ul>
+      </li>
+      <!--傅渝翔 新增-->
       <div id=""></div>
-      <button id="leaderboard-button">Leaderboard</button>
+      <button class="leaderboard-button">Leaderboard</button>
       <button id="restart-button">Restart</button>
+      <button id="endgame-button">End Game</button
+      ><!--傅渝翔 新增-->
     </div>
 
     <!-- Leaderboard Page -->
     <div id="leaderboard-page" class="hidden">
+      <button id="leaderboard-close-button" class="leaderboard-close-button">
+        &times;
+      </button>
       <div id="leaderboard-page-title">Leaderboard</div>
       <table id="leaderboard-table-container"></table>
-      <button id="leaderboard-restart-button">Restart</button>
+    </div>
+
+    <!-- Props Page -->
+    <div id="prop-page" class="hidden">
+      <button id="prop-close-button" class="prop-close-button">&times;</button>
+      <div class="prop-header">
+        <div id="prop-page-title">Prop List</div>
+      </div>
+
+      <div id="prop-page-main">
+        <div class="prop-list" style="display: block">
+          <div class="item">
+            <div class="left">
+              <img id="prop-img" src="assets/guitar.png" alt="guitar" />
+            </div>
+            <div class="right">
+              <p class="gadget">Guitar</p>
+              <p class="functionality">
+                Function: Music note attacks! Dino turns into a professional
+                guitarist, shooting musical notes to destroy all obstacles.
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">
+              <img id="prop-img" src="assets/dance.png" alt="dance" />
+            </div>
+            <div class="right">
+              <p class="gadget">Dance</p>
+              <p class="functionality">
+                Function: Dance causes ADRENALINE RUSH. Dino turn on the jets
+                and receive a speed boost for n seconds.
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">
+              <img id="prop-img" src="assets/band.png" alt="band" />
+            </div>
+            <div class="right">
+              <p class="gadget">Band</p>
+              <p class="functionality">
+                Function: Dino becomes invincible for a certain period of time
+                and destroy everything in its path. The speed will also be
+                faster.
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">
+              <img id="prop-img" src="assets/eater.png" alt="eater" />
+            </div>
+            <div class="right">
+              <p class="gadget">Eater</p>
+              <p class="functionality">
+                Function: Yum Yum ~ Dino ate all the obstables. Obstacles will
+                stop spawning.
+              </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">
+              <img id="prop-img" src="assets/example.png" alt="week" />
+            </div>
+            <div class="right">
+              <p class="gadget">Week</p>
+              <p class="functionality">
+                Function: NTUEE Week is fun! Dino gets extra points, unlike
+                NTUEE students asking professor for grades
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

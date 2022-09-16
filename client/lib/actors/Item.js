@@ -1,7 +1,7 @@
 import { randItem } from "../utils.js";
 import Actor from "./Actor.js";
 
-const VARIANTS = ["guitar", "dance", "band", "eater", "week", "covid"];
+const VARIANTS = ["guitar", "dance", "band", "eater", "week"];
 
 export default class Obstacle extends Actor {
   constructor(imageData) {

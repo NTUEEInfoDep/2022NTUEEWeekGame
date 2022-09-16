@@ -6,13 +6,7 @@ import Bullet from "../actors/Bullet.js";
 import Item from "../actors/Item.js";
 import sprites from "../sprites.js";
 import { playSound } from "../sounds.js";
-import {
-  loadFont,
-  loadImage,
-  getImageData,
-  randBoolean,
-  randInteger,
-} from "../utils.js";
+import { loadFont, loadImage, getImageData, randBoolean, randInteger } from "../utils.js";
 import GameRunner from "./GameRunner.js";
 
 export default class DinoGame extends GameRunner {
@@ -48,6 +42,8 @@ export default class DinoGame extends GameRunner {
       bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
       itemSpawnRate: 200, // fpa
+      speedRatio: 1,
+      scoreRatio: 1,
       powerUpTimes: {
         // seconds
         guitar: 3,
@@ -55,7 +51,6 @@ export default class DinoGame extends GameRunner {
         band: 3,
         eater: 3,
         week: 3,
-        covid: 3,
       },
       scoreBlinkRate: 20, // fpa
       scoreIncreaseRate: 6, // fpa
@@ -75,11 +70,19 @@ export default class DinoGame extends GameRunner {
       isRunning: false,
       level: 0,
       speedRatio: 1,
+      scoreRatio: 1,
       score: {
         blinkFrames: 0,
         blinks: 0,
         isBlinking: false,
         value: 0,
+      },
+      props: {
+        dance: 0,
+        band: 0,
+        eater: 0,
+        week: 0,
+        guitar: 0,
       },
     };
   }
@@ -145,19 +148,49 @@ export default class DinoGame extends GameRunner {
       spawnedItem = this.drawItems(spawnedObstacle, spawnedBird);
 
       if (state.dino.hits([state.obstacles[0], state.birds[0]])) {
-        playSound("game-over");
-        state.gameOver = true;
+        if (this.state.dino.powerUp !== "band") {
+          playSound("game-over");
+          state.gameOver = true;
+        }
       }
 
       // bullets hit
       state.bullets.forEach((bullet) => {
         if (bullet.hits([state.obstacles[0]])) {
-          state.obstacles.shift();
+          //to-do
+          switch (state.obstacles[0].sprite) {
+            case "obstacle": {
+              state.obstacles[0].sprite = "obstacleHit";
+            }
+
+            case "obstacleDouble": {
+              state.obstacles[0].sprite = "obstacleDoubleHit";
+            }
+
+            case "obstacleDoubleB": {
+              state.obstacles[0].sprite = "obstacleDoubleBHit";
+            }
+
+            case "obstacleTriple": {
+              state.obstacles[0].sprite = "obstacleTripleHit";
+            }
+          }
+          setTimeout(() => {
+            state.obstacles.shift();
+          }, 120);
           bullet.destroy();
+
+          //to do
           // playSound("hit");
         }
         if (bullet.hits([state.birds[0]])) {
-          state.birds.shift();
+          //to-do
+          state.obstacles[0].sprite = "birdHit";
+          //to-do
+
+          setTimeout(() => {
+            state.birds.shift();
+          }, 120);
           bullet.destroy();
           // playSound("hit");
         }
@@ -168,24 +201,30 @@ export default class DinoGame extends GameRunner {
         if (item.hits([state.dino])) {
           item.destroy();
           state.dino.powerUp = item.sprite;
-          state.dino.powerUpTime =
-            state.settings.powerUpTimes[item.sprite] * this.frameRate;
+          state.dino.powerUpTime = state.settings.powerUpTimes[item.sprite] * this.frameRate;
           playSound("level-up");
 
-          switch (this,state.dino.powerUp) {
+          switch ((this, state.dino.powerUp)) {
             case "guitar":
+              this.state.speedRatio = 1;
+              this.state.scoreRatio = 1;
+              this.state.props.guitar++;
               break;
             case "dance":
+              this.state.props.dance++;
               this.state.speedRatio = 2;
+              this.state.scoreRatio = 5;
               break;
             case "band":
-              this.state.speedRatio = 0.5;
+              this.state.props.band++;
+              this.state.speedRatio = 0.8;
+              state.dino.blinking(true);
               break;
             case "eater":
+              this.state.props.eater++;
               break;
             case "week":
-              break;
-            case "covid":
+              this.state.props.week++;
               break;
           }
         }
@@ -238,8 +277,12 @@ export default class DinoGame extends GameRunner {
       settings: { ...this.defaultSettings },
       birds: [],
       obstacles: [],
+      bullets: [],
+      items: [],
       gameOver: false,
       isRunning: true,
+      speedRatio: 1,
+      scoreRatio: 1,
       level: 0,
       score: {
         blinkFrames: 0,
@@ -247,6 +290,13 @@ export default class DinoGame extends GameRunner {
         isBlinking: false,
         value: 0,
       },
+      props: {
+        guitar: 0,
+        dance: 0,
+        band: 0,
+        eater: 0,
+        week: 0,
+      }
     });
 
     this.start();
@@ -256,18 +306,13 @@ export default class DinoGame extends GameRunner {
     const iconSprite = sprites.replayIcon;
     const padding = 15;
 
-    this.paintText(
-      "G A M E  O V E R",
-      this.width / 2,
-      this.height / 2 - padding,
-      {
-        font: "PressStart2P",
-        size: "12px",
-        align: "center",
-        baseline: "bottom",
-        color: "#535353",
-      }
-    );
+    this.paintText("G A M E  O V E R", this.width / 2, this.height / 2 - padding, {
+      font: "PressStart2P",
+      size: "12px",
+      align: "center",
+      baseline: "bottom",
+      color: "#535353",
+    });
 
     // this.paintSprite(
     //   'replayIcon',
@@ -320,7 +365,7 @@ export default class DinoGame extends GameRunner {
     if (this.frameCount % state.settings.scoreIncreaseRate === 0) {
       const oldLevel = state.level;
 
-      state.score.value++;
+      state.score.value += state.scoreRatio;
       state.level = Math.floor(state.score.value / 100);
 
       if (state.level !== oldLevel) {
@@ -390,8 +435,12 @@ export default class DinoGame extends GameRunner {
           case "guitar":
             break;
           case "dance":
+            this.state.speedRatio= 1;
+            this.state.scoreRatio= 1;
+            break;
           case "band":
             this.state.speedRatio = 1;
+            this.state.dino.blinking(false);
             break;
           case "eater":
             break;
@@ -413,10 +462,7 @@ export default class DinoGame extends GameRunner {
     const { bullets, settings } = this.state;
 
     this.progressInstances(bullets);
-    if (
-      this.frameCount % settings.bulletSpawnRate === 0 &&
-      this.state.dino.powerUp === "guitar"
-    ) {
+    if (this.frameCount % settings.bulletSpawnRate === 0 && this.state.dino.powerUp === "guitar") {
       const newBullet = new Bullet();
       newBullet.speed = settings.bulletSpeed;
       newBullet.x = this.state.dino.x + this.state.dino.width;
@@ -573,17 +619,7 @@ export default class DinoGame extends GameRunner {
 
   paintSprite(spriteName, dx, dy) {
     const { h, w, x, y } = sprites[spriteName];
-    this.canvasCtx.drawImage(
-      this.spriteImage,
-      x,
-      y,
-      w,
-      h,
-      dx,
-      dy,
-      w / 2,
-      h / 2
-    );
+    this.canvasCtx.drawImage(this.spriteImage, x, y, w, h, dx, dy, w / 2, h / 2);
   }
 
   paintText(text, x, y, opts) {

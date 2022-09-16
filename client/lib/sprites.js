@@ -3,11 +3,20 @@ export default {
   birdUp: { h: 52, w: 84, x: 708, y: 31 },
   birdDown: { h: 60, w: 84, x: 708, y: 85 },
 
+  //birdHit
+  birdHit: { h: 60, w: 84, x: 1590, y: 85 },
+
   // obstacle
   obstacle: { h: 92, w: 46, x: 70, y: 31 },
   obstacleDouble: { h: 66, w: 64, x: 118, y: 31 },
   obstacleDoubleB: { h: 92, w: 80, x: 184, y: 31 },
   obstacleTriple: { h: 66, w: 82, x: 266, y: 31 },
+
+  // obstacleHit
+  obstacleHit: { h: 107, w: 46, x: 1304, y: 35 },
+  obstacleDoubleHit: { h: 81, w: 64, x: 1352, y: 35 },
+  obstacleDoubleBHit: { h: 107, w: 80, x: 1418, y: 35 },
+  obstacleTripleHit: { h: 81, w: 82, x: 1500, y: 35 },
 
   // dino
   dino: { h: 86, w: 80, x: 350, y: 31 },
@@ -15,6 +24,7 @@ export default {
   dinoDuckRightLeg: { h: 52, w: 110, x: 596, y: 85 },
   dinoLeftLeg: { h: 86, w: 80, x: 432, y: 31 },
   dinoRightLeg: { h: 86, w: 80, x: 514, y: 31 },
+  dinodisappear: { h: 86, w: 80, x: 1800, y: 31 },
 
   // other
   cloud: { h: 28, w: 92, x: 794, y: 31 },
