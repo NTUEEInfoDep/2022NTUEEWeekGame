@@ -54,8 +54,8 @@
     <div class="page-container hidden" id="rule-container">
         <div id="rule-page">
             <button id="rule-close-button" class="close-button">&times;</button>
-            <div class="rule-header">
-                <div id="rule-page-title">RULE 規則</div>
+            <div id="rule-header" class="page-header">
+                <div id="rule-page-title" class="page-title">RULE 規則</div>
             </div>
             <div id="rule-page-main">
                 <div class="rule-list" style="display: block">
@@ -70,8 +70,8 @@
     <!-- Warning Page -->
     <div class="page-container hidden" id="warning-container">
         <div id="warning-page">
-            <div class="warning-header">
-                <div id="warning-page-title">Warning</div>
+            <div id="warning-header" class="page-header">
+                <div id="warning-page-title" class="page-title">Warning</div>
             </div>
             <div id="warning-page-main">玩家你好，確定不填學號齁?不會留紀錄喔</div>
             <button id="warning-go-back-button">返回</button>
@@ -83,10 +83,23 @@
     <div class="page-container hidden" id="error-container">
         <div id="error-page">
             <button id="error-close-button" class="close-button">&times;</button>
-            <div class="error-header">
-                <div id="error-page-title">Error</div>
+            <div id="error-header" class="page-header">
+                <div id="error-page-title" class="page-title">Error</div>
             </div>
             <div id="error-page-main">ERRRRRRROR</div>
+        </div>
+    </div>
+
+    <!-- Prompt Page -->
+    <div class="page-container hidden" id="prompt-container">
+        <div id="prompt-page">
+            <div id="prompt-header" class="page-header">
+                <div id="prompt-page-title" class="page-title">Congratulation</div>
+            </div>
+            <div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
+            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
+            <button id="prompt-reject-button" class="prompt-page-button">確定不填寫學號</button>
+            <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
         </div>
     </div>
 
@@ -126,8 +139,8 @@
     <div class="page-container hidden" id="prop-container">
         <div id="prop-page">
             <button id="prop-close-button" class="close-button">&times;</button>
-            <div class="prop-header">
-                <div id="prop-page-title">Prop List</div>
+            <div id="prop-header" class="page-header">
+                <div id="prop-page-title" class="page-title">Prop List</div>
             </div>
 
             <div id="prop-page-main">

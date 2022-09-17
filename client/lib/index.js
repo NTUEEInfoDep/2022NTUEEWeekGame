@@ -5,7 +5,7 @@ const $class = (element) => document.getElementsByClassName(element);
 
 const baseURL = "http://localhost:4000/api/";
 
-const game = new DinoGame(900, 300, endGameRoute);
+const game = new DinoGame(900, 300, preEndGameRoute);
 const isTouchDevice =
   "ontouchstart" in window ||
   navigator.maxTouchPoints > 0 ||
@@ -136,26 +136,13 @@ function restartGame() {
   keyStart();
 }
 
-function endGameRoute() {
-  let studentID = $id("student-id-input").value;
-  const name = $id("name-input").value;
+function preEndGameRoute(){
+  keyStop();
   const score = game.state.score.value;
-  const dance = game.state.props.dance;
-  const band = game.state.props.band;
-  const eater = game.state.props.eater;
-  const week = game.state.props.week;
-  const guitar = game.state.props.guitar;
-  let studentID_re = "";
-  //檢查有沒有前十名
-  /*
-  fetch(`${baseURL}tenthHighestScore`)
-    .then((response) => response.json())
-    .then((score) => {
-      console.log(score);
-    });
-*/
-  /*
-  if (!checkStudentIDForm(studentID)) {
+  let studentID = $id("student-id-input").value;
+  if (checkStudentIDForm(studentID)) {
+    endGameRoute();
+  }else{
     fetch(`${baseURL}leaderBoard`)
       .then((response) => response.json())
       .then((dataList) => {
@@ -165,13 +152,21 @@ function endGameRoute() {
           tenthScore = dataList[9].score;
         }
         if (tenthScore <= score) {
-          studentID_re = prompt("您已經進入前10名, 填寫學號以儲存您的分數");
-          studentID = studentID_re;
+          $id("prompt-container").classList.remove("hidden");
         }
       });
   }
-  */
-  console.log(checkStudentIDForm(studentID));
+}
+
+function endGameRoute() {
+  let studentID = $id("student-id-input").value;
+  const name = $id("name-input").value;
+  const score = game.state.score.value;
+  const dance = game.state.props.dance;
+  const band = game.state.props.band;
+  const eater = game.state.props.eater;
+  const week = game.state.props.week;
+  const guitar = game.state.props.guitar;
   if (checkStudentIDForm(studentID)) {
     fetch(`${baseURL}highestScore?studentID=${studentID}`, {
       method: "GET",
@@ -222,29 +217,6 @@ function endGameRoute() {
         }
       });
   } else {
-    fetch(`${baseURL}leaderBoard`)
-      .then((response) => response.json())
-      .then((dataList) => {
-        console.log(dataList);
-        let tenthScore = 0;
-        if (dataList.length > 9) {
-          tenthScore = dataList[9].score;
-        }
-        if (tenthScore <= score) {
-          studentID_re = prompt("您已經進入前10名, 填寫學號以儲存您的分數");
-          studentID = studentID_re;
-        }
-        if (checkStudentIDForm(studentID)) {
-          fetch(`${baseURL}reportScore`, {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, studentID, score }),
-          }).then(() => {});
-        }
-      });
     $id("leaderboard-container").classList.add("hidden");
     $id("end-game-page").classList.remove("hidden");
     $id("home-page").classList.add("hidden");
@@ -255,7 +227,6 @@ function endGameRoute() {
     $id("props-eater").textContent = `You have ${eater} eaters`;
     $id("props-week").textContent = `You have ${week} weeks`;
     $id("props-guitar").textContent = `You have ${guitar} guitars`;
-    keyStop();
   }
 }
 function showRule() {
@@ -364,9 +335,23 @@ $id("warning-start-button").onclick = () => {
   $id("warning-container").classList.add("hidden");
   startGame();
 };
-
 $id("error-close-button").onclick = () => {
   $id("error-container").classList.add("hidden");
+};
+$id("prompt-reject-button").onclick = () =>{
+  $id("prompt-container").classList.add("hidden");
+  endGameRoute();
+};
+$id("prompt-confirm-button").onclick = () =>{
+  const promptStudentID = $id("prompt-student-id-input").value;
+  if(checkStudentIDForm(promptStudentID)){
+    $id("student-id-input").value = promptStudentID;
+    $id("prompt-container").classList.add("hidden");
+    endGameRoute();
+  }else{
+    $id("error-container").classList.remove("hidden");
+    $id("error-page-main").textContent = `你的學號[${promptStudentID}]似乎有問題喔`;
+  }
 };
 
 startHomePage();
