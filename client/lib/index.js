@@ -68,7 +68,12 @@ function keyStop() {
 
 // TODO: Complete this function
 const checkStudentIDForm = (studentID) => {
-  return studentID;
+  if(studentID){
+    const regex = /[BSTKRYAPJMDZCFQEN]\d{2}[0-9ABE][01][A-Z0-9]{4}/;
+    return regex.test(studentID);
+  }else{
+    return false;
+  }
 };
 
 // TODO:
@@ -76,41 +81,57 @@ const checkStudentIDForm = (studentID) => {
 //    2. Check studentID is valid
 //    3. Ask player whether data is correct
 const checkUserData = () => {
-  startGame();
+  const name = $id("name-input").value;
+  const studentID = $id("student-id-input").value;
+  if (name){
+    if (studentID){
+      if (checkStudentIDForm(studentID)){
+        startGame();
+      }else{
+        $id("error-container").classList.remove("hidden");
+        $id("error-page-main").textContent = `你的學號[${studentID}]似乎有問題喔`;
+      }
+    }else{
+      $id("warning-container").classList.remove("hidden");
+      $id("warning-page-main").textContent = `玩家[${name}]你好，確定不填學號齁?不會留紀錄喔`;
+    }
+  }else{
+    $id("error-container").classList.remove("hidden");
+    $id("error-page-main").textContent = `請告訴我們你是誰 >_<`;
+  }
 };
 
 function startHomePage() {
   $id("home-page").classList.remove("hidden");
   $id("end-game-page").classList.add("hidden");
-  $id("prop-page").classList.add("hidden"); //Lawra
-  $id("rule-page").classList.add("hidden"); //lichun
+  $id("prop-container").classList.add("hidden"); //Lawra
+  $id("rule-container").classList.add("hidden"); //lichun
   $id("name-input").focus();
   $id("name-input").value = "";
   keyStop();
   // $id("name-input").onkeydown = (e) => {
   //   if (e.code === "Enter") startGame();
   // };
-  $id("start-button").onclick = checkUserData;
-  $id("prop-button").onclick = showPropList; //Lawra
-  $id("rule-button").onclick = showRule; //lichun
 }
 
 function startGame() {
-  $id("leaderboard-page").classList.add("hidden");
+  $id("leaderboard-container").classList.add("hidden");
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
-  $id("prop-page").classList.add("hidden"); //Lawra
-  $id("rule-page").classList.add("hidden"); //lichun
+  $id("prop-container").classList.add("hidden"); //Lawra
+  $id("rule-container").classList.add("hidden"); //lichun
+  $id("error-container").classList.add("hidden"); 
+  $id("warning-container").classList.add("hidden"); 
   game.start().catch(console.error);
   keyStart();
 }
 
 function restartGame() {
-  $id("leaderboard-page").classList.add("hidden");
+  $id("leaderboard-container").classList.add("hidden");
   $id("home-page").classList.add("hidden");
   $id("end-game-page").classList.add("hidden");
-  $id("prop-page").classList.add("hidden"); //Lawra
-  $id("rule-page").classList.add("hidden"); //lichun
+  $id("prop-container").classList.add("hidden"); //Lawra
+  $id("rule-container").classList.add("hidden"); //lichun
   game.resetGame();
   keyStart();
 }
@@ -160,19 +181,17 @@ function endGameRoute() {
       },
       body: JSON.stringify({ name, studentID, score }),
     }).then(() => {
-      $id("leaderboard-page").classList.add("hidden");
+      $id("leaderboard-container").classList.add("hidden");
       $id("end-game-page").classList.remove("hidden");
       $id("home-page").classList.add("hidden");
       //print本次遊玩的成績
-      $id("prop-page").classList.add("hidden"); //Lawra
+      $id("prop-container").classList.add("hidden"); //Lawra
       $id("score-bar").textContent = `Your score is ${score}`;
       $id("props-dance").textContent = `You have ${dance} dances`;
       $id("props-band").textContent = `You have ${band} bands`;
       $id("props-eater").textContent = `You have ${eater} eaters`;
       $id("props-week").textContent = `You have ${week} weeks`;
       $id("props-guitar").textContent = `You have ${guitar} guitars`;
-      $id("restart-button").onclick = restartGame;
-      $id("endgame-button").onclick = startHomePage; //傅渝翔 新增
       keyStop();
     });
     fetch(`${baseURL}highestScores`, {
@@ -222,49 +241,40 @@ function endGameRoute() {
           }).then(() => {});
         }
       });
-    $id("leaderboard-page").classList.add("hidden");
+    $id("leaderboard-container").classList.add("hidden");
     $id("end-game-page").classList.remove("hidden");
     $id("home-page").classList.add("hidden");
-    $id("prop-page").classList.add("hidden"); //Lawra
+    $id("prop-container").classList.add("hidden"); //Lawra
     $id("score-bar").textContent = `Your score is ${score}`;
     $id("props-dance").textContent = `You have ${dance} dances`;
     $id("props-band").textContent = `You have ${band} bands`;
     $id("props-eater").textContent = `You have ${eater} eaters`;
     $id("props-week").textContent = `You have ${week} weeks`;
     $id("props-guitar").textContent = `You have ${guitar} guitars`;
-    $id("restart-button").onclick = restartGame;
-    $id("endgame-button").onclick = startHomePage; //傅渝翔 新增
     keyStop();
   }
 }
 function showRule() {
   //lichun
-  $id("leaderboard-page").classList.add("hidden");
+  $id("leaderboard-container").classList.add("hidden");
   $id("home-page").classList.remove("hidden");
   $id("end-game-page").classList.add("hidden");
-  $id("rule-page").classList.remove("hidden"); //lichun
-
-  $id("rule-close-button").onclick = startHomePage;
+  $id("rule-container").classList.remove("hidden"); //lichun
 }
 
 function showPropList() {
   //Lawra
-  $id("leaderboard-page").classList.add("hidden");
+  $id("leaderboard-container").classList.add("hidden");
   $id("home-page").classList.remove("hidden");
   $id("end-game-page").classList.add("hidden");
-  $id("prop-page").classList.remove("hidden"); //Lawra
-
-  $id("prop-close-button").onclick = startHomePage;
+  $id("prop-container").classList.remove("hidden"); //Lawra
 }
 
 function showLeaderboard() {
-  $id("leaderboard-page").classList.remove("hidden");
+  $id("leaderboard-container").classList.remove("hidden");
   // $id("home-page").classList.add("hidden");
   // $id("end-game-page").classList.add("hidden");
-  // $id("prop-page").classList.add("hidden");//Lawra
-  $id("leaderboard-close-button").onclick = () => {
-    $id("leaderboard-page").classList.add("hidden");
-  };
+  // $id("prop-container").classList.add("hidden");//Lawra
 
   const gameStudentID = $id("student-id-input").value;
   const gameName = $id("name-input").value;
@@ -317,6 +327,29 @@ function showLeaderboard() {
 [].forEach.call($class("leaderboard-button"), (node) => {
   node.onclick = showLeaderboard;
 });
+$id("start-button").onclick = checkUserData;
+[].forEach.call($class("prop-button"), (node) => {
+  node.onclick = showPropList;
+});
+$id("rule-button").onclick = showRule; //lichun
+$id("restart-button").onclick = restartGame;
+$id("endgame-button").onclick = startHomePage; //傅渝翔 新增
+$id("rule-close-button").onclick = startHomePage;
+$id("prop-close-button").onclick = startHomePage;
+$id("leaderboard-close-button").onclick = () => {
+  $id("leaderboard-container").classList.add("hidden");
+};
+$id("warning-go-back-button").onclick = () => {
+  $id("warning-container").classList.add("hidden");
+};
+$id("warning-start-button").onclick = () => {
+  $id("warning-container").classList.add("hidden");
+  startGame();
+};
+
+$id("error-close-button").onclick = () => {
+  $id("error-container").classList.add("hidden");
+};
 
 startHomePage();
 // showLeaderboard()
