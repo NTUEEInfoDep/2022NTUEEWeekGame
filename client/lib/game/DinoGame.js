@@ -4,6 +4,7 @@ import Cloud from "../actors/Cloud.js";
 import Dino from "../actors/Dino.js";
 import Bullet from "../actors/Bullet.js";
 import Item from "../actors/Item.js";
+import Food from "../actors/Food.js";
 import sprites from "../sprites.js";
 import { playSound } from "../sounds.js";
 import {
@@ -39,6 +40,8 @@ export default class DinoGame extends GameRunner {
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
+      foodSpawnRate: 10,
+      foodScore: 5,
       cloudSpawnRate: 200, // fpa
       cloudSpeed: 2, // ppf
       dinoGravity: 0.5, // ppf
@@ -66,10 +69,13 @@ export default class DinoGame extends GameRunner {
       settings: { ...this.defaultSettings },
       birds: [],
       obstacles: [],
+      foods: [],
       clouds: [],
       bullets: [],
       items: [],
       dino: null,
+      foodHeightMode: null,
+      foodScoreTextAlpha: 0,
       gameOver: false,
       groundX: 0,
       groundY: 0,
@@ -142,10 +148,12 @@ export default class DinoGame extends GameRunner {
     this.drawScore();
 
     if (state.isRunning) {
-      let spawnedObstacle, spawnedBird, spawnedItem;
+      let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood;
       this.drawBullets();
 
       spawnedObstacle = this.drawObstacles();
+
+      spawnedFood = this.drawFoods();
 
       if (state.level > 3) {
         spawnedBird = this.drawBirds();
@@ -159,6 +167,17 @@ export default class DinoGame extends GameRunner {
           state.gameOver = true;
         }
       }
+
+      state.foodScoreTextAlpha *= 0.8;
+
+      if (state.dino.hits([state.foods[0]])) {
+          // Maybe play an "Eating sound" here
+          state.score.value += state.settings.foodScore;
+          state.foodScoreTextAlpha = 1;
+          state.foods[0].destroy();
+      }
+
+      this.drawFoodScoreTexts();
 
       // bullets hit
       state.bullets.forEach((bullet) => {
@@ -239,6 +258,7 @@ export default class DinoGame extends GameRunner {
               break;
             case "eater":
               this.state.props.eater++;
+              this.state.foodHeightMode = randInteger(0, 2);
               break;
             case "week":
               this.state.props.week++;
@@ -294,6 +314,7 @@ export default class DinoGame extends GameRunner {
       settings: { ...this.defaultSettings },
       birds: [],
       obstacles: [],
+      foods: [],
       bullets: [],
       items: [],
       gameOver: false,
@@ -349,7 +370,7 @@ export default class DinoGame extends GameRunner {
   }
 
   increaseDifficulty() {
-    const { birds, obstacles, clouds, dino, settings } = this.state;
+    const { birds, obstacles, foods, clouds, dino, settings } = this.state;
     const { bgSpeed, obstaclesSpawnRate, dinoLegsRate } = settings;
     const { level } = this.state;
 
@@ -372,6 +393,10 @@ export default class DinoGame extends GameRunner {
 
     for (const obstacle of obstacles) {
       obstacle.speed = settings.bgSpeed;
+    }
+
+    for (const food of foods) {
+      food.speed = settings.bgSpeed;
     }
 
     for (const cloud of clouds) {
@@ -556,13 +581,13 @@ export default class DinoGame extends GameRunner {
 
   drawObstacles() {
     const { state } = this;
-    const { obstacles, settings } = state;
+    const { obstacles, dino, settings } = state;
     let spawned = false;
 
     this.progressInstances(obstacles);
     if (this.frameCount % settings.obstaclesSpawnRate === 0) {
       // randomly either do or don't add obstacle
-      if (!state.birds.length && randBoolean()) {
+      if (!state.birds.length && randBoolean() && dino.powerUp !== "eater") {
         spawned = true;
         const newObstacles = new Obstacle(this.spriteImageData);
         newObstacles.speed = settings.bgSpeed;
@@ -576,13 +601,13 @@ export default class DinoGame extends GameRunner {
   }
 
   drawBirds() {
-    const { birds, settings } = this.state;
+    const { birds, settings, dino } = this.state;
     let spawned = false;
 
     this.progressInstances(birds);
     if (this.frameCount % settings.birdSpawnRate === 0) {
       // randomly either do or don't add bird
-      if (randBoolean()) {
+      if (randBoolean() && dino.powerUp !== "eater") {
         spawned = true;
         const newBird = new Bird(this.spriteImageData);
         newBird.speed = settings.birdSpeed;
@@ -601,6 +626,34 @@ export default class DinoGame extends GameRunner {
     }
     this.paintInstances(birds);
     return spawned;
+  }
+
+  drawFoods() {
+    const { state } = this;
+    const { foods, dino, settings } = state;
+    let spawned = false;
+
+    this.progressInstances(foods);
+    if (dino.powerUp === "eater" && this.frameCount % settings.foodSpawnRate === 0) {
+      spawned = true;
+      const newFood = new Food(this.spriteImageData);
+      newFood.speed = settings.bgSpeed;
+      newFood.x = this.width;
+      newFood.y = this.height - newFood.height - 2 + this.foodHeightFunc(this.frameCount);
+      foods.push(newFood);
+    }
+    this.paintInstances(foods);
+    return spawned;
+  }
+
+  foodHeightFunc(cnt) {
+    if(this.state.foodHeightMode === 0){
+      return (-70-30*Math.sin(cnt / 15.0));
+    }else if(this.state.foodHeightMode === 1){
+      return randInteger(-100, -10)
+    }else{
+      return -100*Math.abs(Math.sin(cnt / 15.0));
+    }
   }
 
   drawScore() {
@@ -644,6 +697,20 @@ export default class DinoGame extends GameRunner {
         color: "#535353",
       });
     }
+  }
+
+  drawFoodScoreTexts() {
+    const { state } = this;
+    const { foodScoreTextAlpha, dino, settings} = state;
+    const fontSize = 12;
+
+    this.paintText("+"+settings.foodScore, dino.x+dino.width/2, dino.y-20, {
+      font: "PressStart2P",
+      size: `${fontSize}px`,
+      align: "center",
+      baseline: "bottom",
+      color: "rgba(83, 83, 83, "+ foodScoreTextAlpha +")",
+    });
   }
 
   /**
