@@ -8,7 +8,11 @@ const $class = (element) => document.getElementsByClassName(element);
 
 const baseURL = window.location.href.toString() + "api/";
 
-const game = new DinoGame(window.innerWidth, window.innerHeight, preEndGameRoute);
+const game = new DinoGame(
+  window.innerWidth,
+  window.innerHeight,
+  preEndGameRoute
+);
 const isTouchDevice =
   "ontouchstart" in window ||
   navigator.maxTouchPoints > 0 ||
@@ -180,11 +184,7 @@ function endGameRoute() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-<<<<<<< HEAD
       },
-=======
-      }
->>>>>>> af6ab2c (modify leaderboard page)
     })
       .then((response) => response.json())
       .then((data) => {
@@ -210,23 +210,12 @@ function endGameRoute() {
           keyStop();
         });
         const highestScore = data.score;
-<<<<<<< HEAD
         if (highestScore !== 0) {
           $id(
             "highestScore"
           ).textContent = `Your previous highest score is ${highestScore}`;
         } else {
           $id("highestScore").textContent = `Good first try!`;
-=======
-        if(highestScore !== 0){
-          $id(
-            "highestScore"
-          ).textContent = `Your previous highest score is ${highestScore}`;
-        }else{
-          $id(
-            "highestScore"
-          ).textContent = `Good first try!`;
->>>>>>> af6ab2c (modify leaderboard page)
         }
         if (highestScore !== 0 && score < highestScore) {
           $id("encouragement").textContent = "退步了, 加油EE點好嗎?";
@@ -302,7 +291,6 @@ function showLeaderboard() {
         $id("leaderboard-table-container").appendChild(tr);
         rankCount += 1;
       });
-<<<<<<< HEAD
 
       // Show this player's highest score and rank
       fetch(`${baseURL}highestScore?studentID=${gameStudentID}`, {
@@ -327,36 +315,8 @@ function showLeaderboard() {
             $id("leaderboard-table-container").appendChild(tr);
           }
         });
-        $id("leaderboard-container").classList.remove("hidden");
-    });
-=======
-
-      // Show this player's highest score and rank
-      fetch(`${baseURL}highestScore?studentID=${gameStudentID}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          const {score, name} = data;
-          if(gameScore != 0 && checkStudentIDForm(gameStudentID)){
-            var tr = document.createElement("tr");
-              tr.classList.add("leaderboard-game-tr-data");
-              ["your score", name, score, gameStudentID].forEach((text) => {
-                var cell = document.createElement("td");
-                cell.appendChild(document.createTextNode(text));
-                tr.appendChild(cell);
-              });
-              $id("leaderboard-table-container").appendChild(tr);
-          }
-        })
     });
 
->>>>>>> af6ab2c (modify leaderboard page)
   $id("leaderboard-restart-button").onclick = restartGame;
 }
 

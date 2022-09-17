@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
@@ -9,209 +8,234 @@
     <!-- <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/card.css">加入Card css -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
-        html,
-        body {
-            height: 100%;
-        }
+      html,
+      body {
+        height: 100%;
+      }
 
-        body {
-            align-items: center;
-            background-color: #f7f7f7;
-            display: none;
-            justify-content: center;
-        }
+      body {
+        align-items: center;
+        background-color: #f7f7f7;
+        display: none;
+        justify-content: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Game -->
     <!-- <script type="module" src="./lib/index.js"></script> -->
     <canvas id="game"></canvas>
 
     <!-- Creators -->
     <a href="https://github.com/NTUEEInfoDep">
-        <div id="creators">by&nbsp;EEInfo</div>
+      <div id="creators">by&nbsp;EEInfo</div>
     </a>
 
     <!-- Home Page -->
     <div id="home-page" class="hidden">
-        <div id="home-page-suptitle">
-            2022&nbsp;NTUEE&nbsp;Week&nbsp;Game
-        </div>
-        <div id="home-page-title">EE見鍾情</div>
-        <div id=""></div>
-        <input class="home-page-input" id="name-input" type="text" maxlength="18" placeholder="輸入遊戲名稱" />
-        <input class="home-page-input" id="student-id-input" type="text" maxlength="9"
-            oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號（才可顯示於排行榜上）" />
-        <button id="start-button">Game Start!</button>
-        <button class="leaderboard-button">排行榜</button>
-        <button class="prop-button" id="home-prop-button">道具列表</button>
-        <button id="rule-button">遊戲規則</button>
+      <div id="home-page-suptitle">2022&nbsp;NTUEE&nbsp;Week&nbsp;Game</div>
+      <div id="home-page-title">EE見鍾情</div>
+      <div id=""></div>
+      <input
+        class="home-page-input"
+        id="name-input"
+        type="text"
+        maxlength="18"
+        placeholder="輸入遊戲名稱"
+      />
+      <input
+        class="home-page-input"
+        id="student-id-input"
+        type="text"
+        maxlength="9"
+        oninput="this.value = this.value.toUpperCase()"
+        placeholder="輸入學號（才可顯示於排行榜上）"
+      />
+      <button id="start-button">Game Start!</button>
+      <button class="leaderboard-button">排行榜</button>
+      <button class="prop-button" id="home-prop-button">道具列表</button>
+      <button id="rule-button">遊戲規則</button>
     </div>
     <!-- Rule Page-->
     <div class="page-container hidden" id="rule-container">
-        <div id="rule-page">
-            <button id="rule-close-button" class="close-button">&times;</button>
-            <div id="rule-header" class="page-header">
-                <div id="rule-page-title" class="page-title">RULE 規則</div>
-            </div>
-            <div id="rule-page-main">
-                <div class="rule-list" style="display: block">
-                    <p>
-                        1. ???<br /> 2. ???<br /> 3. ???<br />
-                    </p>
-                </div>
-            </div>
+      <div id="rule-page">
+        <button id="rule-close-button" class="close-button">&times;</button>
+        <div id="rule-header" class="page-header">
+          <div id="rule-page-title" class="page-title">RULE 規則</div>
         </div>
+        <div id="rule-page-main">
+          <div class="rule-list" style="display: block">
+            <p>
+              1. ???<br />
+              2. ???<br />
+              3. ???<br />
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Warning Page -->
     <div class="page-container hidden" id="warning-container">
-        <div id="warning-page">
-            <div id="warning-header" class="page-header">
-                <div id="warning-page-title" class="page-title">Warning</div>
-            </div>
-            <div id="warning-page-main">玩家你好，確定不填學號齁?不會留紀錄喔</div>
-            <button id="warning-go-back-button">返回</button>
-            <button id="warning-start-button">Start Game</button>
+      <div id="warning-page">
+        <div id="warning-header" class="page-header">
+          <div id="warning-page-title" class="page-title">Warning</div>
         </div>
+        <div id="warning-page-main">玩家你好，確定不填學號齁?不會留紀錄喔</div>
+        <button id="warning-go-back-button">返回</button>
+        <button id="warning-start-button">Start Game</button>
+      </div>
     </div>
 
     <!-- Error Page -->
     <div class="page-container hidden" id="error-container">
-        <div id="error-page">
-            <button id="error-close-button" class="close-button">&times;</button>
-            <div id="error-header" class="page-header">
-                <div id="error-page-title" class="page-title">Error</div>
-            </div>
-            <div id="error-page-main">ERRRRRRROR</div>
+      <div id="error-page">
+        <button id="error-close-button" class="close-button">&times;</button>
+        <div id="error-header" class="page-header">
+          <div id="error-page-title" class="page-title">Error</div>
         </div>
+        <div id="error-page-main">ERRRRRRROR</div>
+      </div>
     </div>
 
     <!-- Prompt Page -->
     <div class="page-container hidden" id="prompt-container">
-        <div id="prompt-page">
-            <div id="prompt-header" class="page-header">
-                <div id="prompt-page-title" class="page-title">Congratulation</div>
-            </div>
-            <div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
-            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9"
-                oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
-            <button id="prompt-reject-button" class="prompt-page-button">確定不填寫學號</button>
-            <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
+      <div id="prompt-page">
+        <div id="prompt-header" class="page-header">
+          <div id="prompt-page-title" class="page-title">Congratulation</div>
         </div>
+        <div id="prompt-page-main">
+          您已經進入前10名, 填寫學號以儲存您的分數
+        </div>
+        <input
+          class="prompt-page-input"
+          id="prompt-student-id-input"
+          type="text"
+          maxlength="9"
+          oninput="this.value = this.value.toUpperCase()"
+          placeholder="輸入學號"
+        />
+        <button id="prompt-reject-button" class="prompt-page-button">
+          確定不填寫學號
+        </button>
+        <button id="prompt-confirm-button" class="prompt-page-button">
+          送出
+        </button>
+      </div>
     </div>
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
-        <div id="end-game-page-title">GAME OVER</div>
-        <div id="score-bar"></div>
-        <div id="highestScore"></div>
-        <div id="encouragement"></div>
-        <li id="props-list" style="list-style-type: none">
-            <ul id="props-dance"></ul>
-            <ul id="props-band"></ul>
-            <ul id="props-eater"></ul>
-            <ul id="props-week"></ul>
-            <ul id="props-guitar"></ul>
-        </li>
-        <!--傅渝翔 新增-->
-        <div id=""></div>
-        <button class="leaderboard-button">Leaderboard</button>
-        <button id="restart-button">Restart</button>
-        <button id="endgame-button">End Game</button>
-        <!--傅渝翔 新增-->
+      <div id="end-game-page-title">GAME OVER</div>
+      <div id="score-bar"></div>
+      <div id="highestScore"></div>
+      <div id="encouragement"></div>
+      <li id="props-list" style="list-style-type: none">
+        <ul id="props-dance"></ul>
+        <ul id="props-band"></ul>
+        <ul id="props-eater"></ul>
+        <ul id="props-week"></ul>
+        <ul id="props-guitar"></ul>
+      </li>
+      <!--傅渝翔 新增-->
+      <div id=""></div>
+      <button class="leaderboard-button">Leaderboard</button>
+      <button id="restart-button">Restart</button>
+      <button id="endgame-button">End Game</button>
+      <!--傅渝翔 新增-->
     </div>
 
     <!-- Leaderboard Page -->
     <div class="page-container hidden" id="leaderboard-container">
-        <div id="leaderboard-page">
-            <button id="leaderboard-close-button" class="close-button">
-                &times;
-            </button>
-            <div id="leaderboard-page-title">Leaderboard</div>
-            <table id="leaderboard-table-container"></table>
-        </div>
+      <div id="leaderboard-page">
+        <button id="leaderboard-close-button" class="close-button">
+          &times;
+        </button>
+        <div id="leaderboard-page-title">Leaderboard</div>
+        <table id="leaderboard-table-container"></table>
+      </div>
     </div>
 
     <!-- Props Page -->
     <div class="page-container hidden" id="prop-container">
-        <div id="prop-page">
-            <button id="prop-close-button" class="close-button">&times;</button>
-            <div id="prop-header" class="page-header">
-                <div id="prop-page-title" class="page-title">Prop List</div>
-            </div>
-
-            <div id="prop-page-main">
-                <div class="prop-list" style="display: block">
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/guitar.png" alt="guitar" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">Guitar</p>
-                            <p class="functionality">
-                                Function: Music note attacks! Dino turns into a professional guitarist, shooting musical
-                                notes to destroy all obstacles.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/dance.png" alt="dance" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">Dance</p>
-                            <p class="functionality">
-                                Function: Dance causes ADRENALINE RUSH. Dino turn on the jets and receive a speed boost
-                                for n seconds.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/band.png" alt="band" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">Band</p>
-                            <p class="functionality">
-                                Function: Dino becomes invincible for a certain period of time and destroy everything in
-                                its path. The speed will also be faster.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/eater.png" alt="eater" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">Eater</p>
-                            <p class="functionality">
-                                Function: Yum Yum ~ Dino ate all the obstables. Eat as many burgers as you can!
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/example.png" alt="week" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">Week</p>
-                            <p class="functionality">
-                                Function: NTUEE Week is fun! Dino gets extra points, unlike NTUEE students asking
-                                professor for grades
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div id="prop-page">
+        <button id="prop-close-button" class="close-button">&times;</button>
+        <div id="prop-header" class="page-header">
+          <div id="prop-page-title" class="page-title">Prop List</div>
         </div>
-    </div>
-</body>
 
+        <div id="prop-page-main">
+          <div class="prop-list" style="display: block">
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/guitar.png" alt="guitar" />
+              </div>
+              <div class="right">
+                <p class="gadget">Guitar</p>
+                <p class="functionality">
+                  Function: Music note attacks! Dino turns into a professional
+                  guitarist, shooting musical notes to destroy all obstacles.
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/dance.png" alt="dance" />
+              </div>
+              <div class="right">
+                <p class="gadget">Dance</p>
+                <p class="functionality">
+                  Function: Dance causes ADRENALINE RUSH. Dino turn on the jets
+                  and receive a speed boost for n seconds.
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/band.png" alt="band" />
+              </div>
+              <div class="right">
+                <p class="gadget">Band</p>
+                <p class="functionality">
+                  Function: Dino becomes invincible for a certain period of time
+                  and destroy everything in its path. The speed will also be
+                  faster.
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/eater.png" alt="eater" />
+              </div>
+              <div class="right">
+                <p class="gadget">Eater</p>
+                <p class="functionality">
+                  Function: Yum Yum ~ Dino ate all the obstables. Eat as many
+                  burgers as you can!
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/example.png" alt="week" />
+              </div>
+              <div class="right">
+                <p class="gadget">Week</p>
+                <p class="functionality">
+                  Function: NTUEE Week is fun! Dino gets extra points, unlike
+                  NTUEE students asking professor for grades
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
