@@ -289,12 +289,13 @@ td {
 }
 
 .leaderboard-game-tr-data {
-    background-color: coral;
+    background-color: gold;
 }
 
-.leaderboard-game-tr-data:hover {
+
+/* .leaderboard-game-tr-data:hover {
     background-color: white;
-}
+} */
 
 
 /*Prop Page*/

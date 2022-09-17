@@ -107,7 +107,7 @@ function startHomePage() {
   $id("prop-container").classList.add("hidden"); //Lawra
   $id("rule-container").classList.add("hidden"); //lichun
   $id("name-input").focus();
-  $id("name-input").value = "";
+  // $id("name-input").value = "";
   keyStop();
   // $id("name-input").onkeydown = (e) => {
   //   if (e.code === "Enter") startGame();
@@ -173,42 +173,46 @@ function endGameRoute() {
   */
   console.log(checkStudentIDForm(studentID));
   if (checkStudentIDForm(studentID)) {
-    fetch(`${baseURL}reportScore`, {
-      method: "POST",
+    fetch(`${baseURL}highestScore?studentID=${studentID}`, {
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, studentID, score }),
-    }).then(() => {
-      $id("leaderboard-container").classList.add("hidden");
-      $id("end-game-page").classList.remove("hidden");
-      $id("home-page").classList.add("hidden");
-      //print本次遊玩的成績
-      $id("prop-container").classList.add("hidden"); //Lawra
-      $id("score-bar").textContent = `Your score is ${score}`;
-      $id("props-dance").textContent = `You have ${dance} dances`;
-      $id("props-band").textContent = `You have ${band} bands`;
-      $id("props-eater").textContent = `You have ${eater} eaters`;
-      $id("props-week").textContent = `You have ${week} weeks`;
-      $id("props-guitar").textContent = `You have ${guitar} guitars`;
-      keyStop();
-    });
-    fetch(`${baseURL}highestScores`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({ studentID }),
+      }
     })
       .then((response) => response.json())
       .then((data) => {
+        fetch(`${baseURL}reportScore`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, studentID, score }),
+        }).then(() => {
+          $id("leaderboard-container").classList.add("hidden");
+          $id("end-game-page").classList.remove("hidden");
+          $id("home-page").classList.add("hidden");
+          //print本次遊玩的成績
+          $id("prop-container").classList.add("hidden"); //Lawra
+          $id("score-bar").textContent = `Your score is ${score}`;
+          $id("props-dance").textContent = `You have ${dance} dances`;
+          $id("props-band").textContent = `You have ${band} bands`;
+          $id("props-eater").textContent = `You have ${eater} eaters`;
+          $id("props-week").textContent = `You have ${week} weeks`;
+          $id("props-guitar").textContent = `You have ${guitar} guitars`;
+          keyStop();
+        });
         const highestScore = data.score;
-        $id(
-          "highestScore"
-        ).textContent = `Your highest score is ${highestScore}`;
+        if(highestScore !== 0){
+          $id(
+            "highestScore"
+          ).textContent = `Your previous highest score is ${highestScore}`;
+        }else{
+          $id(
+            "highestScore"
+          ).textContent = `Good first try!`;
+        }
         if (highestScore !== 0 && score < highestScore) {
           $id("encouragement").textContent = "退步了, 加油EE點好嗎?";
         } else if (highestScore !== 0 && score > highestScore) {
@@ -308,19 +312,33 @@ function showLeaderboard() {
         $id("leaderboard-table-container").appendChild(tr);
         rankCount += 1;
       });
-    });
-  // if(gameScore != 0){
-  //   var tr = document.createElement("tr");
-  //     tr.classList.add("leaderboard-game-tr-data");
-  //     ["your score", gameName, gameScore, gameStudentID].forEach((text) => {
-  //       var cell = document.createElement("td");
-  //       cell.appendChild(document.createTextNode(text));
-  //       tr.appendChild(cell);
-  //     });
-  //     $id("leaderboard-table-container").appendChild(tr);
-  // }
 
-  // $id("leaderboard-restart-button").onclick = restartGame;
+      // Show this player's highest score and rank
+      fetch(`${baseURL}highestScore?studentID=${gameStudentID}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          const {score, name} = data;
+          if(gameScore != 0 && checkStudentIDForm(gameStudentID)){
+            var tr = document.createElement("tr");
+              tr.classList.add("leaderboard-game-tr-data");
+              ["your score", name, score, gameStudentID].forEach((text) => {
+                var cell = document.createElement("td");
+                cell.appendChild(document.createTextNode(text));
+                tr.appendChild(cell);
+              });
+              $id("leaderboard-table-container").appendChild(tr);
+          }
+        })
+    });
+
+  $id("leaderboard-restart-button").onclick = restartGame;
 }
 
 // Global function
