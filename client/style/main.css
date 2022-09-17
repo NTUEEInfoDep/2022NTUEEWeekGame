@@ -320,25 +320,6 @@ td {
     border: 5px solid black;
 }
 
-.prop-header {
-    width: 800px;
-    max-width: 90%;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid black;
-    margin-top: 20px;
-}
-
-#prop-page-title {
-    margin: 0 0 0;
-    overflow: visible;
-    font-size: 4rem;
-    font-family: "Pdark", sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
 #prop-page-main {
     width: fit-content;
     height: fit-content;
@@ -433,25 +414,6 @@ td {
     border: 5px solid black;
 }
 
-.rule-header {
-    width: 800px;
-    max-width: 90%;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid black;
-    margin-top: 20px;
-}
-
-#rule-page-title {
-    margin: 0 0 0;
-    overflow: visible;
-    font-size: 4rem;
-    font-family: "Pdark", sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
 #rule-page-main {
     width: fit-content;
     height: fit-content;
@@ -492,25 +454,6 @@ td {
     border: 5px solid black;
 }
 
-.warning-header {
-    width: 800px;
-    max-width: 90%;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid black;
-    margin-top: 20px;
-}
-
-#warning-page-title {
-    margin: 0 0 0;
-    overflow: visible;
-    font-size: 4rem;
-    font-family: "Pdark", sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
 #warning-page-main {
     width: fit-content;
     height: fit-content;
@@ -548,25 +491,6 @@ td {
     border: 5px solid black;
 }
 
-.error-header {
-    width: 800px;
-    max-width: 90%;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid black;
-    margin-top: 20px;
-}
-
-#error-page-title {
-    margin: 0 0 0;
-    overflow: visible;
-    font-size: 4rem;
-    font-family: "Pdark", sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
 #error-page-main {
     width: fit-content;
     height: fit-content;
@@ -579,6 +503,80 @@ td {
     background-color: white;
     border: 5px solid black;
     padding: 10px;
+}
+
+
+/* Prompt Page */
+
+
+/* Error Page */
+
+#prompt-page {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    width: 800px;
+    height: fit-content;
+    max-width: 80%;
+    min-height: fit-content;
+    padding: 3rem;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border: 5px solid black;
+}
+
+#prompt-page-main {
+    width: fit-content;
+    height: fit-content;
+    max-height: 300px;
+    font-size: 1.5rem;
+    font-family: "Righteous", sans-serif;
+    margin: 1rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: white;
+    border: 5px solid black;
+    padding: 10px;
+}
+
+.prompt-page-input {
+    margin: 1.5rem 0 0;
+    padding: 1rem 0 0;
+    border: none;
+    font-size: 1.5rem;
+    font-family: "Arvo", sans-serif;
+    text-align: center;
+}
+
+.prompt-page-input:hover {
+    opacity: 0.5;
+    border-bottom: 0.1rem solid black;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    margin-right: -0.5rem;
+}
+
+.prompt-page-input:focus {
+    border-bottom: 0.1rem solid black;
+    opacity: 0.5;
+    letter-spacing: 0rem;
+    margin-right: 0rem;
+}
+
+.prompt-page-input::placeholder {
+    color: black;
+    opacity: 1;
+    background-color: white;
+    font-size: 2rem;
+    font-family: "Righteous", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 
@@ -636,4 +634,35 @@ td {
     left: 50%;
     position: fixed;
     transform: translateX(-50%) translateY(-50%);
+}
+
+.page-title {
+    margin: 0 0 0;
+    overflow: visible;
+    font-size: 4rem;
+    font-family: "Pdark", sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.page-header {
+    width: 800px;
+    max-width: 90%;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 5px solid black;
+    margin-top: 20px;
+}
+
+
+/* z-index */
+
+#prompt-container {
+    z-index: 15;
+}
+
+#warning-container,
+#error-container {
+    z-index: 20;
 }
