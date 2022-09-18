@@ -75,7 +75,7 @@ export default class DinoGame extends GameRunner {
       gameOver: false,
       groundX: 0,
       groundY: 0,
-      isRunning: false,
+      isRunning: true,
       level: 0,
       speedRatio: 1,
       scoreRatio: 1,
@@ -98,7 +98,7 @@ export default class DinoGame extends GameRunner {
   // ref for canvas pixel density:
   // https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio#correcting_resolution_in_a_%3Ccanvas%3E
   createCanvas(width, height) {
-    const canvas = document.createElement("canvas");
+    const canvas = document.getElementById("game");
     const ctx = canvas.getContext("2d");
     const scale = window.devicePixelRatio;
 
@@ -110,7 +110,7 @@ export default class DinoGame extends GameRunner {
     canvas.height = Math.floor(height * scale);
     ctx.scale(scale, scale);
 
-    document.body.appendChild(canvas);
+    // document.body.appendChild(canvas);
     return canvas;
   }
 
