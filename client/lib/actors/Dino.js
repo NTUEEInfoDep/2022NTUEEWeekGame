@@ -37,6 +37,8 @@ export default class Dino extends Actor {
     this.vVelocity = null;
     this.relativeY = 0;
     this.blink = false;
+    this.blink_faster = false;
+    this.blink_slower = false;
     this.shine = 0;
   }
 
@@ -50,6 +52,12 @@ export default class Dino extends Actor {
 
   blinking(value) {
     this.blink = Boolean(value);
+  }
+  blinking_faster(value) {
+    this.blink_faster = Boolean(value);
+  }
+  blinking_slower(value) {
+    this.blink_slower = Boolean(value);
   }
 
   duck(value) {
@@ -80,6 +88,27 @@ export default class Dino extends Actor {
         this.sprite = `dinodisappear`;
         return;
       } else if (this.shine > 40) {
+        this.shine = 0;
+      }
+    }
+    // modified by dienruei123
+    if (this.blink_slower) {
+      console.log("owoooo");
+      this.shine += 1;
+      if (this.shine < 30) {
+        this.sprite = `dinodisappear`;
+        return;
+      } else if (this.shine > 55) {
+        this.shine = 0;
+      }
+    }
+    if (this.blink_faster) {
+      console.log("owoooo");
+      this.shine += 1;
+      if (this.shine < 13) {
+        this.sprite = `dinodisappear`;
+        return;
+      } else if (this.shine > 20) {
         this.shine = 0;
       }
     }
