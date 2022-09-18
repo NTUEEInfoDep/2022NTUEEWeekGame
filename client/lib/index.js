@@ -1,3 +1,6 @@
+import "../style/main.css";
+import "../style/card.css";
+
 import DinoGame from "./game/DinoGame.js";
 
 const $id = (element) => document.getElementById(element);
@@ -42,8 +45,8 @@ const onKeyUp = ({ keyCode }) => {
   }
 };
 function keyStart() {
-  // console.log("start");
-  // console.log(isTouchDevice);
+  console.log("start");
+  console.log(isTouchDevice);
   if (isTouchDevice) {
     document.addEventListener("touchstart", ontouchstart);
 
@@ -68,10 +71,10 @@ function keyStop() {
 
 // TODO: Complete this function
 const checkStudentIDForm = (studentID) => {
-  if(studentID){
+  if (studentID) {
     const regex = /[BSTKRYAPJMDZCFQEN]\d{2}[0-9ABE][01][A-Z0-9]{4}/;
     return regex.test(studentID);
-  }else{
+  } else {
     return false;
   }
 };
@@ -83,19 +86,23 @@ const checkStudentIDForm = (studentID) => {
 const checkUserData = () => {
   const name = $id("name-input").value;
   const studentID = $id("student-id-input").value;
-  if (name){
-    if (studentID){
-      if (checkStudentIDForm(studentID)){
+  if (name) {
+    if (studentID) {
+      if (checkStudentIDForm(studentID)) {
         startGame();
-      }else{
+      } else {
         $id("error-container").classList.remove("hidden");
-        $id("error-page-main").textContent = `你的學號[${studentID}]似乎有問題喔`;
+        $id(
+          "error-page-main"
+        ).textContent = `你的學號[${studentID}]似乎有問題喔`;
       }
-    }else{
+    } else {
       $id("warning-container").classList.remove("hidden");
-      $id("warning-page-main").textContent = `玩家[${name}]你好，確定不填學號齁?不會留紀錄喔`;
+      $id(
+        "warning-page-main"
+      ).textContent = `玩家[${name}]你好，確定不填學號齁?不會留紀錄喔`;
     }
-  }else{
+  } else {
     $id("error-container").classList.remove("hidden");
     $id("error-page-main").textContent = `請告訴我們你是誰 >_<`;
   }
@@ -120,8 +127,8 @@ function startGame() {
   $id("end-game-page").classList.add("hidden");
   $id("prop-container").classList.add("hidden"); //Lawra
   $id("rule-container").classList.add("hidden"); //lichun
-  $id("error-container").classList.add("hidden"); 
-  $id("warning-container").classList.add("hidden"); 
+  $id("error-container").classList.add("hidden");
+  $id("warning-container").classList.add("hidden");
   game.start().catch(console.error);
   keyStart();
 }
@@ -136,13 +143,13 @@ function restartGame() {
   keyStart();
 }
 
-function preEndGameRoute(){
+function preEndGameRoute() {
   keyStop();
   const score = game.state.score.value;
   let studentID = $id("student-id-input").value;
   if (checkStudentIDForm(studentID)) {
     endGameRoute();
-  }else{
+  } else {
     fetch(`${baseURL}leaderBoard`)
       .then((response) => response.json())
       .then((dataList) => {
@@ -173,7 +180,7 @@ function endGameRoute() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-      }
+      },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -199,14 +206,12 @@ function endGameRoute() {
           keyStop();
         });
         const highestScore = data.score;
-        if(highestScore !== 0){
+        if (highestScore !== 0) {
           $id(
             "highestScore"
           ).textContent = `Your previous highest score is ${highestScore}`;
-        }else{
-          $id(
-            "highestScore"
-          ).textContent = `Good first try!`;
+        } else {
+          $id("highestScore").textContent = `Good first try!`;
         }
         if (highestScore !== 0 && score < highestScore) {
           $id("encouragement").textContent = "退步了, 加油EE點好嗎?";
@@ -290,23 +295,23 @@ function showLeaderboard() {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-        }
+        },
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
-          const {score, name} = data;
-          if(gameScore != 0 && checkStudentIDForm(gameStudentID)){
+          console.log(data);
+          const { score, name } = data;
+          if (gameScore != 0 && checkStudentIDForm(gameStudentID)) {
             var tr = document.createElement("tr");
-              tr.classList.add("leaderboard-game-tr-data");
-              ["your score", name, score, gameStudentID].forEach((text) => {
-                var cell = document.createElement("td");
-                cell.appendChild(document.createTextNode(text));
-                tr.appendChild(cell);
-              });
-              $id("leaderboard-table-container").appendChild(tr);
+            tr.classList.add("leaderboard-game-tr-data");
+            ["your score", name, score, gameStudentID].forEach((text) => {
+              var cell = document.createElement("td");
+              cell.appendChild(document.createTextNode(text));
+              tr.appendChild(cell);
+            });
+            $id("leaderboard-table-container").appendChild(tr);
           }
-        })
+        });
     });
 
   $id("leaderboard-restart-button").onclick = restartGame;
@@ -338,19 +343,21 @@ $id("warning-start-button").onclick = () => {
 $id("error-close-button").onclick = () => {
   $id("error-container").classList.add("hidden");
 };
-$id("prompt-reject-button").onclick = () =>{
+$id("prompt-reject-button").onclick = () => {
   $id("prompt-container").classList.add("hidden");
   endGameRoute();
 };
-$id("prompt-confirm-button").onclick = () =>{
+$id("prompt-confirm-button").onclick = () => {
   const promptStudentID = $id("prompt-student-id-input").value;
-  if(checkStudentIDForm(promptStudentID)){
+  if (checkStudentIDForm(promptStudentID)) {
     $id("student-id-input").value = promptStudentID;
     $id("prompt-container").classList.add("hidden");
     endGameRoute();
-  }else{
+  } else {
     $id("error-container").classList.remove("hidden");
-    $id("error-page-main").textContent = `你的學號[${promptStudentID}]似乎有問題喔`;
+    $id(
+      "error-page-main"
+    ).textContent = `你的學號[${promptStudentID}]似乎有問題喔`;
   }
 };
 
