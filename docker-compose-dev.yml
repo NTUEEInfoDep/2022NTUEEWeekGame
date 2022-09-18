@@ -13,21 +13,9 @@ services:
     depends_on:
       - weekgame-mongodb
     restart: always
-    networks:
-      - weekgame-game
 
   weekgame-mongodb:
     image: mongo
     ports:
       - "27017:27017"
     restart: always
-    networks:
-      - weekgame-mongodb
-
-networks:
-  weekgame-game:
-    external:
-      name: eeinfo
-  weekgame-mongodb:
-    external:
-      name: eeinfo
