@@ -9,7 +9,6 @@ const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackConfig = require("../webpack.config.js");
 
-console.log(process.env.NODE_ENV);
 const { MONGO_HOST, MONGO_DBNAME, MONGO_PASSWORD, MONGO_USERNAME, MONGO_PORT } =
   process.env;
 const port = process.env.PORT || 4000;
@@ -36,8 +35,10 @@ db.once("open", () => {
   app.use("/api", api);
   app.use(logger("dev"));
   if (process.env.NODE_ENV !== "development") {
+    console.log("production");
     app.use(express.static(path.join(__dirname, "../build")));
   } else {
+    console.log("development");
     const compiler = webpack({ ...webpackConfig, mode: "development" });
     app.use(webpackDevMiddleware(compiler));
   }

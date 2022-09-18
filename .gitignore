@@ -105,6 +105,10 @@ dist
 
 .DS_Store
 *.psd
+<<<<<<< HEAD
 /build
 _sprite.png
 _sprites.js
+=======
+/build
+>>>>>>> c940c1d (webpack)

@@ -3,12 +3,8 @@
 ## Install
 ```bash
 cp .env.default .env
+docker-compose up -d
 yarn install
-```
-
-Run Mongodb in docker
-```bash
-docker run -d -p 27017:27017 --name weekgame-mongo mongo:latest
 ```
 
 ## Run
@@ -21,9 +17,4 @@ Production
 ```bash
 yarn build
 yarn start
-```
-
-Docker
-```bash
-docker-compose up -d
 ```

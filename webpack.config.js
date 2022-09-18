@@ -7,6 +7,7 @@ module.exports = {
   context: path.resolve(__dirname, "client"),
   entry: {
     bundle: "./lib/index.js",
+    // game: "./lib/game/DinoGame.js",
   },
   output: {
     path: path.resolve(__dirname, "build"),
@@ -33,6 +34,37 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      // {
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: {
+      //     loader: "file-loader",
+      //     options: {
+      //       name: "[path][name].[ext]",
+      //     },
+      //   },
+      // },
+      // {
+      //   test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      //   use: {
+      //     loader: "file-loader",
+      //     options: {
+      //       name: "[path][name].[ext]",
+      //     },
+      //   },
+      // },
+      // {
+      //   test: /\.(mp3|wav)$/i,
+      //   use: {
+      //     loader: "file-loader",
+      //     options: {
+      //       name: "[path][name].[ext]",
+      //     },
+      //   },
+      // },
+      // {
+      //   test: /\.html$/i,
+      //   loader: "html-loader",
+      // },
     ],
   },
 
