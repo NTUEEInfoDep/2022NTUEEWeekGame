@@ -88,7 +88,7 @@ td {
 #home-page-title {
     margin: -0.75rem 0 0;
     overflow: visible;
-    font-size: 8rem;
+    font-size: 6rem;
     font-family: "Pdark", sans-serif;
 }
 
@@ -146,7 +146,7 @@ td {
 .prop-button {
     color: black;
     background-color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: "Righteous", sans-serif;
     text-transform: uppercase;
     text-decoration: none;
@@ -162,7 +162,7 @@ td {
 #rule-button {
     color: black;
     background-color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: "Righteous", sans-serif;
     text-transform: uppercase;
     text-decoration: none;
@@ -207,7 +207,7 @@ td {
 .leaderboard-button {
     color: black;
     background-color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: "Righteous", sans-serif;
     text-transform: uppercase;
     text-decoration: none;
