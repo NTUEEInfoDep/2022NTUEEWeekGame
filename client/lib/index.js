@@ -6,7 +6,7 @@ import DinoGame from "./game/DinoGame.js";
 const $id = (element) => document.getElementById(element);
 const $class = (element) => document.getElementsByClassName(element);
 
-const baseURL = "http://localhost:4000/api/";
+const baseURL = window.location.href + "/api/";
 
 const game = new DinoGame(900, 300, preEndGameRoute);
 const isTouchDevice =
