@@ -6,7 +6,7 @@ import DinoGame from "./game/DinoGame.js";
 const $id = (element) => document.getElementById(element);
 const $class = (element) => document.getElementsByClassName(element);
 
-const baseURL = window.location.href + "/api/";
+const baseURL = window.location.href.toString() + "/api/";
 
 const game = new DinoGame(
   window.innerWidth,
