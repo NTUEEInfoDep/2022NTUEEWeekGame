@@ -16,7 +16,7 @@
     "scripts": {
         "dev-server": "NODE_ENV=development nodemon  ./server/index.js",
         "window-dev-server": "set NODE_ENV=development&&nodemon ./server/index.js",
-        "start": "node ./server/index.js",
+        "start": "NODE_ENV=production node ./server/index.js",
         "build": "webpack --mode production"
     },
     "devDependencies": {

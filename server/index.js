@@ -5,14 +5,11 @@ const api = require("./api");
 const path = require("path");
 const logger = require("morgan");
 
+const webpack = require("webpack");
+const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackConfig = require("../webpack.config.js");
+
 console.log(process.env.NODE_ENV);
-
-if (process.env.NODE_ENV !== "production") {
-  const webpack = require("webpack");
-  const webpackDevMiddleware = require("webpack-dev-middleware");
-  const webpackConfig = require("../webpack.config.js");
-}
-
 const { MONGO_HOST, MONGO_DBNAME, MONGO_PASSWORD, MONGO_USERNAME, MONGO_PORT } =
   process.env;
 const port = process.env.PORT || 4000;

@@ -6,7 +6,7 @@ import DinoGame from "./game/DinoGame.js";
 const $id = (element) => document.getElementById(element);
 const $class = (element) => document.getElementsByClassName(element);
 
-const baseURL = window.location.href + "/api/";
+const baseURL = window.location.href.toString() + "/api/";
 
 const game = new DinoGame(900, 300, preEndGameRoute);
 const isTouchDevice =
@@ -362,4 +362,5 @@ $id("prompt-confirm-button").onclick = () => {
 };
 
 startHomePage();
+// $('body').show();
 // showLeaderboard()
