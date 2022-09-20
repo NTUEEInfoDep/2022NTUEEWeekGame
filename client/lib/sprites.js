@@ -13,10 +13,10 @@ export default {
   obstacleTriple: { h: 125, w: 60, x: 526, y: 300 },
 
   // obstacleHit
-  obstacleHit: { h: 123, w: 150, x: 164, y: 300 },
-  obstacleDoubleHit: { h: 185, w: 152, x: 314, y: 300 },
-  obstacleDoubleBHit: { h: 125, w: 60, x: 466, y: 300 },
-  obstacleTripleHit: { h: 125, w: 60, x: 526, y: 300 },
+  obstacle: { h: 123, w: 150, x: 164, y: 300 },
+  obstacleDouble: { h: 185, w: 152, x: 314, y: 300 },
+  obstacleDoubleB: { h: 125, w: 60, x: 466, y: 300 },
+  obstacleTriple: { h: 125, w: 60, x: 526, y: 300 },
 
   // dino
   dinoLeftLeg: { h: 300, w: 203, x: 206, y: 0 },
@@ -39,6 +39,6 @@ export default {
   week: { h: 93, w: 210, x: 681, y: 485 },
 
   // PowerUps
-  bullet: { h: 34, w: 101, x: 586, y:300 },
+  bullet: { h: 34, w: 101, x: 586, y: 300 },
   food: { h: 97, w: 97, x: 586, y: 337 },
 };

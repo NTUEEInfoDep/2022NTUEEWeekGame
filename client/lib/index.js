@@ -9,8 +9,8 @@ const $class = (element) => document.getElementsByClassName(element);
 const baseURL = window.location.href.toString() + "api/";
 
 const game = new DinoGame(
-  window.innerWidth,
-  window.innerHeight,
+  screen.availWidth,
+  screen.availHeight,
   preEndGameRoute
 );
 const isTouchDevice =
@@ -315,7 +315,7 @@ function showLeaderboard() {
             $id("leaderboard-table-container").appendChild(tr);
           }
         });
-        $id("leaderboard-container").classList.remove("hidden");
+      $id("leaderboard-container").classList.remove("hidden");
     });
   $id("leaderboard-restart-button").onclick = restartGame;
 }

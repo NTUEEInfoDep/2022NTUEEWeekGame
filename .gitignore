@@ -106,9 +106,15 @@ dist
 .DS_Store
 *.psd
 <<<<<<< HEAD
+<<<<<<< HEAD
 /build
 _sprite.png
 _sprites.js
 =======
 /build
 >>>>>>> c940c1d (webpack)
+=======
+/build
+_sprite.png
+_sprites.js
+>>>>>>> 21fc3ee (new sprite)

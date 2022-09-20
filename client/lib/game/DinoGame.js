@@ -41,7 +41,7 @@ export default class DinoGame extends GameRunner {
       birdSpeed: 7.2, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
-      obstaclesSpawnRate: 50, // fpa
+      obstaclesSpawnRate: 80, // fpa
       foodSpawnRate: 10,
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
