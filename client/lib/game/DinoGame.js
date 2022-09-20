@@ -41,15 +41,15 @@ export default class DinoGame extends GameRunner {
       birdSpeed: 7.2, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
-      obstaclesSpawnRate: 50, // fpa
+      obstaclesSpawnRate: 80, // fpa
       foodSpawnRate: 10,
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
       cloudSpeed: 2, // ppf
-      dinoGravity: 0.5, // ppf
-      dinoGroundOffset: 4, // px
+      dinoGravity: 0.8, // ppf
+      dinoGroundOffset: 160, // px
       dinoLegsRate: 6, // fpa
-      dinoLift: 10, // ppf
+      dinoLift: 18, // ppf
       bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
       itemSpawnRate: 200, // fpa
@@ -126,6 +126,7 @@ export default class DinoGame extends GameRunner {
       loadImage("./assets/sprite.png"),
       loadFont("./assets/PressStart2P-Regular.ttf", "PressStart2P"),
     ]);
+    this.backgroundImage = await loadImage("./assets/background.png");
     this.spriteImage = spriteImage;
     this.spriteImageData = getImageData(spriteImage);
     const dino = new Dino(this.spriteImageData);
@@ -136,7 +137,7 @@ export default class DinoGame extends GameRunner {
     dino.x = 25;
     dino.baseY = this.height - settings.dinoGroundOffset;
     this.state.dino = dino;
-    this.state.groundY = this.height - sprites.ground.h / 2;
+    // this.state.groundY = this.height - sprites.ground.h / 2;
   }
 
   onFrame() {
@@ -173,10 +174,10 @@ export default class DinoGame extends GameRunner {
       state.foodScoreTextAlpha *= 0.8;
 
       if (state.dino.hits([state.foods[0]])) {
-          // Maybe play an "Eating sound" here
-          state.score.value += state.settings.foodScore;
-          state.foodScoreTextAlpha = 1;
-          state.foods[0].destroy();
+        // Maybe play an "Eating sound" here
+        state.score.value += state.settings.foodScore;
+        state.foodScoreTextAlpha = 1;
+        state.foods[0].destroy();
       }
 
       this.drawFoodScoreTexts();
@@ -264,9 +265,9 @@ export default class DinoGame extends GameRunner {
               break;
             case "week":
               this.state.props.week++;
-              const week_plus = Math.floor(Math.random() * 100)+1;
+              const week_plus = Math.floor(Math.random() * 100) + 1;
               week(`+${week_plus}`);
-              this.state.score.value+=week_plus;//碰到電機週，加分!
+              this.state.score.value += week_plus; //碰到電機週，加分!
               break;
           }
         }
@@ -290,7 +291,7 @@ export default class DinoGame extends GameRunner {
             playSound("jump");
           }
         } else {
-          this.resetGame();
+          // this.resetGame();
           state.dino.jump();
           playSound("jump");
         }
@@ -346,21 +347,16 @@ export default class DinoGame extends GameRunner {
   }
 
   endGame() {
-    const iconSprite = sprites.replayIcon;
-    const padding = 15;
+    // const iconSprite = sprites.replayIcon;
+    // const padding = 15;
 
-    this.paintText(
-      "G A M E  O V E R",
-      this.width / 2,
-      this.height / 2 - padding,
-      {
-        font: "PressStart2P",
-        size: "12px",
-        align: "center",
-        baseline: "bottom",
-        color: "#535353",
-      }
-    );
+    // this.paintText("G A M E  O V E R", this.width / 2, this.height / 2 - padding, {
+    //   font: "PressStart2P",
+    //   size: "12px",
+    //   align: "center",
+    //   baseline: "bottom",
+    //   color: "#535353",
+    // });
 
     // this.paintSprite(
     //   'replayIcon',
@@ -446,14 +442,29 @@ export default class DinoGame extends GameRunner {
   drawGround() {
     const { state } = this;
     const { bgSpeed } = state.settings;
-    const groundImgWidth = sprites.ground.w / 2;
+    // const groundImgWidth = sprites.ground.w / 2;
+    const groundImgWidth = 1920;
 
-    this.paintSprite("ground", state.groundX, state.groundY);
+    // this.paintSprite("ground", state.groundX, state.groundY);
+    this.canvasCtx.drawImage(
+      this.backgroundImage,
+      state.groundX,
+      state.groundY,
+      1920,
+      this.height
+    );
     state.groundX -= bgSpeed * state.speedRatio;
 
     // append second image until first is fully translated
     if (state.groundX <= -groundImgWidth + this.width) {
-      this.paintSprite("ground", state.groundX + groundImgWidth, state.groundY);
+      // this.paintSprite("ground", state.groundX + groundImgWidth, state.groundY);
+      this.canvasCtx.drawImage(
+        this.backgroundImage,
+        state.groundX + groundImgWidth,
+        state.groundY,
+        1920,
+        this.height
+      );
 
       if (state.groundX <= -groundImgWidth) {
         state.groundX = -bgSpeed * state.speedRatio;
@@ -469,7 +480,7 @@ export default class DinoGame extends GameRunner {
       const newCloud = new Cloud();
       newCloud.speed = settings.bgSpeed;
       newCloud.x = this.width;
-      newCloud.y = randInteger(20, 80);
+      newCloud.y = randInteger(20, 200);
       clouds.push(newCloud);
     }
     this.paintInstances(clouds);
@@ -570,12 +581,21 @@ export default class DinoGame extends GameRunner {
         const newItem = new Item();
         newItem.speed = settings.bgSpeed;
         newItem.x = this.width;
-        newItem.y = this.height - newItem.height - 50 * randInteger(0, 2);
+        newItem.y =
+          this.height -
+          newItem.height -
+          state.settings.dinoGroundOffset -
+          100 * randInteger(0, 2);
         if (spawnedObstacle) {
-          newItem.y = this.height - newItem.height - 100;
+          newItem.y =
+            this.height -
+            newItem.height -
+            state.settings.dinoGroundOffset -
+            250;
         }
         if (spawnedBird) {
-          newItem.y = this.height - newItem.height;
+          newItem.y =
+            this.height - newItem.height - state.settings.dinoGroundOffset;
         }
         items.push(newItem);
       }
@@ -597,7 +617,8 @@ export default class DinoGame extends GameRunner {
         const newObstacles = new Obstacle(this.spriteImageData);
         newObstacles.speed = settings.bgSpeed;
         newObstacles.x = this.width;
-        newObstacles.y = this.height - newObstacles.height - 2;
+        newObstacles.y =
+          this.height - newObstacles.height - state.settings.dinoGroundOffset;
         obstacles.push(newObstacles);
       }
     }
@@ -639,12 +660,16 @@ export default class DinoGame extends GameRunner {
     let spawned = false;
 
     this.progressInstances(foods);
-    if (dino.powerUp === "eater" && this.frameCount % settings.foodSpawnRate === 0) {
+    if (
+      dino.powerUp === "eater" &&
+      this.frameCount % settings.foodSpawnRate === 0
+    ) {
       spawned = true;
       const newFood = new Food(this.spriteImageData);
       newFood.speed = settings.bgSpeed;
       newFood.x = this.width;
-      newFood.y = this.height - newFood.height - 2 + this.foodHeightFunc(this.frameCount);
+      newFood.y =
+        this.height - newFood.height - 2 + this.foodHeightFunc(this.frameCount);
       foods.push(newFood);
     }
     this.paintInstances(foods);
@@ -652,12 +677,12 @@ export default class DinoGame extends GameRunner {
   }
 
   foodHeightFunc(cnt) {
-    if(this.state.foodHeightMode === 0){
-      return (-70-30*Math.sin(cnt / 15.0));
-    }else if(this.state.foodHeightMode === 1){
-      return randInteger(-100, -10)
-    }else{
-      return -100*Math.abs(Math.sin(cnt / 15.0));
+    if (this.state.foodHeightMode === 0) {
+      return -70 - 30 * Math.sin(cnt / 15.0);
+    } else if (this.state.foodHeightMode === 1) {
+      return randInteger(-100, -10);
+    } else {
+      return -100 * Math.abs(Math.sin(cnt / 15.0));
     }
   }
 
@@ -706,16 +731,21 @@ export default class DinoGame extends GameRunner {
 
   drawFoodScoreTexts() {
     const { state } = this;
-    const { foodScoreTextAlpha, dino, settings} = state;
+    const { foodScoreTextAlpha, dino, settings } = state;
     const fontSize = 12;
 
-    this.paintText("+"+settings.foodScore, dino.x+dino.width/2, dino.y-20, {
-      font: "PressStart2P",
-      size: `${fontSize}px`,
-      align: "center",
-      baseline: "bottom",
-      color: "rgba(83, 83, 83, "+ foodScoreTextAlpha +")",
-    });
+    this.paintText(
+      "+" + settings.foodScore,
+      dino.x + dino.width / 2,
+      dino.y - 20,
+      {
+        font: "PressStart2P",
+        size: `${fontSize}px`,
+        align: "center",
+        baseline: "bottom",
+        color: "rgba(83, 83, 83, " + foodScoreTextAlpha + ")",
+      }
+    );
   }
 
   /**
