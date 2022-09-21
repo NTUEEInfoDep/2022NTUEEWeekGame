@@ -31,7 +31,7 @@ export default class DinoGame extends GameRunner {
      * px: pixels
      */
     this.defaultSettings = {
-      bgSpeed: 8, // ppf
+      bgSpeed: 12, // ppf
       birdSpeed: 7.2, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
@@ -55,7 +55,7 @@ export default class DinoGame extends GameRunner {
         dance: 3,
         band: 3,
         eater: 3,
-        week: 3,
+        week: 0.1,
       },
       scoreBlinkRate: 20, // fpa
       scoreIncreaseRate: 6, // fpa
@@ -244,7 +244,8 @@ export default class DinoGame extends GameRunner {
               break;
             case "eater":
               this.state.props.eater++;
-              this.state.foodHeightMode = randInteger(0, 2);
+              // this.state.foodHeightMode = randInteger(0, 2);
+              this.state.foodHeightMode = randInteger(0);
               break;
             case "week":
               this.state.props.week++;
@@ -593,7 +594,7 @@ export default class DinoGame extends GameRunner {
       const newFood = new Food(this.spriteImageData);
       newFood.speed = settings.bgSpeed;
       newFood.x = this.width;
-      newFood.y = this.height - newFood.height - 2 + this.foodHeightFunc(this.frameCount);
+      newFood.y = this.height - newFood.height - state.settings.dinoGroundOffset + this.foodHeightFunc(this.frameCount);
       foods.push(newFood);
     }
     this.paintInstances(foods);
@@ -602,9 +603,9 @@ export default class DinoGame extends GameRunner {
 
   foodHeightFunc(cnt) {
     if(this.state.foodHeightMode === 0){
-      return (-70-30*Math.sin(cnt / 15.0));
+      return (-sprites.dino.h-100*Math.sin(cnt / 15.0));
     }else if(this.state.foodHeightMode === 1){
-      return randInteger(-100, -10)
+      return randInteger(-300, -10)
     }else{
       return -100*Math.abs(Math.sin(cnt / 15.0));
     }
