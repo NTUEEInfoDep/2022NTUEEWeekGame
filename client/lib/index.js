@@ -8,7 +8,7 @@ const $class = (element) => document.getElementsByClassName(element);
 
 const baseURL = window.location.href.toString() + "api/";
 
-const game = new DinoGame(screen.availWidth, screen.availHeight, preEndGameRoute);
+const game = new DinoGame(window.innerWidth, window.innerHeight, preEndGameRoute);
 const isTouchDevice =
   "ontouchstart" in window ||
   navigator.maxTouchPoints > 0 ||
