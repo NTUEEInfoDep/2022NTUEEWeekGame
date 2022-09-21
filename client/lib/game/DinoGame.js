@@ -41,7 +41,7 @@ export default class DinoGame extends GameRunner {
       birdSpeed: 7.2, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
-      obstaclesSpawnRate: 80, // fpa
+      obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
@@ -262,7 +262,7 @@ export default class DinoGame extends GameRunner {
             case "eater":
               this.state.props.eater++;
               // this.state.foodHeightMode = randInteger(0, 2);
-              this.state.foodHeightMode = randInteger(0);
+              this.state.foodHeightMode = 2;
               break;
             case "week":
               this.state.props.week++;
@@ -682,11 +682,11 @@ export default class DinoGame extends GameRunner {
 
   foodHeightFunc(cnt) {
     if (this.state.foodHeightMode === 0) {
-      return -sprites.dino.h - 100 * Math.sin(cnt / 15.0);
+      return -150 - 100 * Math.sin(cnt / 15.0);
     } else if (this.state.foodHeightMode === 1) {
       return randInteger(-300, -10);
     } else {
-      return -100 * Math.abs(Math.sin(cnt / 15.0));
+      return -200 * Math.abs(Math.sin(cnt / 15.0));
     }
   }
 
