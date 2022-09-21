@@ -113,6 +113,7 @@ function startHomePage() {
   $id("end-game-page").classList.add("hidden");
   $id("prop-container").classList.add("hidden"); //Lawra
   $id("rule-container").classList.add("hidden"); //lichun
+  $id("instruction-container").classList.add("hidden");
   $id("name-input").focus();
   // $id("name-input").value = "";
   keyStop();
@@ -129,6 +130,7 @@ function startGame() {
   $id("rule-container").classList.add("hidden"); //lichun
   $id("error-container").classList.add("hidden");
   $id("warning-container").classList.add("hidden");
+  $id("instruction-container").classList.add("hidden");
   game.start().catch(console.error);
   keyStart();
 }
@@ -139,6 +141,7 @@ function restartGame() {
   $id("end-game-page").classList.add("hidden");
   $id("prop-container").classList.add("hidden"); //Lawra
   $id("rule-container").classList.add("hidden"); //lichun
+  $id("instruction-container").classList.add("hidden");
   game.resetGame();
   keyStart();
 }
@@ -298,7 +301,7 @@ function showLeaderboard() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           const { score, name } = data;
           if (gameScore != 0 && checkStudentIDForm(gameStudentID)) {
             var tr = document.createElement("tr");
@@ -313,7 +316,6 @@ function showLeaderboard() {
         });
         $id("leaderboard-container").classList.remove("hidden");
     });
-  $id("leaderboard-restart-button").onclick = restartGame;
 }
 
 // Global function
@@ -327,10 +329,11 @@ $id("start-button").onclick = checkUserData;
 $id("rule-button").onclick = showRule; //lichun
 $id("restart-button").onclick = restartGame;
 $id("endgame-button").onclick = startHomePage; //傅渝翔 新增
-$id("rule-close-button").onclick = startHomePage;
-$id("prop-close-button").onclick = startHomePage;
-$id("leaderboard-close-button").onclick = () => {
-  $id("leaderboard-container").classList.add("hidden");
+$id("rule-close-button").onclick = () => {
+  $id("rule-container").classList.add("hidden");
+};
+$id("prop-close-button").onclick = () => {
+  $id("prop-container").classList.add("hidden");
 };
 $id("warning-go-back-button").onclick = () => {
   $id("warning-container").classList.add("hidden");
@@ -357,6 +360,19 @@ $id("prompt-confirm-button").onclick = () => {
     $id(
       "error-page-main"
     ).textContent = `你的學號[${promptStudentID}]似乎有問題喔`;
+  }
+};
+[].forEach.call($class("instruction-button"), (node) => {
+  node.onclick = () => $id("instruction-container").classList.remove("hidden");
+});
+$id("instruction-container").onclick = (e) => {
+  if(e.target == document.getElementById('instruction-container')) {
+    $id("instruction-container").classList.add("hidden");
+  }
+};
+$id("leaderboard-container").onclick = (e) => {
+  if(e.target == document.getElementById('leaderboard-container')) {
+    $id("leaderboard-container").classList.add("hidden");
   }
 };
 
