@@ -46,10 +46,10 @@ export default class DinoGame extends GameRunner {
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
       cloudSpeed: 2, // ppf
-      dinoGravity: 0.8, // ppf
+      dinoGravity: 2, // ppf
       dinoGroundOffset: 160, // px
       dinoLegsRate: 6, // fpa
-      dinoLift: 18, // ppf
+      dinoLift: 35, // ppf
       bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
       itemSpawnRate: 200, // fpa
@@ -108,8 +108,8 @@ export default class DinoGame extends GameRunner {
     const ctx = canvas.getContext("2d");
     const scale = window.devicePixelRatio;
 
-    this.width = width;
-    this.height = height;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
     canvas.width = Math.floor(width * scale);
