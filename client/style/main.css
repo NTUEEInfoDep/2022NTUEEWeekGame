@@ -33,13 +33,17 @@ button {
     border-radius: 5px;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 th,
 td {
     padding: 15px;
 }
 
 #creators {
-    right: 1rem;
+    left: 1rem;
     bottom: 1rem;
     position: fixed;
     width: fit-content;
@@ -62,12 +66,9 @@ td {
 /* home Page */
 
 #home-page {
-    top: 50%;
-    left: 50%;
     position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: fit-content;
-    height: fit-content;
+    width: 100%;
+    height: 100%;
     min-width: fit-content;
     min-height: fit-content;
     padding: 3rem;
@@ -173,6 +174,63 @@ td {
     letter-spacing: 1rem;
     margin-right: -1rem;
     transition: all 0.4s ease 0s;
+}
+
+.instruction-button {
+    color: black;
+    background-color: white;
+    font-size: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    font-family: "Righteous", sans-serif;
+    text-decoration: none;
+    border-radius: 50%;
+    border: 2px solid;
+    border-color: blue;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+}
+
+
+/* Instruction Page */
+
+#instruction-page {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    width: 800px;
+    height: fit-content;
+    max-width: 80%;
+    min-height: fit-content;
+    padding: 3rem;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border: 5px solid black;
+}
+
+#instruction-page-main {
+    width: fit-content;
+    height: fit-content;
+    max-height: 300px;
+    font-size: 1.5rem;
+    font-family: "Righteous", sans-serif;
+    margin: 1rem;
+    /* overflow: hidden;
+    overflow-y: scroll; */
+    background-color: white;
+    border: 5px solid black;
+    padding: 10px;
 }
 
 
@@ -391,6 +449,10 @@ td {
     margin-bottom: -6px;
 }
 
+#prop-container {
+    background-color: rgba(0, 0, 0, 0);
+}
+
 
 /* Rule Page*/
 
@@ -426,6 +488,10 @@ td {
     background-color: white;
     border: 5px solid black;
     padding: 10px;
+}
+
+#rule-container {
+    background-color: rgba(0, 0, 0, 0);
 }
 
 
@@ -665,4 +731,9 @@ td {
 #warning-container,
 #error-container {
     z-index: 20;
+}
+
+#rule-container,
+#prop-container {
+    z-index: 15;
 }
