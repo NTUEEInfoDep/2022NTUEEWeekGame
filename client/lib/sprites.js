@@ -13,10 +13,10 @@ export default {
   obstacleTriple: { h: 125, w: 60, x: 526, y: 300 },
 
   // obstacleHit
-  obstacle: { h: 123, w: 150, x: 164, y: 300 },
-  obstacleDouble: { h: 185, w: 152, x: 314, y: 300 },
-  obstacleDoubleB: { h: 125, w: 60, x: 466, y: 300 },
-  obstacleTriple: { h: 125, w: 60, x: 526, y: 300 },
+  obstacleHit: { h: 123, w: 150, x: 164, y: 300 },
+  obstacleDoubleHit: { h: 185, w: 152, x: 314, y: 300 },
+  obstacleDoubleBHit: { h: 125, w: 60, x: 466, y: 300 },
+  obstacleTripleHit: { h: 125, w: 60, x: 526, y: 300 },
 
   // dino
   dinoLeftLeg: { h: 300, w: 203, x: 206, y: 0 },
