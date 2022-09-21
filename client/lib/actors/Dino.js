@@ -96,7 +96,7 @@ export default class Dino extends Actor {
       console.log("owoooo");
       this.shine += 1;
       if (this.shine < 30) {
-        this.sprite = `dinodisappear`;
+        this.sprite = `dinoDisappear`;
         return;
       } else if (this.shine > 55) {
         this.shine = 0;
@@ -106,7 +106,7 @@ export default class Dino extends Actor {
       console.log("owoooo");
       this.shine += 1;
       if (this.shine < 13) {
-        this.sprite = `dinodisappear`;
+        this.sprite = `dinoDisappear`;
         return;
       } else if (this.shine > 20) {
         this.shine = 0;
