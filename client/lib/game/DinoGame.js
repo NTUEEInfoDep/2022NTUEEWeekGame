@@ -35,7 +35,7 @@ export default class DinoGame extends GameRunner {
       birdSpeed: 7.2, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
-      obstaclesSpawnRate: 80, // fpa
+      obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
@@ -138,7 +138,7 @@ export default class DinoGame extends GameRunner {
     const { state } = this;
 
     this.drawBackground();
-    this.drawFPS();
+    // this.drawFPS();
     this.drawGround();
     this.drawClouds();
     this.drawDino();
@@ -245,7 +245,7 @@ export default class DinoGame extends GameRunner {
             case "eater":
               this.state.props.eater++;
               // this.state.foodHeightMode = randInteger(0, 2);
-              this.state.foodHeightMode = randInteger(0);
+              this.state.foodHeightMode = 2;
               break;
             case "week":
               this.state.props.week++;
@@ -603,18 +603,19 @@ export default class DinoGame extends GameRunner {
 
   foodHeightFunc(cnt) {
     if(this.state.foodHeightMode === 0){
-      return (-sprites.dino.h-100*Math.sin(cnt / 15.0));
+      return (-150-100*Math.sin(cnt / 15.0));
     }else if(this.state.foodHeightMode === 1){
       return randInteger(-300, -10)
     }else{
-      return -100*Math.abs(Math.sin(cnt / 15.0));
+      return -200*Math.abs(Math.sin(cnt / 15.0));
     }
   }
 
   drawScore() {
     const { canvasCtx, state } = this;
     const { isRunning, score, settings } = state;
-    const fontSize = 12;
+    const fontSize = 30;
+    const margin = 10;
     let shouldDraw = true;
     let drawValue = score.value;
 
@@ -641,10 +642,10 @@ export default class DinoGame extends GameRunner {
     if (shouldDraw) {
       // draw the background behind it in case this is called
       // at a time where the background isn't re-drawn (i.e. in `endGame`)
-      canvasCtx.fillStyle = "#f7f7f7";
-      canvasCtx.fillRect(this.width - fontSize * 5, 0, fontSize * 5, fontSize);
-
-      this.paintText((drawValue + "").padStart(5, "0"), this.width, 0, {
+      // canvasCtx.fillStyle = "#f7f7f7";
+      // canvasCtx.fillRect(this.width - fontSize * 5, 0, fontSize * 5, fontSize);
+  
+      this.paintText((drawValue + "").padStart(5, "0"), this.width - margin, margin, {
         font: "PressStart2P",
         size: `${fontSize}px`,
         align: "right",
