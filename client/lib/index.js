@@ -160,13 +160,15 @@ function preEndGameRoute() {
     fetch(`${baseURL}leaderBoard`)
       .then((response) => response.json())
       .then((dataList) => {
-        console.log(dataList);
+        // console.log(dataList);
         let tenthScore = 0;
         if (dataList.length > 9) {
           tenthScore = dataList[9].score;
         }
         if (tenthScore <= score) {
           $id("prompt-container").classList.remove("hidden");
+        }else{
+          endGameRoute();
         }
       });
   }
