@@ -670,7 +670,7 @@ export default class DinoGame extends GameRunner {
     if (this.highestScore === 0) {
       this.getHighestScore();
     }
-    this.paintText((this.highestScore + "").padStart(5, "0"), (4 * this.width) / 5, 0, {
+    this.paintText((this.highestScore + "").padStart(5, "0"), (8 * this.width) / 9, 0, {
       font: "PressStart2P",
       size: `${fontSize}px`,
       align: "right",
