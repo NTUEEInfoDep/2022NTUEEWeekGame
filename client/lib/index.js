@@ -10,9 +10,7 @@ const baseURL = window.location.href.toString() + "api/";
 
 const game = new DinoGame(900, 300, preEndGameRoute);
 const isTouchDevice =
-  "ontouchstart" in window ||
-  navigator.maxTouchPoints > 0 ||
-  navigator.msMaxTouchPoints > 0;
+  "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
 const keycodes = {
   // up, spacebar
@@ -92,15 +90,11 @@ const checkUserData = () => {
         startGame();
       } else {
         $id("error-container").classList.remove("hidden");
-        $id(
-          "error-page-main"
-        ).textContent = `你的學號[${studentID}]似乎有問題喔`;
+        $id("error-page-main").textContent = `你的學號[${studentID}]似乎有問題喔`;
       }
     } else {
       $id("warning-container").classList.remove("hidden");
-      $id(
-        "warning-page-main"
-      ).textContent = `玩家[${name}]你好，確定不填學號齁?不會留紀錄喔`;
+      $id("warning-page-main").textContent = `玩家[${name}]你好，確定不填學號齁?不會留紀錄喔`;
     }
   } else {
     $id("error-container").classList.remove("hidden");
@@ -176,11 +170,36 @@ function endGameRoute() {
   const guitar = game.state.props.guitar;
   if (checkStudentIDForm(studentID)) {
     fetch(`${baseURL}highestScore?studentID=${studentID}`, {
-      method: "GET",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ name, studentID, score }),
+    }).then(() => {
+      $id("leaderboard-page").classList.add("hidden");
+      $id("end-game-page").classList.remove("hidden");
+      $id("home-page").classList.add("hidden");
+      //print本次遊玩的成績
+      $id("score-bar").textContent = `Your score is ${score}`;
+      $id("props-dance").textContent = `You have ${dance} dances`;
+      $id("props-band").textContent = `You have ${band} bands`;
+      $id("props-eater").textContent = `You have ${eater} eaters`;
+      $id("props-week").textContent = `You have ${week} weeks`;
+      $id("props-guitar").textContent = `You have ${guitar} guitars`;
+      $id("leaderboard-button-endgame").onclick = showLeaderboard;
+      $id("restart-button").onclick = restartGame;
+      $id("endgame-button").onclick = startHomePage;
+      keyStop();
+    });
+    fetch(`${baseURL}highestScores`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({ studentID }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -207,9 +226,7 @@ function endGameRoute() {
         });
         const highestScore = data.score;
         if (highestScore !== 0) {
-          $id(
-            "highestScore"
-          ).textContent = `Your previous highest score is ${highestScore}`;
+          $id("highestScore").textContent = `Your previous highest score is ${highestScore}`;
         } else {
           $id("highestScore").textContent = `Good first try!`;
         }
@@ -232,6 +249,10 @@ function endGameRoute() {
     $id("props-eater").textContent = `You have ${eater} eaters`;
     $id("props-week").textContent = `You have ${week} weeks`;
     $id("props-guitar").textContent = `You have ${guitar} guitars`;
+    $id("leaderboard-button").onclick = showLeaderboard;
+    $id("restart-button").onclick = restartGame;
+    $id("endgame-button").onclick = startHomePage;
+    keyStop();
   }
 }
 function showRule() {
@@ -311,9 +332,9 @@ function showLeaderboard() {
             $id("leaderboard-table-container").appendChild(tr);
           }
         });
-        $id("leaderboard-container").classList.remove("hidden");
+      $id("leaderboard-container").classList.remove("hidden");
     });
-  $id("leaderboard-restart-button").onclick = restartGame;
+  //$id("leaderboard-restart-button").onclick = restartGame;
 }
 
 // Global function
@@ -354,9 +375,7 @@ $id("prompt-confirm-button").onclick = () => {
     endGameRoute();
   } else {
     $id("error-container").classList.remove("hidden");
-    $id(
-      "error-page-main"
-    ).textContent = `你的學號[${promptStudentID}]似乎有問題喔`;
+    $id("error-page-main").textContent = `你的學號[${promptStudentID}]似乎有問題喔`;
   }
 };
 
