@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,9 +28,9 @@
             justify-content: center;
         }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Game -->
     <!-- <script type="module" src="./lib/index.js"></script> -->
     <canvas id="game"></canvas>
@@ -62,19 +61,21 @@
     </div>
     <!-- Rule Page-->
     <div class="page-container hidden" id="rule-container">
-        <div id="rule-page">
-            <button id="rule-close-button" class="close-button">&times;</button>
-            <div id="rule-header" class="page-header">
-                <div id="rule-page-title" class="page-title">RULE 規則</div>
-            </div>
-            <div id="rule-page-main">
-                <div class="rule-list" style="display: block">
-                    <p>
-                        1. ???<br /> 2. ???<br /> 3. ???<br />
-                    </p>
-                </div>
-            </div>
+      <div id="rule-page">
+        <button id="rule-close-button" class="close-button">&times;</button>
+        <div id="rule-header" class="page-header">
+          <div id="rule-page-title" class="page-title">RULE 規則</div>
         </div>
+        <div id="rule-page-main">
+          <div class="rule-list" style="display: block">
+            <p>
+              1. ???<br />
+              2. ???<br />
+              3. ???<br />
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Instruction Page -->
@@ -93,25 +94,25 @@
 
     <!-- Warning Page -->
     <div class="page-container hidden" id="warning-container">
-        <div id="warning-page">
-            <div id="warning-header" class="page-header">
-                <div id="warning-page-title" class="page-title">Warning</div>
-            </div>
-            <div id="warning-page-main">玩家你好，確定不填學號齁?不會留紀錄喔</div>
-            <button id="warning-go-back-button">返回</button>
-            <button id="warning-start-button">Start Game</button>
+      <div id="warning-page">
+        <div id="warning-header" class="page-header">
+          <div id="warning-page-title" class="page-title">Warning</div>
         </div>
+        <div id="warning-page-main">玩家你好，確定不填學號齁?不會留紀錄喔</div>
+        <button id="warning-go-back-button">返回</button>
+        <button id="warning-start-button">Start Game</button>
+      </div>
     </div>
 
     <!-- Error Page -->
     <div class="page-container hidden" id="error-container">
-        <div id="error-page">
-            <button id="error-close-button" class="close-button">&times;</button>
-            <div id="error-header" class="page-header">
-                <div id="error-page-title" class="page-title">Error</div>
-            </div>
-            <div id="error-page-main">ERRRRRRROR</div>
+      <div id="error-page">
+        <button id="error-close-button" class="close-button">&times;</button>
+        <div id="error-header" class="page-header">
+          <div id="error-page-title" class="page-title">Error</div>
         </div>
+        <div id="error-page-main">ERRRRRRROR</div>
+      </div>
     </div>
 
     <!-- Prompt Page -->
@@ -129,23 +130,22 @@
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
-        <div id="end-game-page-title">GAME OVER</div>
-        <div id="score-bar"></div>
-        <div id="highestScore"></div>
-        <div id="encouragement"></div>
-        <li id="props-list" style="list-style-type: none">
-            <ul id="props-dance"></ul>
-            <ul id="props-band"></ul>
-            <ul id="props-eater"></ul>
-            <ul id="props-week"></ul>
-            <ul id="props-guitar"></ul>
-        </li>
-        <!--傅渝翔 新增-->
-        <div id=""></div>
-        <button class="leaderboard-button">Leaderboard</button>
-        <button id="restart-button">Restart</button>
-        <button id="endgame-button">End Game</button>
-        <!--傅渝翔 新增-->
+      <div id="end-game-page-title">GAME OVER</div>
+      <div id="score-bar"></div>
+      <div id="highestScore"></div>
+      <div id="encouragement"></div>
+      <li id="props-list" style="list-style-type: none">
+        <ul id="props-dance"></ul>
+        <ul id="props-band"></ul>
+        <ul id="props-eater"></ul>
+        <ul id="props-week"></ul>
+        <ul id="props-guitar"></ul>
+      </li>
+      <div id=""></div>
+      <button class="leaderboard-button">Leaderboard</button>
+      <button id="restart-button">Restart</button>
+      <button id="endgame-button">End Game</button>
+      <!--傅渝翔 新增-->
     </div>
 
     <!-- Leaderboard Page -->
@@ -158,11 +158,11 @@
 
     <!-- Props Page -->
     <div class="page-container hidden" id="prop-container">
-        <div id="prop-page">
-            <button id="prop-close-button" class="close-button">&times;</button>
-            <div id="prop-header" class="page-header">
-                <div id="prop-page-title" class="page-title">Prop List</div>
-            </div>
+      <div id="prop-page">
+        <button id="prop-close-button" class="close-button">&times;</button>
+        <div id="prop-header" class="page-header">
+          <div id="prop-page-title" class="page-title">Prop List</div>
+        </div>
 
             <div id="prop-page-main">
                 <div class="prop-list" style="display: block">

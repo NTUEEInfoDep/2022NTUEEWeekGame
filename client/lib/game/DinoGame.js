@@ -11,7 +11,8 @@ import { loadFont, loadImage, getImageData, randBoolean, randInteger } from "../
 import GameRunner from "./GameRunner.js";
 
 import { week } from "../card.js";
-
+const $id = (element) => document.getElementById(element);
+const baseURL = window.location.href.toString() + "api/";
 export default class DinoGame extends GameRunner {
   constructor(width, height, endGameRoute) {
     super();
@@ -23,7 +24,7 @@ export default class DinoGame extends GameRunner {
     this.spriteImage = null;
     this.spriteImageData = null;
     this.endGameRoute = endGameRoute;
-
+    this.highestScore = 0;
     /*
      * units
      * fpa: frames per action
@@ -153,7 +154,7 @@ export default class DinoGame extends GameRunner {
     this.drawClouds();
     this.drawDino();
     this.drawScore();
-
+    this.drawHighestScore();
     if (state.isRunning) {
       let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood;
       this.drawBullets();
@@ -178,10 +179,10 @@ export default class DinoGame extends GameRunner {
       state.foodScoreTextAlpha *= 0.8;
 
       if (state.dino.hits([state.foods[0]])) {
-          // Maybe play an "Eating sound" here
-          state.score.value += state.settings.foodScore;
-          state.foodScoreTextAlpha = 1;
-          state.foods[0].destroy();
+        // Maybe play an "Eating sound" here
+        state.score.value += state.settings.foodScore;
+        state.foodScoreTextAlpha = 1;
+        state.foods[0].destroy();
       }
 
       this.drawFoodScoreTexts();
@@ -253,9 +254,9 @@ export default class DinoGame extends GameRunner {
               break;
             case "week":
               this.state.props.week++;
-              const week_plus = Math.floor(Math.random() * 100)+1;
+              const week_plus = Math.floor(Math.random() * 100) + 1;
               week(`+${week_plus}`);
-              this.state.score.value+=week_plus;//碰到電機週，加分!
+              this.state.score.value += week_plus; //碰到電機週，加分!
               break;
           }
         }
@@ -304,6 +305,7 @@ export default class DinoGame extends GameRunner {
 
   resetGame() {
     this.state.dino.reset();
+    this.highestScore = 0;
     Object.assign(this.state, {
       settings: { ...this.defaultSettings },
       birds: [],
@@ -328,7 +330,7 @@ export default class DinoGame extends GameRunner {
         band: 0,
         eater: 0,
         week: 0,
-      }
+      },
     });
 
     this.start();
@@ -354,6 +356,7 @@ export default class DinoGame extends GameRunner {
 
     this.state.isRunning = false;
     this.drawScore();
+    this.drawHighestScore();
     this.stop();
     setTimeout(this.endGameRoute, 500);
   }
@@ -475,8 +478,8 @@ export default class DinoGame extends GameRunner {
           case "guitar":
             break;
           case "dance":
-            this.state.speedRatio= 1;
-            this.state.scoreRatio= 1;
+            this.state.speedRatio = 1;
+            this.state.scoreRatio = 1;
             break;
           case "band":
             this.state.speedRatio = 1;
@@ -659,15 +662,28 @@ export default class DinoGame extends GameRunner {
 
   drawFoodScoreTexts() {
     const { state } = this;
-    const { foodScoreTextAlpha, dino, settings} = state;
+    const { foodScoreTextAlpha, dino, settings } = state;
     const fontSize = 12;
 
-    this.paintText("+"+settings.foodScore, dino.x+dino.width/2, dino.y-20, {
+    this.paintText("+" + settings.foodScore, dino.x + dino.width / 2, dino.y - 20, {
       font: "PressStart2P",
       size: `${fontSize}px`,
       align: "center",
       baseline: "bottom",
-      color: "rgba(83, 83, 83, "+ foodScoreTextAlpha +")",
+      color: "rgba(83, 83, 83, " + foodScoreTextAlpha + ")",
+    });
+  }
+  drawHighestScore() {
+    const fontSize = 12;
+    if (this.highestScore === 0) {
+      this.getHighestScore();
+    }
+    this.paintText((this.highestScore + "").padStart(5, "0"), (4 * this.width) / 5, 0, {
+      font: "PressStart2P",
+      size: `${fontSize}px`,
+      align: "right",
+      baseline: "top",
+      color: "#535353",
     });
   }
 
@@ -711,5 +727,24 @@ export default class DinoGame extends GameRunner {
     if (opts.baseline) canvasCtx.textBaseline = opts.baseline;
     if (opts.color) canvasCtx.fillStyle = opts.color;
     canvasCtx.fillText(text, x, y);
+  }
+
+  getHighestScore() {
+    if (this.highestScore === 0) {
+      const studentID = $id("student-id-input").value;
+      fetch(`${baseURL}highestScores`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({ studentID }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.highestScore = data.score;
+        });
+    }
   }
 }
