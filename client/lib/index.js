@@ -382,41 +382,30 @@ $id("leaderboard-container").onclick = (e) => {
   }
 };
 
-try {
-  screen.orientation.addEventListener("change", () => {
-    if (screen.orientation.type.includes("portrait")){
-      $id("landscape-page").classList.remove("hidden");
-    }else{
-      $id("landscape-page").classList.add("hidden");
-    }
-  });
-} catch (error) {
-  console.log(error)
-}
+// Find matches
+var mql = window.matchMedia("(orientation: portrait)");
 
-try{
-
-  window.addEventListener("orientationchange", () => {
-    if (window.outerHeight < window.outerWidth){
-      $id("landscape-page").classList.remove("hidden");
-    }else{
-      $id("landscape-page").classList.add("hidden");
-    }
-  });
-}catch(error) {
-  console.log(error)
-}
-
-try {
-  
-  if (window.innerHeight > window.innerWidth){
+// If there are matches, we're in portrait
+if(mql.matches) {  
+	// Portrait orientation
     $id("landscape-page").classList.remove("hidden");
-  }else{
+} else {  
+	// Landscape orientation
     $id("landscape-page").classList.add("hidden");
-  }
-} catch (error) {
-  console.log(error)
 }
+
+// Add a media query change listener
+mql.addListener(function(m) {
+	if(m.matches) {
+		// Changed to portrait
+    $id("landscape-page").classList.remove("hidden");
+	}
+	else {
+		// Changed to landscape
+    $id("landscape-page").classList.add("hidden");
+	}
+});
+
 
 
 startHomePage();
