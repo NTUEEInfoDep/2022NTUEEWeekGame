@@ -41,9 +41,9 @@ export default class DinoGame extends GameRunner {
       cloudSpawnRate: 200, // fpa
       cloudSpeed: 2, // ppf
       dinoGravity: 2, // ppf
-      dinoGroundOffset: 160, // px
+      dinoGroundOffset: -40, // px
       dinoLegsRate: 6, // fpa
-      dinoLift: 35, // ppf
+      dinoLift: 34, // ppf
       bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
       itemSpawnRate: 200, // fpa
@@ -129,9 +129,9 @@ export default class DinoGame extends GameRunner {
     dino.lift = settings.dinoLift;
     dino.gravity = settings.dinoGravity;
     dino.x = 25;
-    dino.baseY = this.height - settings.dinoGroundOffset;
     this.state.dino = dino;
-    // this.state.groundY = this.height - sprites.ground.h / 2;
+    this.state.groundY = this.height - Math.min(sprites.ground.h / 2, this.height*0.2);
+    dino.baseY = this.state.groundY - settings.dinoGroundOffset;
   }
 
   onFrame() {
@@ -180,23 +180,16 @@ export default class DinoGame extends GameRunner {
       state.bullets.forEach((bullet) => {
         if (bullet.hits([state.obstacles[0]])) {
           //to-do
-          switch (state.obstacles[0].sprite) {
-            case "obstacle": {
-              state.obstacles[0].sprite = "obstacleHit";
-            }
+          state.obstacles[0].sprite = `${state.obstacles[0].sprite}Hit`;
+          // switch (state.obstacles[0].sprite) {
+          //   case "obstacleCode": {
+          //     state.obstacles[0].sprite = "obstacleCodeHit";
+          //   }
 
-            case "obstacleDouble": {
-              state.obstacles[0].sprite = "obstacleDoubleHit";
-            }
-
-            case "obstacleDoubleB": {
-              state.obstacles[0].sprite = "obstacleDoubleBHit";
-            }
-
-            case "obstacleTriple": {
-              state.obstacles[0].sprite = "obstacleTripleHit";
-            }
-          }
+          //   case "obstacleGate": {
+          //     state.obstacles[0].sprite = "obstacleGateHit";
+          //   }
+          // }
           setTimeout(() => {
             state.obstacles.shift();
           }, 120);
@@ -207,7 +200,8 @@ export default class DinoGame extends GameRunner {
         }
         if (bullet.hits([state.birds[0]])) {
           //to-do
-          state.obstacles[0].sprite = "birdHit";
+          state.birds[0].sprite = `${state.birds[0].sprite}Hit`;
+          // state.obstacles[0].sprite = "birdHit";
           //to-do
 
           setTimeout(() => {
@@ -419,24 +413,25 @@ export default class DinoGame extends GameRunner {
   }
 
   drawBackground() {
-    this.canvasCtx.fillStyle = "#f7f7f7";
-    this.canvasCtx.fillRect(0, 0, this.width, this.height);
+    // this.canvasCtx.fillStyle = "#f7f7f7";
+    // this.canvasCtx.fillRect(0, 0, this.width, this.height);
+    this.canvasCtx.drawImage(this.backgroundImage, 0, 0, this.width, this.height);
   }
 
   drawGround() {
     const { state } = this;
     const { bgSpeed } = state.settings;
-    // const groundImgWidth = sprites.ground.w / 2;
-    const groundImgWidth = 1920;
+    const groundImgWidth = sprites.ground.w / 2;
+    // const groundImgWidth = 1920;
 
-    // this.paintSprite("ground", state.groundX, state.groundY);
-    this.canvasCtx.drawImage(this.backgroundImage, state.groundX, state.groundY, 1920, this.height);
+    this.paintSprite("ground", state.groundX, state.groundY);
+    // this.canvasCtx.drawImage(this.backgroundImage, state.groundX, state.groundY, 1920, this.height);
     state.groundX -= bgSpeed * state.speedRatio;
 
     // append second image until first is fully translated
     if (state.groundX <= -groundImgWidth + this.width) {
-      // this.paintSprite("ground", state.groundX + groundImgWidth, state.groundY);
-      this.canvasCtx.drawImage(this.backgroundImage, state.groundX + groundImgWidth, state.groundY, 1920, this.height);
+      this.paintSprite("ground", state.groundX + groundImgWidth, state.groundY);
+      // this.canvasCtx.drawImage(this.backgroundImage, state.groundX + groundImgWidth, state.groundY, 1920, this.height);
 
       if (state.groundX <= -groundImgWidth) {
         state.groundX = -bgSpeed * state.speedRatio;
@@ -452,7 +447,7 @@ export default class DinoGame extends GameRunner {
       const newCloud = new Cloud();
       newCloud.speed = settings.bgSpeed;
       newCloud.x = this.width;
-      newCloud.y = randInteger(20, 200);
+      newCloud.y = randInteger(sprites.cloud.h+10, this.state.dinoGroundOffset - sprites.cloud.h - sprites.dinoDuckLeftLeg.h);
       clouds.push(newCloud);
     }
     this.paintInstances(clouds);
@@ -520,12 +515,12 @@ export default class DinoGame extends GameRunner {
         const newItem = new Item();
         newItem.speed = settings.bgSpeed;
         newItem.x = this.width;
-        newItem.y = this.height - newItem.height - state.settings.dinoGroundOffset - 100 * randInteger(0, 2);
+        newItem.y = state.dino.baseY - newItem.height - 100 * randInteger(0, 2);
         if (spawnedObstacle) {
-          newItem.y = this.height - newItem.height - state.settings.dinoGroundOffset - 250;
+          newItem.y = state.dino.baseY - newItem.height - 250;
         }
         if (spawnedBird) {
-          newItem.y = this.height - newItem.height - state.settings.dinoGroundOffset;
+          newItem.y = state.dino.baseY - newItem.height ;
         }
         items.push(newItem);
       }
@@ -547,7 +542,7 @@ export default class DinoGame extends GameRunner {
         const newObstacles = new Obstacle(this.spriteImageData);
         newObstacles.speed = settings.bgSpeed;
         newObstacles.x = this.width;
-        newObstacles.y = this.height - newObstacles.height - state.settings.dinoGroundOffset;
+        newObstacles.y = state.dino.baseY - newObstacles.height;
         obstacles.push(newObstacles);
       }
     }
@@ -566,16 +561,13 @@ export default class DinoGame extends GameRunner {
         spawned = true;
         const newBird = new Bird(this.spriteImageData);
         newBird.speed = settings.birdSpeed;
-        newBird.wingsRate = settings.birdWingsRate;
         newBird.x = this.width;
         // ensure birds are always at least 5px higher than a ducking dino
         newBird.y =
-          this.height -
+          dino.baseY -
           Bird.maxBirdHeight -
-          Bird.wingSpriteYShift -
           5 -
-          sprites.dinoDuckLeftLeg.h / 2 -
-          settings.dinoGroundOffset;
+          sprites.dinoDuckLeftLeg.h / 2
         birds.push(newBird);
       }
     }
@@ -594,7 +586,7 @@ export default class DinoGame extends GameRunner {
       const newFood = new Food(this.spriteImageData);
       newFood.speed = settings.bgSpeed;
       newFood.x = this.width;
-      newFood.y = this.height - newFood.height - state.settings.dinoGroundOffset + this.foodHeightFunc(this.frameCount);
+      newFood.y = state.dino.baseY - newFood.height + this.foodHeightFunc(this.frameCount);
       foods.push(newFood);
     }
     this.paintInstances(foods);
