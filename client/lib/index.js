@@ -382,6 +382,43 @@ $id("leaderboard-container").onclick = (e) => {
   }
 };
 
+try {
+  screen.orientation.addEventListener("change", () => {
+    if (screen.orientation.type.includes("portrait")){
+      $id("landscape-page").classList.remove("hidden");
+    }else{
+      $id("landscape-page").classList.add("hidden");
+    }
+  });
+} catch (error) {
+  console.log(error)
+}
+
+try{
+
+  window.addEventListener("orientationchange", () => {
+    if (window.outerHeight < window.outerWidth){
+      $id("landscape-page").classList.remove("hidden");
+    }else{
+      $id("landscape-page").classList.add("hidden");
+    }
+  });
+}catch(error) {
+  console.log(error)
+}
+
+try {
+  
+  if (window.innerHeight > window.innerWidth){
+    $id("landscape-page").classList.remove("hidden");
+  }else{
+    $id("landscape-page").classList.add("hidden");
+  }
+} catch (error) {
+  console.log(error)
+}
+
+
 startHomePage();
 // $('body').show();
 // showLeaderboard()
