@@ -406,7 +406,8 @@ mql.addListener(function(m) {
 	}
 });
 
-
+// const clientHeight = document.body.clientHeight;
+//   window.scrollBy(0, clientHeight);
 
 startHomePage();
 // $('body').show();
