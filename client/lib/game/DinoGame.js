@@ -120,6 +120,16 @@ export default class DinoGame extends GameRunner {
     return canvas;
   }
 
+  resize() {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.canvas.style.width = this.width + "px";
+    this.canvas.style.height = this.height + "px";
+    this.canvas.width = Math.floor(this.width * window.devicePixelRatio);
+    this.canvas.height = Math.floor(this.height * window.devicePixelRatio);
+    this.canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  }
+
   async preload() {
     const { settings } = this.state;
     const [spriteImage] = await Promise.all([
