@@ -400,6 +400,7 @@ mql.addListener(function(m) {
 		// Changed to landscape
     $id("landscape-page").classList.add("hidden");
 	}
+  game.resize();
 });
 
 // const clientHeight = document.body.clientHeight;
