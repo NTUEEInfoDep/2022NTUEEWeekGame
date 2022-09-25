@@ -7,6 +7,7 @@ const $id = (element) => document.getElementById(element);
 const $class = (element) => document.getElementsByClassName(element);
 
 const baseURL = window.location.href.toString() + "api/";
+let first = true;
 
 const game = new DinoGame(window.innerWidth, window.innerHeight, preEndGameRoute);
 const isTouchDevice =
@@ -131,7 +132,12 @@ function startGame() {
   $id("error-container").classList.add("hidden");
   $id("warning-container").classList.add("hidden");
   $id("instruction-container").classList.add("hidden");
-  game.start().catch(console.error);
+  if (first){
+    game.start().catch(console.error);
+    first = false;
+  }else{
+  game.resetGame();
+  }
   keyStart();
 }
 
@@ -141,6 +147,8 @@ function restartGame() {
   $id("end-game-page").classList.add("hidden");
   $id("prop-container").classList.add("hidden"); //Lawra
   $id("rule-container").classList.add("hidden"); //lichun
+  $id("error-container").classList.add("hidden");
+  $id("warning-container").classList.add("hidden");
   $id("instruction-container").classList.add("hidden");
   game.resetGame();
   keyStart();
