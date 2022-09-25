@@ -86,4 +86,30 @@ router.post(
   })
 );
 
+router.post(
+  "/pagedLeaderBoard",
+  asyncHandler(async(req, res) =>{
+    const {page} = req.body;
+    if(Number.isInteger(page) && page > 0){
+      await leaderBoard.syncDB();
+      if((page - 1) * 10 < leaderBoard.formatBoard().length){
+        if((page * 10 <= leaderBoard.formatBoard().length){
+          res.status(204);
+          res.send(leaderBoard.formatBoard().subarray((page - 1) * 10, page * 10));
+        }
+        else{
+          res.status(204);
+          res.send(leaderBoard.formatBoard().subarray((page - 1) * 10, leaderBoard.formatBoard().length));
+        }
+      }
+      else{
+        res.status(400).end();
+        return;
+      }
+    }
+    else{
+      res.status(400).end();
+      return;
+    }
+}))
 module.exports = router;
