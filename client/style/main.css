@@ -66,6 +66,9 @@ td {
   font-size: 1rem;
   font-family: "Arvo", sans-serif;
 }
+#creators:hover {
+  background-color: rgb(209, 208, 208);
+}
 
 /* Landscape Page */
 
@@ -108,8 +111,29 @@ td {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: white;
+  background-color: rgb(189, 212, 163);
   color: black;
+}
+#home-page-middle-block {
+  margin: 1rem 0 0;
+  padding: 1rem 1rem 1rem 1rem;
+  display: grid;
+  grid-template-rows: 1.5rem 6.5rem 0px 45px 45px 70px 70px;
+  background-color: rgb(228, 246, 207);
+  border-radius: 30px;
+}
+#home-page-middle-block > * {
+  margin: 0.25rem;
+}
+#home-page-middle-block > button {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-self: center;
+  background-color: rgba(239, 244, 233, 0.724);
+}
+#home-page-middle-block > button:hover {
+  background-color: rgba(239, 244, 233, 0.861);
 }
 
 #home-page-suptitle {
@@ -122,6 +146,7 @@ td {
   overflow: visible;
   font-size: 6rem;
   font-family: "Pdark", sans-serif;
+  user-select: none;
 }
 
 .home-page-input {
@@ -131,6 +156,7 @@ td {
   font-size: 1.5rem;
   font-family: "Arvo", sans-serif;
   text-align: center;
+  border-radius: 10px;
 }
 
 .home-page-input:hover {
@@ -170,8 +196,9 @@ td {
 }
 
 #start-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  font-size: 2.5rem;
   transition: all 0.4s ease 0s;
 }
 
@@ -186,8 +213,9 @@ td {
 }
 
 .prop-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  font-size: 2rem;
   transition: all 0.4s ease 0s;
 }
 
@@ -202,11 +230,28 @@ td {
 }
 
 #rule-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  font-size: 2rem;
   transition: all 0.4s ease 0s;
 }
 
+.leaderboard-button {
+  color: black;
+  background-color: white;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
+}
+
+.leaderboard-button:hover {
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  font-size: 2rem;
+  transition: all 0.4s ease 0s;
+}
 .instruction-button {
   color: black;
   background-color: white;
@@ -216,8 +261,8 @@ td {
   font-family: "Righteous", sans-serif;
   text-decoration: none;
   border-radius: 50%;
-  border: 2px solid;
-  border-color: blue;
+  border: none;
+  /* border-color: blue; */
   right: 1rem;
   bottom: 1rem;
   display: flex;
@@ -226,7 +271,34 @@ td {
   text-align: center;
   position: fixed;
 }
-
+.instruction-button:hover {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  background-color: rgba(94, 126, 96, 0.826);
+  color: white;
+  transition: all 0.4s ease 0s;
+}
+@media screen and (max-height: 435px) {
+  #home-page-title {
+    font-size: 4.5rem;
+  }
+  #home-page-middle-block {
+    grid-template-rows: 1.5rem 5rem 0px 45px 45px 60px 60px;
+  }
+  #start-button {
+    font-size: 1.5rem;
+  }
+  #start-button:hover {
+    font-size: 1.75rem;
+  }
+  .leaderboard-button {
+    font-size: 1.25rem;
+  }
+  .leaderboard-button:hover {
+    font-size: 1.5rem;
+  }
+}
 /* Instruction Page */
 #instruction-container {
   display: flex;
@@ -294,22 +366,6 @@ td {
     font-size: 5rem;
     font-family: "Pdark", sans-serif;
 } */
-
-.leaderboard-button {
-  color: black;
-  background-color: white;
-  font-size: 1.5rem;
-  font-family: "Righteous", sans-serif;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.4s ease 0s;
-}
-
-.leaderboard-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
-  transition: all 0.4s ease 0s;
-}
 
 /* #score-bar {
     font-size: 1.5rem;
