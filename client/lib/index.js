@@ -9,7 +9,11 @@ const $class = (element) => document.getElementsByClassName(element);
 const baseURL = window.location.href.toString() + "api/";
 let first = true;
 
-const game = new DinoGame(window.innerWidth, window.innerHeight, preEndGameRoute);
+const game = new DinoGame(
+  window.innerWidth,
+  window.innerHeight,
+  preEndGameRoute
+);
 const isTouchDevice =
   "ontouchstart" in window ||
   navigator.maxTouchPoints > 0 ||
@@ -132,12 +136,14 @@ function startGame() {
   $id("error-container").classList.add("hidden");
   $id("warning-container").classList.add("hidden");
   $id("instruction-container").classList.add("hidden");
-  if (first){
-    game.start().catch(console.error);
+  if (first) {
+    // game.start().catch(console.error);
+    game.unpause();
     first = false;
-  }else{
-  game.resetGame();
+  } else {
+    game.resetGame();
   }
+  // console.log("start");
   keyStart();
 }
 
@@ -171,7 +177,7 @@ function preEndGameRoute() {
         }
         if (tenthScore <= score) {
           $id("prompt-container").classList.remove("hidden");
-        }else{
+        } else {
           endGameRoute();
         }
       });
@@ -324,7 +330,7 @@ function showLeaderboard() {
             $id("leaderboard-table-container").appendChild(tr);
           }
         });
-        $id("leaderboard-container").classList.remove("hidden");
+      $id("leaderboard-container").classList.remove("hidden");
     });
 }
 
@@ -376,12 +382,12 @@ $id("prompt-confirm-button").onclick = () => {
   node.onclick = () => $id("instruction-container").classList.remove("hidden");
 });
 $id("instruction-container").onclick = (e) => {
-  if(e.target == document.getElementById('instruction-container')) {
+  if (e.target == document.getElementById("instruction-container")) {
     $id("instruction-container").classList.add("hidden");
   }
 };
 $id("leaderboard-container").onclick = (e) => {
-  if(e.target == document.getElementById('leaderboard-container')) {
+  if (e.target == document.getElementById("leaderboard-container")) {
     $id("leaderboard-container").classList.add("hidden");
   }
 };
@@ -390,24 +396,29 @@ $id("leaderboard-container").onclick = (e) => {
 var mql = window.matchMedia("(orientation: portrait)");
 
 // If there are matches, we're in portrait
-if(mql.matches) {  
-	// Portrait orientation
-    $id("landscape-page").classList.remove("hidden");
-} else {  
-	// Landscape orientation
-    $id("landscape-page").classList.add("hidden");
+if (mql.matches) {
+  // Portrait orientation
+  $id("landscape-page").classList.remove("hidden");
+} else {
+  // Landscape orientation
+  $id("landscape-page").classList.add("hidden");
 }
 
 // Add a media query change listener
-mql.addListener(function(m) {
-	if(m.matches) {
-		// Changed to portrait
+mql.addListener(function (m) {
+  if (m.matches) {
+    // Changed to portrait
     $id("landscape-page").classList.remove("hidden");
-	}
-	else {
-		// Changed to landscape
+  } else {
+    // Changed to landscape
     $id("landscape-page").classList.add("hidden");
-	}
+  }
+  game.resize();
+});
+
+// resize game
+window.addEventListener("resize", function () {
+  console.log("resize");
   game.resize();
 });
 
@@ -415,5 +426,6 @@ mql.addListener(function(m) {
 //   window.scrollBy(0, clientHeight);
 
 startHomePage();
+game.start(true).catch(console.error);
 // $('body').show();
 // showLeaderboard()
