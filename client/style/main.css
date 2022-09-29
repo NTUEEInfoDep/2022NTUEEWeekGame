@@ -430,19 +430,35 @@ td {
   background-color: white;
   color: black;
   z-index: 10;
+  background-image: url("../assets/LeaderBoard_background.jpg");
+}
+
+/*#leaderboard-page-title {
+    margin: -0.75rem 0 0;
+    overflow: visible;
+    font-size: 8rem;
+    font-family: "Pdark", sans-serif;
+}*/
+
+#heart-decoration {
+  background-image: url("../assets/heart.png");
+  position: absolute;
+  height: 55px;
+  width: 56px;
 }
 
 #leaderboard-page-title {
-  margin: -0.75rem 0 0;
+  background-image: url("../assets/Leaderboard.png");
   overflow: visible;
-  font-size: 8rem;
-  font-family: 'Pdark', sans-serif;
+  height: 123px;
+  width: 750px;
 }
 
 #leaderboard-table-container {
   width: 100%;
   font-size: 1.5rem;
-  font-family: 'Righteous', sans-serif;
+  font-family: "Righteous", sans-serif;
+  font-weight: 600;
   margin: 1rem;
 }
 
