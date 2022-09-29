@@ -269,31 +269,31 @@ td {
 
 /* End Game Page */
 
-#end-game-page {
-  top: 50%;
-  left: 50%;
-  position: fixed;
-  transform: translateX(-50%) translateY(-50%);
-  width: fit-content;
-  height: fit-content;
-  min-width: fit-content;
-  min-height: fit-content;
-  padding: 3rem;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: white;
-  color: black;
+/* #end-game-page {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    width: fit-content;
+    height: fit-content;
+    min-width: fit-content;
+    min-height: fit-content;
+    padding: 3rem;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
 }
 
 #end-game-page-title {
-  margin: -0.75rem 0 0;
-  overflow: visible;
-  font-size: 5rem;
-  font-family: "Pdark", sans-serif;
-}
+    margin: -0.75rem 0 0;
+    overflow: visible;
+    font-size: 5rem;
+    font-family: "Pdark", sans-serif;
+} */
 
 .leaderboard-button {
   color: black;
@@ -311,9 +311,9 @@ td {
   transition: all 0.4s ease 0s;
 }
 
-#score-bar {
-  font-size: 1.5rem;
-  font-family: "Arvo", sans-serif;
+/* #score-bar {
+    font-size: 1.5rem;
+    font-family: "Arvo", sans-serif;
 }
 
 #restart-button {
@@ -327,10 +327,11 @@ td {
 }
 
 #restart-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
-  transition: all 0.4s ease 0s;
-}
+    letter-spacing: 1rem;
+    margin-right: -1rem;
+    transition: all 0.4s ease 0s;
+} */
+/* 搬家了 */
 
 /* Leaderboard Page */
 
