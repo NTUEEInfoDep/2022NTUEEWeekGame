@@ -129,23 +129,28 @@
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
+        <!-- class="hidden" -->
         <div id="end-game-page-title">GAME OVER</div>
-        <div id="score-bar"></div>
+        <div id="score-bar">Your Score:</div>
+        <div id="score">0</div>
         <div id="highestScore"></div>
         <div id="encouragement"></div>
-        <li id="props-list" style="list-style-type: none">
+        <!-- <li id="props-list" style="list-style-type: none">
             <ul id="props-dance"></ul>
             <ul id="props-band"></ul>
             <ul id="props-eater"></ul>
             <ul id="props-week"></ul>
             <ul id="props-guitar"></ul>
-        </li>
+        </li> -->
+        <!-- 不須道具資訊 -->
         <!--傅渝翔 新增-->
-        <div id=""></div>
-        <button class="leaderboard-button">Leaderboard</button>
-        <button id="restart-button">Restart</button>
-        <button id="endgame-button">End Game</button>
-        <!--傅渝翔 新增-->
+        <div id="endpage-button-set">
+            <button id ="endPage-leaderboard-button" class="end-page-button"><img id = "EP-leaderboard-button-pic" src = "./assets/crown.png"></button>
+            <!-- 拿掉leaderboard-button的class  -->
+            <button id="restart-button" class = "end-page-button"><img id = "EP-restart-button-pic" src = "./assets/replay.png"></button>
+            <button id="endgame-button" class = "end-page-button">&times;</button>
+            <!--傅渝翔 新增-->
+        </div>
     </div>
 
     <!-- Leaderboard Page -->
@@ -225,7 +230,12 @@
             </div>
         </div>
     </div>
-
+   <!-- 金巧芸新增 -->
+    <div id = "weekCard" class="hidden">
+        <div class="box b1" id = "cardBack"><img id = "cardBackPic" src="./assets/logo.jpg"></div>
+        <p class="box b2" id = "cardFront">+0</p>
+    </div>
+    <!-- 新增end -->
     <script>
         // screen.orientation.lock('landscape').then(() => {
         //     console.log('lock');

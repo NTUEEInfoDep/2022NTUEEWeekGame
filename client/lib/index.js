@@ -1,5 +1,6 @@
 import "../style/main.css";
 import "../style/card.css";
+import "../style/end.css";
 
 import DinoGame from "./game/DinoGame.js";
 
@@ -210,12 +211,13 @@ function endGameRoute() {
           $id("home-page").classList.add("hidden");
           //print本次遊玩的成績
           $id("prop-container").classList.add("hidden"); //Lawra
-          $id("score-bar").textContent = `Your score is ${score}`;
-          $id("props-dance").textContent = `You have ${dance} dances`;
-          $id("props-band").textContent = `You have ${band} bands`;
-          $id("props-eater").textContent = `You have ${eater} eaters`;
-          $id("props-week").textContent = `You have ${week} weeks`;
-          $id("props-guitar").textContent = `You have ${guitar} guitars`;
+          $id("score").textContent = `${score}`;
+          // $id("props-dance").textContent = `You have ${dance} dances`;
+          // $id("props-band").textContent = `You have ${band} bands`;
+          // $id("props-eater").textContent = `You have ${eater} eaters`;
+          // $id("props-week").textContent = `You have ${week} weeks`;
+          // $id("props-guitar").textContent = `You have ${guitar} guitars`;
+          //endpage不需提供得到道具資訊
           keyStop();
         });
         const highestScore = data.score;
@@ -239,12 +241,13 @@ function endGameRoute() {
     $id("end-game-page").classList.remove("hidden");
     $id("home-page").classList.add("hidden");
     $id("prop-container").classList.add("hidden"); //Lawra
-    $id("score-bar").textContent = `Your score is ${score}`;
-    $id("props-dance").textContent = `You have ${dance} dances`;
-    $id("props-band").textContent = `You have ${band} bands`;
-    $id("props-eater").textContent = `You have ${eater} eaters`;
-    $id("props-week").textContent = `You have ${week} weeks`;
-    $id("props-guitar").textContent = `You have ${guitar} guitars`;
+    $id("score").textContent = `${score}`;
+    // $id("props-dance").textContent = `You have ${dance} dances`;
+    // $id("props-band").textContent = `You have ${band} bands`;
+    // $id("props-eater").textContent = `You have ${eater} eaters`;
+    // $id("props-week").textContent = `You have ${week} weeks`;
+    // $id("props-guitar").textContent = `You have ${guitar} guitars`;
+    //endpage不需提供得到道具資訊
   }
 }
 function showRule() {
@@ -332,6 +335,7 @@ function showLeaderboard() {
 [].forEach.call($class("leaderboard-button"), (node) => {
   node.onclick = showLeaderboard;
 });
+$id("endPage-leaderboard-button").onclick = showLeaderboard;
 $id("start-button").onclick = checkUserData;
 [].forEach.call($class("prop-button"), (node) => {
   node.onclick = showPropList;

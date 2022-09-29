@@ -269,7 +269,7 @@ td {
 
 /* End Game Page */
 
-#end-game-page {
+/* #end-game-page {
     top: 50%;
     left: 50%;
     position: fixed;
@@ -293,7 +293,7 @@ td {
     overflow: visible;
     font-size: 5rem;
     font-family: "Pdark", sans-serif;
-}
+} */
 
 .leaderboard-button {
     color: black;
@@ -311,7 +311,7 @@ td {
     transition: all 0.4s ease 0s;
 }
 
-#score-bar {
+/* #score-bar {
     font-size: 1.5rem;
     font-family: "Arvo", sans-serif;
 }
@@ -330,7 +330,8 @@ td {
     letter-spacing: 1rem;
     margin-right: -1rem;
     transition: all 0.4s ease 0s;
-}
+} */
+/* 搬家了 */
 
 
 /* Leaderboard Page */
