@@ -442,7 +442,8 @@ td {
 
 #heart-decoration {
   background-image: url("../assets/heart.png");
-  position: absolute;
+  position: relative;
+  left: -3%;
   height: 55px;
   width: 56px;
 }
@@ -454,12 +455,21 @@ td {
   width: 750px;
 }
 
+#leaderboard-table-container-edge {
+  width: 100%;
+  height: fit-content;
+  max-height: 300px;
+  min-width: fit-content;
+  min-height: fit-content;
+  overflow-y: scroll;
+}
+
 #leaderboard-table-container {
   width: 100%;
+  height: fit-content;
   font-size: 1.5rem;
   font-family: "Righteous", sans-serif;
   font-weight: 600;
-  margin: 1rem;
 }
 
 #leaderboard-tr-header {
