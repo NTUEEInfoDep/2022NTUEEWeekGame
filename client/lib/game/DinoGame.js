@@ -30,6 +30,14 @@ export default class DinoGame extends GameRunner {
     this.spriteImageData = null;
     this.endGameRoute = endGameRoute;
 
+    this.circle = {
+      x: window.innerWidth - 100,
+      y: window.innerHeight - 100,
+      radius: 40,
+      scale: 1.2,
+    };
+    this.isTouchDevice = "ontouchstart" in document.documentElement;
+
     /*
      * units
      * fpa: frames per action
@@ -143,6 +151,7 @@ export default class DinoGame extends GameRunner {
     this.backgroundImage = await loadImage("./assets/background.png");
     this.spriteImage = spriteImage;
     this.spriteImageData = getImageData(spriteImage);
+    this.duck_buttonImage = await loadImage("./assets/down-arrow.png");
     const dino = new Dino(this.spriteImageData);
 
     dino.legsRate = settings.dinoLegsRate;
@@ -164,6 +173,9 @@ export default class DinoGame extends GameRunner {
     this.drawClouds();
     this.drawDino();
     this.drawScore();
+    if (this.isTouchDevice) {
+      this.drawduckbutton();
+    }
 
     if (state.isRunning) {
       let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood;
@@ -236,17 +248,7 @@ export default class DinoGame extends GameRunner {
       // items hit
       state.items.forEach((item) => {
         if (item.hits([state.dino])) {
-          // to do
-          var item_hit = setInterval(() => {
-            item.x = state.dino.x + 10;
-            // + 75 * (state.items.length - 1)
-            item.y = state.dino.y - 100;
-          }, 5);
-          setTimeout(() => {
-            item.destroy();
-            clearInterval(item_hit);
-          }, 3000);
-          // to do
+          item.destroy();
           state.dino.powerUp = item.sprite;
           state.dino.powerUpTime =
             state.settings.powerUpTimes[item.sprite] * this.frameRate;
@@ -443,6 +445,17 @@ export default class DinoGame extends GameRunner {
       color: "#535353",
     });
   }
+  drawduckbutton() {
+    // this.canvasCtx.fillStyle = "#f7f7f7";
+    // this.canvasCtx.fillRect(0, 0, this.width, this.height);
+    this.canvasCtx.drawImage(
+      this.duck_buttonImage,
+      this.circle.x - this.circle.radius * this.circle.scale,
+      this.circle.y - this.circle.radius * this.circle.scale,
+      this.circle.radius * this.circle.scale * 2,
+      this.circle.radius * this.circle.scale * 2
+    );
+  }
 
   drawBackground() {
     // this.canvasCtx.fillStyle = "#f7f7f7";
@@ -497,43 +510,13 @@ export default class DinoGame extends GameRunner {
   }
 
   drawDino() {
-    const { dino, settings } = this.state;
-    // state.settings.powerUpTimes[dino.powerUp.sprite] * this.frameRate
+    const { dino } = this.state;
+
     // determine expire
     if (dino.powerUp !== "none") {
       console.log(dino.powerUp);
       dino.powerUpTime--;
-      // to do
-      if (
-        dino.powerUpTime >=
-          Math.min(
-            settings.powerUpTimes[dino.powerUp] * this.frameRate * 0.3,
-            this.frameRate * 1
-          ) &&
-        dino.powerUpTime <=
-          Math.min(
-            settings.powerUpTimes[dino.powerUp] * this.frameRate * 0.7,
-            this.frameRate * 3
-          ) &&
-        dino.powerUp !== "band"
-      ) {
-        dino.blinking_slower(true);
-      }
-      if (
-        dino.powerUpTime >= 0 &&
-        dino.powerUpTime <=
-          Math.min(
-            settings.powerUpTimes[dino.powerUp] * this.frameRate * 0.3,
-            this.frameRate * 1
-          )
-      ) {
-        dino.blinking(false);
-        dino.blinking_slower(false);
-        dino.blinking_faster(true);
-      }
-      // to do
       if (dino.powerUpTime <= 0) {
-        dino.blinking_faster(false);
         switch (dino.powerUp) {
           case "guitar":
             break;
@@ -723,9 +706,9 @@ export default class DinoGame extends GameRunner {
         {
           font: "PressStart2P",
           size: `${fontSize}px`,
-          align: "center",
-          baseline: "bottom",
-          color: "rgba(83, 83, 83, " + foodScoreTextAlpha + ")",
+          align: "right",
+          baseline: "top",
+          color: "#535353",
         }
       );
     }
