@@ -105,8 +105,8 @@ export default class DinoGame extends GameRunner {
 
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
-		canvas.style.width = this.width + "px";
-		canvas.style.height = this.height + "px";
+		canvas.style.width = width + "px";
+		canvas.style.height = height + "px";
 		canvas.width = Math.floor(width * scale);
 		canvas.height = Math.floor(height * scale);
 		ctx.scale(scale, scale);
@@ -123,9 +123,6 @@ export default class DinoGame extends GameRunner {
 		this.canvas.width = Math.floor(this.width * window.devicePixelRatio);
 		this.canvas.height = Math.floor(this.height * window.devicePixelRatio);
 		this.canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
-
-		this.state.groundY = this.height - Math.min(sprites.ground.h / 2, this.height * 0.2);
-		dino.baseY = this.state.groundY - settings.dinoGroundOffset;
 	}
 
 	async preload() {

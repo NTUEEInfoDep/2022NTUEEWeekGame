@@ -362,6 +362,7 @@ function showLeaderboard() {
 				});
 			$id("leaderboard-container").classList.remove("hidden");
 		});
+	//$id("leaderboard-restart-button").onclick = restartGame;
 }
 
 // Global function
