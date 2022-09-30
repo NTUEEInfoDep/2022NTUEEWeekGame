@@ -120,7 +120,7 @@ td {
     padding: 0.5rem;
     width: 450px;
     display: grid;
-    grid-template-rows: 1.5rem 6.5rem 0px 45px 45px 70px 70px;
+    grid-template-rows: 1.5rem 6.5rem 20px 45px 45px 20px 70px 70px;
     background-color:rgb(228, 246, 207);
     border-radius: 30px;
     position: absolute;
@@ -136,11 +136,11 @@ td {
     height: fit-content;
     display: flex;
     justify-self: center;
-    background-color: rgba(239, 244, 233, 0.724);
+    /* background-color: rgba(239, 244, 233, 0.724); */
 }
-#home-page-middle-block > button:hover{
+/* #home-page-middle-block > button:hover{
     background-color: rgba(239, 244, 233, 0.861);
-}
+} */
 
 #home-page-suptitle {
     font-size: 1rem;
@@ -157,10 +157,11 @@ td {
 
 .home-page-input {
     margin: 1.5rem 0 0;
-    padding: 1rem 0 0;
-    border: none;
     font-size: 1.5rem;
+    padding: 0.25rem 0;
+    border: none;
     font-family: "Arvo", sans-serif;
+    display: flex;
     text-align: center;
     border-radius: 10px;
 }
@@ -204,6 +205,9 @@ td {
 #start-button:hover {
     /* letter-spacing: 1rem;
     margin-right: -1rem; */
+    background-color: rgb(94, 126, 96);
+    color: white;
+    border-color: rgba(255, 255, 255, 0);
     font-size: 2.5rem;
     transition: all 0.4s ease 0s;
 }
@@ -255,6 +259,9 @@ td {
 .leaderboard-button:hover {
     /* letter-spacing: 1rem;
     margin-right: -1rem; */
+    background-color: rgb(94, 126, 96);
+    color: white;
+    border-color: rgba(255, 255, 255, 0);
     font-size: 2rem;
     transition: all 0.4s ease 0s;
 }
@@ -291,7 +298,7 @@ td {
     }
     #home-page-middle-block{
         width: 350px;
-        grid-template-rows: 1.5rem 5rem 0px 45px 45px 60px 60px;
+        grid-template-rows: 1.5rem 5rem 0px 50px 50px 10px 60px 60px;
     }
     #start-button{
         font-size: 1.5rem;
