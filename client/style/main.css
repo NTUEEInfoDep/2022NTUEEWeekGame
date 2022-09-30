@@ -482,14 +482,15 @@ td {
     max-width: 80vw;
 
     padding: 3rem;
-    border-radius: 30px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     background-color: white;
     color: black;
-    border: 5px solid black;
+    border-width: 2vh;
+    border-color: rgb(131, 132, 123);
+    border-style: double;
+    border-radius: 5vh;
 }
 
 #prop-page-main {
@@ -504,6 +505,7 @@ td {
     background-color: white;
     border: 5px solid black;
     padding: 10px;
+    border-radius: 8px;
 }
 
 .prop-list {
@@ -521,6 +523,7 @@ td {
     height: 100%;
     vertical-align: center;
     max-height: 150px;
+    border-radius: 8px;
 }
 
 .item:last-child {
@@ -529,6 +532,7 @@ td {
 
 .left {
     width: 20%;
+    border-radius: 8px;
 }
 
 .right {
@@ -536,6 +540,7 @@ td {
     width: 80%;
     height: 100%;
     margin: 15px;
+    border-radius: 8px;
 }
 
 .gadget {
@@ -572,6 +577,16 @@ td {
 
 #prop-container {
     background-color: rgba(0, 0, 0, 0);
+}
+
+#prop-header{
+    width: 800px;
+    max-width: 90%;
+    min-height: fit-content;
+    padding: 0px;
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 5px solid black;
 }
 
 /* Rule Page*/
@@ -613,14 +628,7 @@ td {
 #rule-container {
     background-color: rgba(0, 0, 0, 0);
 }
-#prop-header{
-    width: 800px;
-    max-width: 90%;
-    padding: 20px 15px 15px 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid black;
-}
+
 
 
 /* Rule Page End*/
