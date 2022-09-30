@@ -100,7 +100,6 @@ td {
 /* home Page */
 
 #home-page {
-<<<<<<< HEAD
   position: fixed;
   width: 100%;
   height: 100%;
@@ -116,12 +115,17 @@ td {
   color: black;
 }
 #home-page-middle-block {
-  margin: 1rem 0 0;
-  padding: 1rem 1rem 1rem 1rem;
+  /* margin: 1rem 0 0; */
+  padding: 0.5rem;
+  width: 450px;
   display: grid;
   grid-template-rows: 1.5rem 6.5rem 0px 45px 45px 70px 70px;
   background-color: rgb(228, 246, 207);
   border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #home-page-middle-block > * {
   margin: 0.25rem;
@@ -135,52 +139,7 @@ td {
 }
 #home-page-middle-block > button:hover {
   background-color: rgba(239, 244, 233, 0.861);
-=======
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    min-width: fit-content;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: rgb(189, 212, 163);
-    color: black;
 }
-#home-page-middle-block{
-    /* margin: 1rem 0 0; */
-    padding: 0.5rem;
-    width: 450px;
-    display: grid;
-    grid-template-rows: 1.5rem 6.5rem 20px 45px 45px 20px 70px 70px;
-    background-color:rgb(228, 246, 207);
-    border-radius: 30px;
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-}
-#home-page-middle-block > *{
-    margin: 0.25rem;
-}
-#home-page-middle-block > button{
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    justify-self: center;
-    /* background-color: rgba(239, 244, 233, 0.724); */
-}
-/* #home-page-middle-block > button:hover{
-    background-color: rgba(239, 244, 233, 0.861);
-<<<<<<< HEAD
->>>>>>> 4f55c63 (center the middle box in home page)
-}
-=======
-} */
->>>>>>> c106b74 (small fix)
 
 #home-page-suptitle {
   font-size: 1rem;
@@ -196,7 +155,6 @@ td {
 }
 
 .home-page-input {
-<<<<<<< HEAD
   margin: 1.5rem 0 0;
   padding: 1rem 0 0;
   border: none;
@@ -204,16 +162,6 @@ td {
   font-family: "Arvo", sans-serif;
   text-align: center;
   border-radius: 10px;
-=======
-    margin: 1.5rem 0 0;
-    font-size: 1.5rem;
-    padding: 0.25rem 0;
-    border: none;
-    font-family: "Arvo", sans-serif;
-    display: flex;
-    text-align: center;
-    border-radius: 10px;
->>>>>>> c106b74 (small fix)
 }
 
 .home-page-input:hover {
@@ -255,16 +203,8 @@ td {
 #start-button:hover {
   /* letter-spacing: 1rem;
     margin-right: -1rem; */
-<<<<<<< HEAD
   font-size: 2.5rem;
   transition: all 0.4s ease 0s;
-=======
-    background-color: rgb(94, 126, 96);
-    color: white;
-    border-color: rgba(255, 255, 255, 0);
-    font-size: 2.5rem;
-    transition: all 0.4s ease 0s;
->>>>>>> c106b74 (small fix)
 }
 
 .prop-button {
@@ -314,16 +254,8 @@ td {
 .leaderboard-button:hover {
   /* letter-spacing: 1rem;
     margin-right: -1rem; */
-<<<<<<< HEAD
   font-size: 2rem;
   transition: all 0.4s ease 0s;
-=======
-    background-color: rgb(94, 126, 96);
-    color: white;
-    border-color: rgba(255, 255, 255, 0);
-    font-size: 2rem;
-    transition: all 0.4s ease 0s;
->>>>>>> c106b74 (small fix)
 }
 .instruction-button {
   color: black;
@@ -375,35 +307,36 @@ td {
     align-items: center;
     text-align: center;
     position: fixed;
+  }
 }
-.instruction-button:hover{
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 2rem;
-    background-color: rgba(94, 126, 96, 0.826);
-    color: white;
-    transition: all 0.4s ease 0s;
+.instruction-button:hover {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  background-color: rgba(94, 126, 96, 0.826);
+  color: white;
+  transition: all 0.4s ease 0s;
 }
-@media screen and (max-height:435px) {
-    #home-page-title {
-        font-size: 4.5rem;
-    }
-    #home-page-middle-block{
-        width: 350px;
-        grid-template-rows: 1.5rem 5rem 0px 50px 50px 10px 60px 60px;
-    }
-    #start-button{
-        font-size: 1.5rem;
-    }
-    #start-button:hover{
-        font-size: 1.75rem;
-    }
-    .leaderboard-button{
-        font-size: 1.25rem;
-    }
-    .leaderboard-button:hover{
-        font-size: 1.5rem;
-    }
+@media screen and (max-height: 435px) {
+  #home-page-title {
+    font-size: 4.5rem;
+  }
+  #home-page-middle-block {
+    width: 350px;
+    grid-template-rows: 1.5rem 5rem 0px 45px 45px 60px 60px;
+  }
+  #start-button {
+    font-size: 1.5rem;
+  }
+  #start-button:hover {
+    font-size: 1.75rem;
+  }
+  .leaderboard-button {
+    font-size: 1.25rem;
+  }
+  .leaderboard-button:hover {
+    font-size: 1.5rem;
+  }
 }
 /* Instruction Page */
 #instruction-container {
