@@ -213,16 +213,13 @@ export default class DinoGame extends GameRunner {
       state.bullets.forEach((bullet) => {
         if (bullet.hits([state.obstacles[0]])) {
           //to-do
-          state.obstacles[0].sprite = `${state.obstacles[0].sprite}Hit`
-          // switch (state.obstacles[0].sprite) {
-          //   case "obstacleCode": {
-          //     state.obstacles[0].sprite = "obstacleCodeHit";
-          //   }
-
-          //   case "obstacleGate": {
-          //     state.obstacles[0].sprite = "obstacleGateHit";
-          //   }
-          // }
+          // state.obstacles[0].sprite = `${state.obstacles[0].sprite}Hit`;
+          switch (state.obstacles[0].sprite) {
+            case "obstacleCode":
+              state.obstacles[0].sprite = "obstacleCodeHit";
+            case "obstacleGate":
+              state.obstacles[0].sprite = "obstacleGateHit";
+          }
           setTimeout(() => {
             state.obstacles.shift()
           }, 120)
@@ -233,8 +230,16 @@ export default class DinoGame extends GameRunner {
         }
         if (bullet.hits([state.birds[0]])) {
           //to-do
-          state.birds[0].sprite = `${state.birds[0].sprite}Hit`
+          // state.birds[0].sprite = `${state.birds[0].sprite}Hit`;
           // state.obstacles[0].sprite = "birdHit";
+
+          switch (state.birds[0].sprite) {
+            case "birdCircuit":
+              state.birds[0].sprite = "birdCircuitHit";
+            case "birdPaper":
+              state.birds[0].sprite = "birdPaperHit";
+          }
+
           //to-do
 
           setTimeout(() => {
