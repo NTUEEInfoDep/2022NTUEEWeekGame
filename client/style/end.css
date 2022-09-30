@@ -2,51 +2,50 @@
 /* index.js 115 130 html 132*/
 /* 刪除記錄道具的code */
 #end-game-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    height: 50%;
-    width: auto;
-    aspect-ratio: 25/20;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  height: 50%;
+  width: auto;
+  aspect-ratio: 25/20;
 
-    padding: 15vh;
-    border-width: 2vh;
-    border-color:rgb(131, 132, 123);
-    border-style:double;
-    border-radius: 15vh;
-    /* min-width: fit-content;
+  padding: 15vh;
+  border-width: 2vh;
+  border-color: rgb(131, 132, 123);
+  border-style: double;
+  border-radius: 15vh;
+  /* min-width: fit-content;
     min-height: fit-content;*/
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    /* new */
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  /* new */
 }
 
-
 #end-game-page-title {
-    /* margin: -3vh 0 0; */
-    overflow: visible;
-    position: fixed;
-    top:10vh;
-    font-size: 10vh;
-    font-family: "Pdark", sans-serif;
+  /* margin: -3vh 0 0; */
+  overflow: visible;
+  position: fixed;
+  top: 10vh;
+  font-size: 10vh;
+  font-family: 'Pdark', sans-serif;
 }
 
 #score-bar {
-    position: fixed;
-    top:23vh;
-    font-size: 6vh;
-    font-family: "Arvo", sans-serif;
+  position: fixed;
+  top: 23vh;
+  font-size: 6vh;
+  font-family: 'Arvo', sans-serif;
 }
 
-#score{
-    top:30vh;
-    position: fixed;
-    font-size: 15vh;
+#score {
+  top: 30vh;
+  position: fixed;
+  font-size: 15vh;
 }
 
 /* #restart-button {
@@ -64,50 +63,50 @@
     margin-right: -1rem;
     transition: all 0.4s ease 0s;
 } */
-#endpage-button-set{
-    position: fixed;
-    bottom:7vh;
-    height: 20vh;
-    width: 80%;
-    align-items: center;
-    text-align: center;
+#endpage-button-set {
+  position: fixed;
+  bottom: 7vh;
+  height: 20vh;
+  width: 80%;
+  align-items: center;
+  text-align: center;
 }
-.end-page-button{
-    height: 12vh;
-    width:auto;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    font-size: large;
-    display: inline;
-    margin: 0 3vh 3vh 3vh;
-    background-color: transparent;
-    font-size: 10vh;
-    border-color: silver;
-    color: rgb(91, 91, 91);
+.end-page-button {
+  height: 12vh;
+  width: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  font-size: large;
+  display: inline;
+  margin: 0 3vh 3vh 3vh;
+  background-color: transparent;
+  font-size: 10vh;
+  border-color: silver;
+  color: rgb(91, 91, 91);
 }
 
-.end-page-button:hover{
-    background-color: rgba(192, 192, 192, 0.5);
+.end-page-button:hover {
+  background-color: rgba(192, 192, 192, 0.5);
 }
 
 /* #restart-button{
     height: 12vh;
 } */
-#EP-leaderboard-button-pic{
-    max-width: 85%;
-    max-height: 85%;
+#EP-leaderboard-button-pic {
+  max-width: 85%;
+  max-height: 85%;
 }
 #EP-restart-button-pic {
-    max-width: 95%;
-    max-height: 95%;
+  max-width: 95%;
+  max-height: 95%;
 }
 #highestScore {
-    position: fixed;
-    top:47vh;
-    font-size: 3.5vh;
+  position: fixed;
+  top: 47vh;
+  font-size: 3.5vh;
 }
 #encouragement {
-    position: fixed;
-    top:72vh;
-    font-size: 3.5vh;
+  position: fixed;
+  top: 72vh;
+  font-size: 3.5vh;
 }
