@@ -331,7 +331,7 @@ export default class DinoGame extends GameRunner {
         band: 0,
         eater: 0,
         week: 0,
-      }
+      },
     });
 
     this.start();
@@ -479,8 +479,8 @@ export default class DinoGame extends GameRunner {
           case "guitar":
             break;
           case "dance":
-            this.state.speedRatio= 1;
-            this.state.scoreRatio= 1;
+            this.state.speedRatio = 1;
+            this.state.scoreRatio = 1;
             break;
           case "band":
             this.state.speedRatio = 1;
@@ -669,6 +669,43 @@ export default class DinoGame extends GameRunner {
         baseline: "top",
         color: "#535353",
       });
+    }
+  }
+  drawHighestScore() {
+    const fontSize = 30;
+    const margin = 10;
+    if (this.highestScore === 0) {
+      this.getHighestScore();
+    }
+    this.paintText("HI " + this.changeToString(this.highestScore), (26 * this.width) / 30, margin, {
+      font: "PressStart2P",
+      size: `${fontSize}px`,
+      align: "right",
+      baseline: "top",
+      color: "#535353",
+    });
+    console.log("highestScore");
+  }
+
+  changeToString(number) {
+    return (number + "").padStart(5, "0");
+  }
+  getHighestScore() {
+    if (this.highestScore === 0) {
+      const studentID = $id("student-id-input").value;
+      fetch(`${baseURL}highestScores`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({ studentID }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.highestScore = data.score;
+        });
     }
   }
 
