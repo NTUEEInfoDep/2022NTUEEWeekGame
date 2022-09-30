@@ -1,711 +1,701 @@
 * {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    box-sizing: content-box;
-    text-decoration: none;
-    overflow: hidden;
-    line-height: normal;
-    overscroll-behavior: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: content-box;
+  text-decoration: none;
+  overflow: hidden;
+  line-height: normal;
+  overscroll-behavior: none;
 }
 
 html {
-    height: -webkit-fill-available;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+  height: -webkit-fill-available;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    min-height: -webkit-fill-available;
-    align-items: center;
-    background-color: #f7f7f7;
-    display: flex;
-    justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  min-height: -webkit-fill-available;
+  align-items: center;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
 }
 
 canvas {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 button {
-    border: 2px solid black;
-    padding: 0.5rem;
-    border-radius: 5px;
+  border: 2px solid black;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 th,
 td {
-    padding: 15px;
+  padding: 15px;
 }
 
 #creators {
-    left: 1rem;
-    bottom: 1rem;
-    position: fixed;
-    width: fit-content;
-    height: fit-content;
-    min-width: fit-content;
-    min-height: fit-content;
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #eeeeee;
-    color: #001116;
-    font-size: 1rem;
-    font-family: "Arvo", sans-serif;
+  left: 1rem;
+  bottom: 1rem;
+  position: fixed;
+  width: fit-content;
+  height: fit-content;
+  min-width: fit-content;
+  min-height: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #eeeeee;
+  color: #001116;
+  font-size: 1rem;
+  font-family: "Arvo", sans-serif;
 }
-
 
 /* Landscape Page */
 
 #landscape-page {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    background-color: rgb(255, 255, 255, 1);
-    z-index: 50;
-    align-items: center;
-    text-align: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgb(255, 255, 255, 1);
+  z-index: 50;
+  align-items: center;
+  text-align: center;
 }
 
 #landscape-page-title {
-    margin: auto;
-    overflow: visible;
-    font-size: 5rem;
-    font-family: "Pdark", sans-serif;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    align-items: center;
-    text-align: center;
+  margin: auto;
+  overflow: visible;
+  font-size: 5rem;
+  font-family: "Pdark", sans-serif;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  align-items: center;
+  text-align: center;
 }
-
 
 /* home Page */
 
 #home-page {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    min-width: fit-content;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  min-width: fit-content;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
 }
 
 #home-page-suptitle {
-    font-size: 1rem;
-    font-family: "Arvo", sans-serif;
+  font-size: 1rem;
+  font-family: "Arvo", sans-serif;
 }
 
 #home-page-title {
-    margin: -0.75rem 0 0;
-    overflow: visible;
-    font-size: 6rem;
-    font-family: "Pdark", sans-serif;
+  margin: -0.75rem 0 0;
+  overflow: visible;
+  font-size: 6rem;
+  font-family: "Pdark", sans-serif;
 }
 
 .home-page-input {
-    margin: 1.5rem 0 0;
-    padding: 1rem 0 0;
-    border: none;
-    font-size: 1.5rem;
-    font-family: "Arvo", sans-serif;
-    text-align: center;
+  margin: 1.5rem 0 0;
+  padding: 1rem 0 0;
+  border: none;
+  font-size: 1.5rem;
+  font-family: "Arvo", sans-serif;
+  text-align: center;
 }
 
 .home-page-input:hover {
-    opacity: 0.5;
-    border-bottom: 0.1rem solid black;
-    text-align: center;
-    letter-spacing: 0.5rem;
-    margin-right: -0.5rem;
-    transition: all 0.4s ease 0s;
+  opacity: 0.5;
+  border-bottom: 0.1rem solid black;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  margin-right: -0.5rem;
+  transition: all 0.4s ease 0s;
 }
 
 .home-page-input:focus {
-    border-bottom: 0.1rem solid black;
-    opacity: 0.5;
-    letter-spacing: 0rem;
-    margin-right: 0rem;
+  border-bottom: 0.1rem solid black;
+  opacity: 0.5;
+  letter-spacing: 0rem;
+  margin-right: 0rem;
 }
 
 .home-page-input::placeholder {
-    color: black;
-    opacity: 1;
-    background-color: white;
-    font-size: 2rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
+  color: black;
+  opacity: 1;
+  background-color: white;
+  font-size: 2rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 #start-button {
-    color: black;
-    background-color: white;
-    font-size: 2rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease 0s;
+  color: black;
+  background-color: white;
+  font-size: 2rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
 }
 
 #start-button:hover {
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-    transition: all 0.4s ease 0s;
+  letter-spacing: 1rem;
+  margin-right: -1rem;
+  transition: all 0.4s ease 0s;
 }
 
 .prop-button {
-    color: black;
-    background-color: white;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease 0s;
+  color: black;
+  background-color: white;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
 }
 
 .prop-button:hover {
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-    transition: all 0.4s ease 0s;
+  letter-spacing: 1rem;
+  margin-right: -1rem;
+  transition: all 0.4s ease 0s;
 }
 
 #rule-button {
-    color: black;
-    background-color: white;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease 0s;
+  color: black;
+  background-color: white;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
 }
 
 #rule-button:hover {
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-    transition: all 0.4s ease 0s;
+  letter-spacing: 1rem;
+  margin-right: -1rem;
+  transition: all 0.4s ease 0s;
 }
 
 .instruction-button {
-    color: black;
-    background-color: white;
-    font-size: 1.5rem;
-    width: 2rem;
-    height: 2rem;
-    font-family: "Righteous", sans-serif;
-    text-decoration: none;
-    border-radius: 50%;
-    border: 2px solid;
-    border-color: blue;
-    right: 1rem;
-    bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: fixed;
+  color: black;
+  background-color: white;
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  font-family: "Righteous", sans-serif;
+  text-decoration: none;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: blue;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: fixed;
 }
 
-
 /* Instruction Page */
-
+#instruction-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
 #instruction-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: 800px;
-    height: fit-content;
-    max-width: 80%;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    border: 5px solid black;
+  position: absolute;
+  /* transform: translateX(-50%) translateY(-50%); */
+  width: 50%;
+  height: 50%;
+  /* height: fit-content; */
+  max-width: 80%;
+  /* min-height: fit-content; */
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 5px solid black;
 }
 
 #instruction-page-main {
-    width: fit-content;
-    height: fit-content;
-    max-height: 300px;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    margin: 1rem;
-    /* overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+  max-height: 300px;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  margin: 1rem;
+  /* overflow: hidden;
     overflow-y: scroll; */
-    background-color: white;
-    border: 5px solid black;
-    padding: 10px;
+  background-color: white;
+  border: 5px solid black;
+  padding: 10px;
 }
-
 
 /* End Game Page */
 
 #end-game-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: fit-content;
-    height: fit-content;
-    min-width: fit-content;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  width: fit-content;
+  height: fit-content;
+  min-width: fit-content;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
 }
 
 #end-game-page-title {
-    margin: -0.75rem 0 0;
-    overflow: visible;
-    font-size: 5rem;
-    font-family: "Pdark", sans-serif;
+  margin: -0.75rem 0 0;
+  overflow: visible;
+  font-size: 5rem;
+  font-family: "Pdark", sans-serif;
 }
 
 .leaderboard-button {
-    color: black;
-    background-color: white;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease 0s;
+  color: black;
+  background-color: white;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
 }
 
 .leaderboard-button:hover {
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-    transition: all 0.4s ease 0s;
+  letter-spacing: 1rem;
+  margin-right: -1rem;
+  transition: all 0.4s ease 0s;
 }
 
 #score-bar {
-    font-size: 1.5rem;
-    font-family: "Arvo", sans-serif;
+  font-size: 1.5rem;
+  font-family: "Arvo", sans-serif;
 }
 
 #restart-button {
-    color: black;
-    background-color: white;
-    font-size: 2rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease 0s;
+  color: black;
+  background-color: white;
+  font-size: 2rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
 }
 
 #restart-button:hover {
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-    transition: all 0.4s ease 0s;
+  letter-spacing: 1rem;
+  margin-right: -1rem;
+  transition: all 0.4s ease 0s;
 }
-
 
 /* Leaderboard Page */
 
 #leaderboard-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: fit-content;
-    height: fit-content;
-    min-width: fit-content;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    z-index: 10;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  width: fit-content;
+  height: fit-content;
+  min-width: fit-content;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  z-index: 10;
 }
 
 #leaderboard-page-title {
-    margin: -0.75rem 0 0;
-    overflow: visible;
-    font-size: 8rem;
-    font-family: "Pdark", sans-serif;
+  margin: -0.75rem 0 0;
+  overflow: visible;
+  font-size: 8rem;
+  font-family: "Pdark", sans-serif;
 }
 
 #leaderboard-table-container {
-    width: 100%;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    margin: 1rem;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  margin: 1rem;
 }
 
 #leaderboard-tr-header {
-    font-size: 2rem;
-    background-color: black;
-    color: white;
+  font-size: 2rem;
+  background-color: black;
+  color: white;
 }
 
 .leaderboard-tr-data:hover {
-    background-color: coral;
+  background-color: coral;
 }
 
 .leaderboard-game-tr-data {
-    background-color: gold;
+  background-color: gold;
 }
-
 
 /* .leaderboard-game-tr-data:hover {
     background-color: white;
 } */
 
-
 /*Prop Page*/
 
 #prop-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: 800px;
-    height: fit-content;
-    max-width: 80%;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    border: 5px solid black;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  width: 800px;
+  height: fit-content;
+  max-width: 80%;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 5px solid black;
 }
 
 #prop-page-main {
-    width: fit-content;
-    height: fit-content;
-    max-height: 300px;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    margin: 1rem;
-    overflow: hidden;
-    overflow-y: scroll;
-    background-color: white;
-    border: 5px solid black;
-    padding: 10px;
+  width: fit-content;
+  height: fit-content;
+  max-height: 300px;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  margin: 1rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  border: 5px solid black;
+  padding: 10px;
 }
 
 .prop-list {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .item {
-    background: white;
-    border: 5px solid black;
-    padding: 10px 15px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    vertical-align: center;
-    max-height: 150px;
+  background: white;
+  border: 5px solid black;
+  padding: 10px 15px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  vertical-align: center;
+  max-height: 150px;
 }
 
 .item:last-child {
-    border-bottom: 5px solid black;
+  border-bottom: 5px solid black;
 }
 
 .left {
-    width: 20%;
+  width: 20%;
 }
 
 .right {
-    border: 4px solid #001116;
-    width: 80%;
-    height: 100%;
-    margin: 15px;
+  border: 4px solid #001116;
+  width: 80%;
+  height: 100%;
+  margin: 15px;
 }
 
 .gadget {
-    font-weight: 600;
-    padding: 10px;
-    text-align: left;
-    font-size: 24px;
-    padding-bottom: none;
+  font-weight: 600;
+  padding: 10px;
+  text-align: left;
+  font-size: 24px;
+  padding-bottom: none;
 }
 
 .functionality {
-    margin: 10px;
-    font-size: 18px;
-    text-align: left;
-    line-height: 20px;
-    font-weight: 200;
-    margin-left: 30px;
-    margin-top: 0px;
+  margin: 10px;
+  font-size: 18px;
+  text-align: left;
+  line-height: 20px;
+  font-weight: 200;
+  margin-left: 30px;
+  margin-top: 0px;
 }
 
 #prop-img {
-    border: 4px solid #001116;
-    border-radius: 8px;
-    max-width: 90%;
-    max-height: 90%;
-    margin-bottom: -6px;
+  border: 4px solid #001116;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  margin-bottom: -6px;
 }
 
 #prop-container {
-    background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
-
 
 /* Rule Page*/
 
 #rule-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: 800px;
-    height: fit-content;
-    max-width: 80%;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    border: 5px solid black;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  width: 800px;
+  height: fit-content;
+  max-width: 80%;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 5px solid black;
 }
 
 #rule-page-main {
-    width: fit-content;
-    height: fit-content;
-    max-height: 300px;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    margin: 1rem;
-    overflow: hidden;
-    overflow-y: scroll;
-    background-color: white;
-    border: 5px solid black;
-    padding: 10px;
+  width: fit-content;
+  height: fit-content;
+  max-height: 300px;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  margin: 1rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  /* border: 5px solid black; */
+  padding: 10px;
 }
 
 #rule-container {
-    background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
-
 /* Rule Page End*/
-
 
 /* Warning Page */
 
 #warning-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: 800px;
-    height: fit-content;
-    max-width: 80%;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    border: 5px solid black;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  width: 800px;
+  height: fit-content;
+  max-width: 80%;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 5px solid black;
 }
 
 #warning-page-main {
-    width: fit-content;
-    height: fit-content;
-    max-height: 300px;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    margin: 1rem;
-    overflow: hidden;
-    overflow-y: scroll;
-    background-color: white;
-    border: 5px solid black;
-    padding: 10px;
+  width: fit-content;
+  height: fit-content;
+  max-height: 300px;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  margin: 1rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  border: 5px solid black;
+  padding: 10px;
 }
-
 
 /* Error Page */
 
 #error-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: 800px;
-    height: fit-content;
-    max-width: 80%;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    border: 5px solid black;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  width: 800px;
+  height: fit-content;
+  max-width: 80%;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 5px solid black;
 }
 
 #error-page-main {
-    width: fit-content;
-    height: fit-content;
-    max-height: 300px;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    margin: 1rem;
-    overflow: hidden;
-    overflow-y: scroll;
-    background-color: white;
-    border: 5px solid black;
-    padding: 10px;
+  width: fit-content;
+  height: fit-content;
+  max-height: 300px;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  margin: 1rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  border: 5px solid black;
+  padding: 10px;
 }
 
-
 /* Prompt Page */
-
 
 /* Error Page */
 
 #prompt-page {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
-    width: 800px;
-    height: fit-content;
-    max-width: 80%;
-    min-height: fit-content;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    border: 5px solid black;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  width: 800px;
+  height: fit-content;
+  max-width: 80%;
+  min-height: fit-content;
+  padding: 3rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 5px solid black;
 }
 
 #prompt-page-main {
-    width: fit-content;
-    height: fit-content;
-    max-height: 300px;
-    font-size: 1.5rem;
-    font-family: "Righteous", sans-serif;
-    margin: 1rem;
-    overflow: hidden;
-    overflow-y: scroll;
-    background-color: white;
-    border: 5px solid black;
-    padding: 10px;
+  width: fit-content;
+  height: fit-content;
+  max-height: 300px;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  margin: 1rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  border: 5px solid black;
+  padding: 10px;
 }
 
 .prompt-page-input {
-    margin: 1.5rem 0 0;
-    padding: 1rem 0 0;
-    border: none;
-    font-size: 1.5rem;
-    font-family: "Arvo", sans-serif;
-    text-align: center;
+  margin: 1.5rem 0 0;
+  padding: 1rem 0 0;
+  border: none;
+  font-size: 1.5rem;
+  font-family: "Arvo", sans-serif;
+  text-align: center;
 }
 
 .prompt-page-input:hover {
-    opacity: 0.5;
-    border-bottom: 0.1rem solid black;
-    text-align: center;
-    letter-spacing: 0.5rem;
-    margin-right: -0.5rem;
+  opacity: 0.5;
+  border-bottom: 0.1rem solid black;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  margin-right: -0.5rem;
 }
 
 .prompt-page-input:focus {
-    border-bottom: 0.1rem solid black;
-    opacity: 0.5;
-    letter-spacing: 0rem;
-    margin-right: 0rem;
+  border-bottom: 0.1rem solid black;
+  opacity: 0.5;
+  letter-spacing: 0rem;
+  margin-right: 0rem;
 }
 
 .prompt-page-input::placeholder {
-    color: black;
-    opacity: 1;
-    background-color: white;
-    font-size: 2rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
+  color: black;
+  opacity: 1;
+  background-color: white;
+  font-size: 2rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
 }
-
 
 /* Other Stuff */
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
 .transparent {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 .close-button {
-    color: red;
-    text-align: center;
-    font-size: 4.5rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease 0s;
-    outline: none;
-    background: none;
-    border: none;
-    font-weight: bold;
-    position: absolute;
-    top: -25px;
-    right: 0px;
-    /*
+  color: red;
+  text-align: center;
+  font-size: 4.5rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
+  outline: none;
+  background: none;
+  border: none;
+  font-weight: bold;
+  position: absolute;
+  top: -25px;
+  right: 0px;
+  /*
     width:40px;
     height:40px;
     border-radius: 50%;
@@ -715,58 +705,57 @@ td {
 }
 
 .close-button:hover {
-    transition: all 0.4s ease 0s;
-    font-size: 5rem;
-    /*
+  transition: all 0.4s ease 0s;
+  font-size: 5rem;
+  /*
     width:60px;
     height:60px;
     */
 }
 
 .page-container {
-    height: 120vh;
-    width: 120vw;
-    position: inherit;
-    background-color: rgb(0, 0, 0, 0.7);
-    z-index: 10;
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%) translateY(-50%);
+  height: 120vh;
+  width: 120vw;
+  position: inherit;
+  background-color: rgb(0, 0, 0, 0.7);
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .page-title {
-    margin: 0 0 0;
-    overflow: visible;
-    font-size: 4rem;
-    font-family: "Pdark", sans-serif;
-    font-weight: bold;
-    text-align: center;
+  margin: 0 0 0;
+  overflow: visible;
+  font-size: 4rem;
+  font-family: "Pdark", sans-serif;
+  font-weight: bold;
+  text-align: center;
 }
 
 .page-header {
-    width: 800px;
-    max-width: 90%;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid black;
-    margin-top: 20px;
+  width: 800px;
+  max-width: 90%;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 5px solid black;
+  margin-top: 20px;
 }
-
 
 /* z-index */
 
 #prompt-container {
-    z-index: 15;
+  z-index: 15;
 }
 
 #warning-container,
 #error-container {
-    z-index: 20;
+  z-index: 20;
 }
 
 #rule-container,
 #prop-container {
-    z-index: 15;
+  z-index: 15;
 }
