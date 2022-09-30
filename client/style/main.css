@@ -706,33 +706,33 @@ td {
     max-height: 300px;
     font-size: 1.5rem;
     font-family: "Righteous", sans-serif;
-    margin: 1rem;
+    margin: 1rem 1rem 0;
     overflow: hidden;
-    overflow-y: scroll;
     background-color: white;
-    border: 5px solid black;
     padding: 10px;
 }
 
 .prompt-page-input {
-    margin: 1.5rem 0 0;
-    padding: 1rem 0 0;
+    margin: 0 0 1.5rem;
+    padding: 0.5rem 0 0;
     border: none;
     font-size: 1.5rem;
     font-family: "Arvo", sans-serif;
     text-align: center;
+    border: 2px solid black;
 }
 
 .prompt-page-input:hover {
     opacity: 0.5;
-    border-bottom: 0.1rem solid black;
+    border: 0.1rem solid black;
     text-align: center;
     letter-spacing: 0.5rem;
     margin-right: -0.5rem;
 }
 
 .prompt-page-input:focus {
-    border-bottom: 0.1rem solid black;
+    border: 0px;
+    border: 0.1rem solid black;
     opacity: 0.5;
     letter-spacing: 0rem;
     margin-right: 0rem;
@@ -746,6 +746,40 @@ td {
     font-family: "Righteous", sans-serif;
     text-transform: uppercase;
     text-decoration: none;
+}
+
+#prompt-confirm-button {
+    margin: 0 1rem 0;
+    box-sizing: border-box;
+    width: 5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-family: "Righteous", sans-serif;
+    background-color: white;
+    text-align: center;
+    border-radius: 0%;
+}
+
+#prompt-confirm-button:hover {
+    text-align: center;
+    background-color: #eeeeee;
+}
+
+#prompt-reject-button {
+    margin: 0 0 0 1rem;
+    box-sizing: border-box;
+    width: 5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-family: "Righteous", sans-serif;
+    background-color: white;
+    text-align: center;
+    border-radius: 0%;
+}
+
+#prompt-reject-button:hover {
+    text-align: center;
+    background-color: #eeeeee;
 }
 
 

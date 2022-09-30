@@ -125,8 +125,10 @@
             </div>
             <div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
             <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
-            <button id="prompt-reject-button" class="prompt-page-button">確定不填寫學號</button>
-            <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
+            <div id="prompt-botton-container">
+                <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
+                <button id="prompt-reject-button" class="prompt-page-button">不填</button>
+            </div>
         </div>
     </div>
 
