@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack"); //to access built-in plugins
 
 module.exports = {
@@ -36,6 +37,11 @@ module.exports = {
     ],
   },
 
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
+
   devServer: {
     stats: {
       children: false, // cleaner display on terminal
@@ -51,9 +57,7 @@ module.exports = {
       template: "./index.html",
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: "assets", to: "assets" },
-      ],
+      patterns: [{ from: "assets", to: "assets" }],
     }),
   ],
 };
