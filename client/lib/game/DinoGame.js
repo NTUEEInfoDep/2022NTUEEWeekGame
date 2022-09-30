@@ -32,7 +32,7 @@ export default class DinoGame extends GameRunner {
      */
     this.defaultSettings = {
       bgSpeed: 12, // ppf
-      birdSpeed: 12 * 1.3, // ppf
+      birdSpeed: 12 * 1.2, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
@@ -368,10 +368,10 @@ export default class DinoGame extends GameRunner {
 
     if (level > 4 && level < 8) {
       settings.bgSpeed++;
-      settings.birdSpeed = settings.bgSpeed * 1.3;
+      settings.birdSpeed = settings.bgSpeed * 1.2;
     } else if (level > 7) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1);
-      settings.birdSpeed = settings.bgSpeed * 1.3;
+      settings.birdSpeed = settings.bgSpeed * 1.2;
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98);
 
       if (level > 7 && level % 2 === 0 && dinoLegsRate > 3) {
@@ -575,7 +575,7 @@ export default class DinoGame extends GameRunner {
       const reachPlayerTime = (this.width - dino.x) / settings.birdSpeed;
       var tooCloseToOb = false;
       for (const ob of obstacles) {
-        if (Math.abs((ob.x - reachPlayerTime * settings.bgSpeed) - dino.x) < dino.width * 2.5) {
+        if (Math.abs((ob.x - reachPlayerTime * settings.bgSpeed) - dino.x) < dino.width * 3) {
           tooCloseToOb = true
           break;
         }
