@@ -732,20 +732,19 @@ td {
 }
 
 .prompt-page-input {
-  margin: 1.5rem 0 0;
-  padding: 1rem 0 0;
-  border: none;
+  margin: 0 0 1.5rem;
+  padding: 0.5rem 0 0;
   font-size: 1.5rem;
   font-family: "Arvo", sans-serif;
   text-align: center;
+  border-bottom: 2px solid black;
+  width: 30rem;
 }
 
 .prompt-page-input:hover {
   opacity: 0.5;
-  border-bottom: 0.1rem solid black;
+  border: 0.1rem solid black;
   text-align: center;
-  letter-spacing: 0.5rem;
-  margin-right: -0.5rem;
 }
 
 .prompt-page-input:focus {
