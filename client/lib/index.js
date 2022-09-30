@@ -17,7 +17,8 @@ const game = new DinoGame(
 const isTouchDevice =
   "ontouchstart" in window ||
   navigator.maxTouchPoints > 0 ||
-  navigator.msMaxTouchPoints > 0;
+  navigator.msMaxTouchPoints > 0 ||
+  "gesturestart" in window;
 
 const keycodes = {
   // up, spacebar
@@ -25,15 +26,24 @@ const keycodes = {
   // down
   DUCK: { 40: 1 },
 };
+const isradius = (x, y, r) => {
+  const center_x = game.circle.x,
+    center_y = game.circle.y,
+    center_r = game.circle.radius;
+  return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2;
+};
 
 const ontouchstart = ({ touches }) => {
-  if (touches.length === 1) {
-    game.onInput("jump");
-  } else if (touches.length === 2) {
+  console.log(touches[0].clientX);
+  console.log(window.innerHeight, window.innerWidth);
+  if (isradius(touches[0].clientX, touches[0].clientY)) {
+    // isradius(touches[0].clientX, touches[0].clientY)
     game.onInput("duck");
+  } else if (touches.length === 1) {
+    game.onInput("jump");
   }
 };
-const ontouchend = ({ touches }) => {
+const ontouchend = () => {
   game.onInput("stop-duck");
 };
 const onKeyDown = ({ keyCode }) => {
