@@ -141,40 +141,41 @@
 					oninput="this.value = this.value.toUpperCase()"
 					placeholder="輸入學號"
 				/>
-				<button id="prompt-reject-button" class="prompt-page-button">確定不填寫學號</button>
-				<button id="prompt-confirm-button" class="prompt-page-button">送出</button>
+				<div id="prompt-botton-container">
+					<button id="prompt-confirm-button" class="prompt-page-button">送出</button>
+					<button id="prompt-reject-button" class="prompt-page-button">不填</button>
+				</div>
 			</div>
-			<div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
-			<input
-				class="prompt-page-input"
-				id="prompt-student-id-input"
-				type="text"
-				maxlength="9"
-				oninput="this.value = this.value.toUpperCase()"
-				placeholder="輸入學號"
-			/>
-			<button id="prompt-reject-button" class="prompt-page-button">確定不填寫學號</button>
-			<button id="prompt-confirm-button" class="prompt-page-button">送出</button>
 		</div>
 
 		<!-- End Game Page -->
 		<div id="end-game-page" class="hidden">
+			<!-- class="hidden" -->
 			<div id="end-game-page-title">GAME OVER</div>
-			<div id="score-bar"></div>
+			<div id="score-bar">Your Score:</div>
+			<div id="score">0</div>
 			<div id="highestScore"></div>
 			<div id="encouragement"></div>
-			<li id="props-list" style="list-style-type: none">
-				<ul id="props-dance"></ul>
-				<ul id="props-band"></ul>
-				<ul id="props-eater"></ul>
-				<ul id="props-week"></ul>
-				<ul id="props-guitar"></ul>
-			</li>
-			<div id=""></div>
-			<button class="leaderboard-button" id="leaderboard-button-endgame">Leaderboard</button>
-			<button id="restart-button">Restart</button>
-			<button id="endgame-button">End Game</button>
+			<!-- <li id="props-list" style="list-style-type: none">
+            <ul id="props-dance"></ul>
+            <ul id="props-band"></ul>
+            <ul id="props-eater"></ul>
+            <ul id="props-week"></ul>
+            <ul id="props-guitar"></ul>
+        </li> -->
+			<!-- 不須道具資訊 -->
 			<!--傅渝翔 新增-->
+			<div id="endpage-button-set">
+				<button id="endPage-leaderboard-button" class="end-page-button">
+					<img id="EP-leaderboard-button-pic" src="./assets/crown.png" />
+				</button>
+				<!-- 拿掉leaderboard-button的class  -->
+				<button id="restart-button" class="end-page-button">
+					<img id="EP-restart-button-pic" src="./assets/replay.png" />
+				</button>
+				<button id="endgame-button" class="end-page-button">&times;</button>
+				<!--傅渝翔 新增-->
+			</div>
 		</div>
 
 		<!-- Leaderboard Page -->
@@ -185,13 +186,13 @@
 			</div>
 		</div>
 
-    <!-- Props Page -->
-    <div class="page-container hidden" id="prop-container">
-      <div id="prop-page">
-        <button id="prop-close-button" class="close-button">&times;</button>
-        <div id="prop-header" class="page-header">
-          <div id="prop-page-title" class="page-title">Prop List</div>
-        </div>
+		<!-- Props Page -->
+		<div class="page-container hidden" id="prop-container">
+			<div id="prop-page">
+				<button id="prop-close-button" class="close-button">&times;</button>
+				<div id="prop-header">
+					<div id="prop-page-title" class="page-title">道具列表</div>
+				</div>
 
 				<div id="prop-page-main">
 					<div class="prop-list" style="display: block">
@@ -200,10 +201,9 @@
 								<img id="prop-img" src="assets/guitar.png" alt="guitar" />
 							</div>
 							<div class="right">
-								<p class="gadget">Guitar</p>
+								<p class="gadget">大合刷</p>
 								<p class="functionality">
-									Function: Music note attacks! Dino turns into a professional guitarist, shooting
-									musical notes to destroy all obstacles.
+									功能: 音符攻擊! 電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
 								</p>
 							</div>
 						</div>
@@ -212,11 +212,8 @@
 								<img id="prop-img" src="assets/dance.png" alt="dance" />
 							</div>
 							<div class="right">
-								<p class="gadget">Dance</p>
-								<p class="functionality">
-									Function: Dance causes ADRENALINE RUSH. Dino turn on the jets and receive a speed
-									boost for n seconds.
-								</p>
+								<p class="gadget">快閃舞</p>
+								<p class="functionality">功能: 來個快閃舞！電機學生獲得N秒的速度提升。</p>
 							</div>
 						</div>
 						<div class="item">
@@ -224,10 +221,9 @@
 								<img id="prop-img" src="assets/band.png" alt="band" />
 							</div>
 							<div class="right">
-								<p class="gadget">Band</p>
+								<p class="gadget">無敵樂隊</p>
 								<p class="functionality">
-									Function: Dino becomes invincible for a certain period of time and destroy
-									everything in its path. The speed will also be faster.
+									功能: 電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
 								</p>
 							</div>
 						</div>
@@ -236,33 +232,39 @@
 								<img id="prop-img" src="assets/eater.png" alt="eater" />
 							</div>
 							<div class="right">
-								<p class="gadget">Eater</p>
-								<p class="functionality">
-									Function: Yum Yum ~ Dino ate all the obstables. Eat as many burgers as you can!
-								</p>
+								<p class="gadget">快食王</p>
+								<p class="functionality">功能: 電機學生吞下所有的障碍物，把漢堡都吃掉!</p>
 							</div>
 						</div>
 						<div class="item">
 							<div class="left">
-								<img id="prop-img" src="assets/example.png" alt="week" />
+								<img id="prop-img" src="assets/week.png" alt="week" />
 							</div>
 							<div class="right">
-								<p class="gadget">Week</p>
-								<p class="functionality">
-									Function: NTUEE Week is fun! Dino gets extra points, unlike NTUEE students asking
-									professor for grades
-								</p>
+								<p class="gadget">電機週</p>
+								<p class="functionality">功能：NTUEE週真有趣! 電機學生獲得加分！</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		<!-- 金巧芸新增 -->
+		<div id="weekCard" class="hidden">
+			<div class="box b1" id="cardBack"><img id="cardBackPic" src="./assets/logo.jpg" /></div>
+			<p class="box b2" id="cardFront">+0</p>
+		</div>
+		<!-- 新增end -->
 		<script>
 			// screen.orientation.lock('landscape').then(() => {
 			//     console.log('lock');
 			// });
 		</script>
+	</body>
 
+	<script>
+		// screen.orientation.lock('landscape').then(() => {
+		//     console.log('lock');
+		// });
+	</script>
 </html>
