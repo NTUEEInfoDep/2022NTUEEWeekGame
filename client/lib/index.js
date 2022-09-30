@@ -362,7 +362,7 @@ $id("warning-start-button").onclick = () => {
   $id("warning-container").classList.add("hidden");
   startGame();
 };
-$id("error-close-button").onclick = () => {
+$id("error-go-back-button").onclick = () => {
   $id("error-container").classList.add("hidden");
 };
 $id("prompt-reject-button").onclick = () => {

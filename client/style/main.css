@@ -634,7 +634,8 @@ td {
 
 /* Warning Page */
 
-#warning-page {
+#warning-page,
+#error-page {
   top: 50%;
   left: 50%;
   position: fixed;
@@ -654,7 +655,8 @@ td {
   border: 5px solid black;
 }
 
-#warning-page-main {
+#warning-page-main,
+#error-page-main {
   width: 90%;
   height: fit-content;
   max-height: 300px;
@@ -672,14 +674,16 @@ td {
   padding: 10px;
 }
 
-#warning-page-button-container {
+#warning-page-button-container,
+#error-page-button-container {
   align-items: center;
   display: inline;
   margin-bottom: 1.5rem;
 }
 
 #warning-go-back-button,
-#warning-start-button {
+#warning-start-button,
+#error-go-back-button {
   width: 200px;
   margin: 2px;
   border-radius: 2px;
@@ -694,7 +698,7 @@ td {
 
 /* Error Page */
 
-#error-page {
+/* #error-page {
   top: 50%;
   left: 50%;
   position: fixed;
@@ -712,9 +716,9 @@ td {
   background-color: white;
   color: black;
   border: 5px solid black;
-}
+} */
 
-#error-page-main {
+/* #error-page-main {
   width: fit-content;
   height: fit-content;
   max-height: 300px;
@@ -724,9 +728,9 @@ td {
   overflow: hidden;
   overflow-y: scroll;
   background-color: white;
-  /* border: 5px solid black; */
+  border: 5px solid black;
   padding: 10px;
-}
+} */
 
 /* Prompt Page */
 
