@@ -46,18 +46,18 @@ export default class DinoGame extends GameRunner {
      */
     this.defaultSettings = {
       bgSpeed: 12, // ppf
-      birdSpeed: 12 * 1.3, // ppf
+      birdSpeed: 7.2, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
-      cloudSpeedReletiToBg: 0.7, // ppf
+      cloudSpeed: 2, // ppf
       dinoGravity: 2, // ppf
       dinoGroundOffset: -40, // px
       dinoLegsRate: 6, // fpa
-      dinoLift: 18, // ppf
+      dinoLift: 34, // ppf
       bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
       itemSpawnRate: 200, // fpa
@@ -116,16 +116,30 @@ export default class DinoGame extends GameRunner {
     const ctx = canvas.getContext("2d");
     const scale = window.devicePixelRatio;
 
-    this.width = width;
-    this.height = height;
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    canvas.style.width = this.width + "px";
+    canvas.style.height = this.height + "px";
     canvas.width = Math.floor(width * scale);
     canvas.height = Math.floor(height * scale);
     ctx.scale(scale, scale);
 
     // document.body.appendChild(canvas);
     return canvas;
+  }
+
+  resize() {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.canvas.style.width = this.width + "px";
+    this.canvas.style.height = this.height + "px";
+    this.canvas.width = Math.floor(this.width * window.devicePixelRatio);
+    this.canvas.height = Math.floor(this.height * window.devicePixelRatio);
+    this.canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+    this.state.groundY =
+      this.height - Math.min(sprites.ground.h / 2, this.height * 0.2);
+    dino.baseY = this.state.groundY - settings.dinoGroundOffset;
   }
 
   async preload() {
@@ -137,15 +151,17 @@ export default class DinoGame extends GameRunner {
     this.backgroundImage = await loadImage("./assets/background.png");
     this.spriteImage = spriteImage;
     this.spriteImageData = getImageData(spriteImage);
+    this.duck_buttonImage = await loadImage("./assets/down-arrow.png");
     const dino = new Dino(this.spriteImageData);
 
     dino.legsRate = settings.dinoLegsRate;
     dino.lift = settings.dinoLift;
     dino.gravity = settings.dinoGravity;
     dino.x = 25;
-    dino.baseY = this.height - settings.dinoGroundOffset;
     this.state.dino = dino;
-    // this.state.groundY = this.height - sprites.ground.h / 2;
+    this.state.groundY =
+      this.height - Math.min(sprites.ground.h / 2, this.height * 0.2);
+    dino.baseY = this.state.groundY - settings.dinoGroundOffset;
   }
 
   onFrame() {
@@ -194,23 +210,16 @@ export default class DinoGame extends GameRunner {
       state.bullets.forEach((bullet) => {
         if (bullet.hits([state.obstacles[0]])) {
           //to-do
-          switch (state.obstacles[0].sprite) {
-            case "obstacle": {
-              state.obstacles[0].sprite = "obstacleHit";
-            }
+          state.obstacles[0]._sprite = `${state.obstacles[0].sprite}Hit`;
+          // switch (state.obstacles[0].sprite) {
+          //   case "obstacleCode": {
+          //     state.obstacles[0].sprite = "obstacleCodeHit";
+          //   }
 
-            case "obstacleDouble": {
-              state.obstacles[0].sprite = "obstacleDoubleHit";
-            }
-
-            case "obstacleDoubleB": {
-              state.obstacles[0].sprite = "obstacleDoubleBHit";
-            }
-
-            case "obstacleTriple": {
-              state.obstacles[0].sprite = "obstacleTripleHit";
-            }
-          }
+          //   case "obstacleGate": {
+          //     state.obstacles[0].sprite = "obstacleGateHit";
+          //   }
+          // }
           setTimeout(() => {
             state.obstacles.shift();
           }, 120);
@@ -221,7 +230,8 @@ export default class DinoGame extends GameRunner {
         }
         if (bullet.hits([state.birds[0]])) {
           //to-do
-          state.obstacles[0].sprite = "birdHit";
+          state.birds[0].sprite = `${state.birds[0].sprite}Hit`;
+          // state.obstacles[0].sprite = "birdHit";
           //to-do
 
           setTimeout(() => {
@@ -235,17 +245,7 @@ export default class DinoGame extends GameRunner {
       // items hit
       state.items.forEach((item) => {
         if (item.hits([state.dino])) {
-          // to do
-          var item_hit = setInterval(() => {
-            item.x = state.dino.x + 10;
-            // + 75 * (state.items.length - 1)
-            item.y = state.dino.y - 100;
-          }, 5);
-          setTimeout(() => {
-            item.destroy();
-            clearInterval(item_hit);
-          }, 3000);
-          // to do
+          item.destroy();
           state.dino.powerUp = item.sprite;
           state.dino.powerUpTime =
             state.settings.powerUpTimes[item.sprite] * this.frameRate;
@@ -269,8 +269,8 @@ export default class DinoGame extends GameRunner {
               break;
             case "eater":
               this.state.props.eater++;
-              this.state.foodHeightMode = randInteger(0, 2);
-              //this.state.foodHeightMode = 2;
+              // this.state.foodHeightMode = randInteger(0, 2);
+              this.state.foodHeightMode = 2;
               break;
             case "week":
               this.state.props.week++;
@@ -287,6 +287,10 @@ export default class DinoGame extends GameRunner {
       } else {
         this.updateScore();
       }
+    }
+
+    if (this.isTouchDevice) {
+      this.drawduckbutton();
     }
   }
 
@@ -386,10 +390,10 @@ export default class DinoGame extends GameRunner {
 
     if (level > 4 && level < 8) {
       settings.bgSpeed++;
-      settings.birdSpeed = settings.bgSpeed * 1.3;
+      settings.birdSpeed = settings.bgSpeed * 0.8;
     } else if (level > 7) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1);
-      settings.birdSpeed = settings.bgSpeed * 1.3;
+      settings.birdSpeed = settings.bgSpeed * 0.9;
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98);
 
       if (level > 7 && level % 2 === 0 && dinoLegsRate > 3) {
@@ -410,7 +414,7 @@ export default class DinoGame extends GameRunner {
     }
 
     for (const cloud of clouds) {
-      cloud.speed = settings.bgSpeed * settings.cloudSpeedReletiToBg;
+      cloud.speed = settings.bgSpeed;
     }
 
     dino.legsRate = settings.dinoLegsRate;
@@ -442,38 +446,44 @@ export default class DinoGame extends GameRunner {
       color: "#535353",
     });
   }
+  drawduckbutton() {
+    // this.canvasCtx.fillStyle = "#f7f7f7";
+    // this.canvasCtx.fillRect(0, 0, this.width, this.height);
+    this.canvasCtx.drawImage(
+      this.duck_buttonImage,
+      this.circle.x - this.circle.radius * this.circle.scale,
+      this.circle.y - this.circle.radius * this.circle.scale,
+      this.circle.radius * this.circle.scale * 2,
+      this.circle.radius * this.circle.scale * 2
+    );
+  }
 
   drawBackground() {
-    this.canvasCtx.fillStyle = "#f7f7f7";
-    this.canvasCtx.fillRect(0, 0, this.width, this.height);
+    // this.canvasCtx.fillStyle = "#f7f7f7";
+    // this.canvasCtx.fillRect(0, 0, this.width, this.height);
+    this.canvasCtx.drawImage(
+      this.backgroundImage,
+      0,
+      0,
+      this.width,
+      this.height
+    );
   }
 
   drawGround() {
     const { state } = this;
     const { bgSpeed } = state.settings;
-    // const groundImgWidth = sprites.ground.w / 2;
-    const groundImgWidth = 1920;
+    const groundImgWidth = sprites.ground.w / 2;
+    // const groundImgWidth = 1920;
 
-    // this.paintSprite("ground", state.groundX, state.groundY);
-    this.canvasCtx.drawImage(
-      this.backgroundImage,
-      state.groundX,
-      state.groundY,
-      1920,
-      this.height
-    );
+    this.paintSprite("ground", state.groundX, state.groundY);
+    // this.canvasCtx.drawImage(this.backgroundImage, state.groundX, state.groundY, 1920, this.height);
     state.groundX -= bgSpeed * state.speedRatio;
 
     // append second image until first is fully translated
     if (state.groundX <= -groundImgWidth + this.width) {
-      // this.paintSprite("ground", state.groundX + groundImgWidth, state.groundY);
-      this.canvasCtx.drawImage(
-        this.backgroundImage,
-        state.groundX + groundImgWidth,
-        state.groundY,
-        1920,
-        this.height
-      );
+      this.paintSprite("ground", state.groundX + groundImgWidth, state.groundY);
+      // this.canvasCtx.drawImage(this.backgroundImage, state.groundX + groundImgWidth, state.groundY, 1920, this.height);
 
       if (state.groundX <= -groundImgWidth) {
         state.groundX = -bgSpeed * state.speedRatio;
@@ -487,53 +497,27 @@ export default class DinoGame extends GameRunner {
     this.progressInstances(clouds);
     if (this.frameCount % settings.cloudSpawnRate === 0) {
       const newCloud = new Cloud();
-      newCloud.speed = settings.bgSpeed * settings.cloudSpeedReletiToBg;
+      newCloud.speed = settings.bgSpeed;
       newCloud.x = this.width;
-      newCloud.y = randInteger(this.height * 0.1, this.height * 0.4);
-      //newCloud.y = randInteger(sprites.cloud.h+10, this.state.dinoGroundOffset - sprites.cloud.h - sprites.dinoDuckLeftLeg.h);
+      newCloud.y = randInteger(
+        sprites.cloud.h + 10,
+        this.state.dinoGroundOffset -
+          sprites.cloud.h -
+          sprites.dinoDuckLeftLeg.h
+      );
       clouds.push(newCloud);
     }
     this.paintInstances(clouds);
   }
 
   drawDino() {
-    const { dino, settings } = this.state;
-    // state.settings.powerUpTimes[dino.powerUp.sprite] * this.frameRate
+    const { dino } = this.state;
+
     // determine expire
     if (dino.powerUp !== "none") {
       console.log(dino.powerUp);
       dino.powerUpTime--;
-      // to do
-      if (
-        dino.powerUpTime >=
-          Math.min(
-            settings.powerUpTimes[dino.powerUp] * this.frameRate * 0.3,
-            this.frameRate * 1
-          ) &&
-        dino.powerUpTime <=
-          Math.min(
-            settings.powerUpTimes[dino.powerUp] * this.frameRate * 0.7,
-            this.frameRate * 3
-          ) &&
-        dino.powerUp !== "band"
-      ) {
-        dino.blinking_slower(true);
-      }
-      if (
-        dino.powerUpTime >= 0 &&
-        dino.powerUpTime <=
-          Math.min(
-            settings.powerUpTimes[dino.powerUp] * this.frameRate * 0.3,
-            this.frameRate * 1
-          )
-      ) {
-        dino.blinking(false);
-        dino.blinking_slower(false);
-        dino.blinking_faster(true);
-      }
-      // to do
       if (dino.powerUpTime <= 0) {
-        dino.blinking_faster(false);
         switch (dino.powerUp) {
           case "guitar":
             break;
@@ -591,21 +575,12 @@ export default class DinoGame extends GameRunner {
         const newItem = new Item();
         newItem.speed = settings.bgSpeed;
         newItem.x = this.width;
-        newItem.y =
-          this.height -
-          newItem.height -
-          state.settings.dinoGroundOffset -
-          100 * randInteger(0, 2);
+        newItem.y = state.dino.baseY - newItem.height - 100 * randInteger(0, 2);
         if (spawnedObstacle) {
-          newItem.y =
-            this.height -
-            newItem.height -
-            state.settings.dinoGroundOffset -
-            250;
+          newItem.y = state.dino.baseY - newItem.height - 250;
         }
         if (spawnedBird) {
-          newItem.y =
-            this.height - newItem.height - state.settings.dinoGroundOffset;
+          newItem.y = state.dino.baseY - newItem.height;
         }
         items.push(newItem);
       }
@@ -627,8 +602,7 @@ export default class DinoGame extends GameRunner {
         const newObstacles = new Obstacle(this.spriteImageData);
         newObstacles.speed = settings.bgSpeed;
         newObstacles.x = this.width;
-        newObstacles.y =
-          this.height - newObstacles.height - state.settings.dinoGroundOffset;
+        newObstacles.y = state.dino.baseY - newObstacles.height;
         obstacles.push(newObstacles);
       }
     }
@@ -637,39 +611,20 @@ export default class DinoGame extends GameRunner {
   }
 
   drawBirds() {
-    const { birds, settings, dino, obstacles } = this.state;
+    const { birds, settings, dino } = this.state;
     let spawned = false;
 
     this.progressInstances(birds);
     if (this.frameCount % settings.birdSpawnRate === 0) {
-      // When the bird reaches the player, if there is an obstacle being too close to it, don't spawn the bird.
-      const reachPlayerTime = (this.width - dino.x) / settings.birdSpeed;
-      var tooCloseToOb = false;
-      for (const ob of obstacles) {
-        if (
-          Math.abs(ob.x - reachPlayerTime * settings.bgSpeed - dino.x) <
-          dino.width * 2.5
-        ) {
-          tooCloseToOb = true;
-          break;
-        }
-      }
-
       // randomly either do or don't add bird
-      if (!tooCloseToOb && randBoolean() && dino.powerUp !== "eater") {
+      if (randBoolean() && dino.powerUp !== "eater") {
         spawned = true;
         const newBird = new Bird(this.spriteImageData);
         newBird.speed = settings.birdSpeed;
-        newBird.wingsRate = settings.birdWingsRate;
         newBird.x = this.width;
         // ensure birds are always at least 5px higher than a ducking dino
         newBird.y =
-          this.height -
-          Bird.maxBirdHeight -
-          Bird.wingSpriteYShift -
-          5 -
-          sprites.dinoDuckLeftLeg.h / 2 -
-          settings.dinoGroundOffset;
+          dino.baseY - Bird.maxBirdHeight - 5 - sprites.dinoDuckLeftLeg.h / 2;
         birds.push(newBird);
       }
     }
@@ -692,9 +647,8 @@ export default class DinoGame extends GameRunner {
       newFood.speed = settings.bgSpeed;
       newFood.x = this.width;
       newFood.y =
-        this.height -
-        newFood.height -
-        state.settings.dinoGroundOffset +
+        state.dino.baseY -
+        newFood.height +
         this.foodHeightFunc(this.frameCount);
       foods.push(newFood);
     }
@@ -708,7 +662,7 @@ export default class DinoGame extends GameRunner {
     } else if (this.state.foodHeightMode === 1) {
       return randInteger(-300, -10);
     } else {
-      return -220 * Math.abs(Math.sin(cnt / 14.0));
+      return -200 * Math.abs(Math.sin(cnt / 15.0));
     }
   }
 
@@ -765,25 +719,6 @@ export default class DinoGame extends GameRunner {
     const { state } = this;
     const { foodScoreTextAlpha, dino, settings } = state;
     const fontSize = 12;
-
-    this.paintText(
-      "+" + settings.foodScore,
-      dino.x + dino.width / 2,
-      dino.y - 20,
-      {
-        font: "PressStart2P",
-        size: `${fontSize}px`,
-        align: "center",
-        baseline: "bottom",
-        color: "rgba(83, 83, 83, " + foodScoreTextAlpha + ")",
-      }
-    );
-  }
-
-  drawFoodScoreTexts() {
-    const { state } = this;
-    const { foodScoreTextAlpha, dino, settings } = state;
-    const fontSize = 30;
 
     this.paintText(
       "+" + settings.foodScore,
