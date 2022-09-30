@@ -45,6 +45,7 @@
 
     <!-- Home Page -->
     <div id="home-page" class="hidden">
+<<<<<<< HEAD
       <a href="https://github.com/NTUEEInfoDep">
         <div id="creators">by&nbsp;EEInfo</div>
       </a>
@@ -69,6 +70,24 @@
       <button id="start-button">Game Start!</button>
       <button class="leaderboard-button">排行榜</button>
       <button class="instruction-button">?</button>
+=======
+        <a href="https://github.com/NTUEEInfoDep">
+            <div id="creators">by&nbsp;EEInfo</div>
+        </a>
+        <div id="home-page-middle-block">
+            <div id="home-page-suptitle">
+                2022&nbsp;NTUEE&nbsp;Week&nbsp;Game
+            </div>
+            <div id="home-page-title">EE見鍾情</div>
+            <div id=""></div>
+            <input class="home-page-input" id="name-input" type="text" maxlength="18" placeholder="輸入遊戲名稱" />
+            <input class="home-page-input" id="student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
+            <div></div>
+            <button id="start-button">Game Start!</button>
+            <button class="leaderboard-button">排行榜</button>
+        </div>
+        <button class="instruction-button">?</button>
+>>>>>>> d8b622c999ae6957241c16dba5f9db0a5e2023c9
     </div>
     <!-- Rule Page-->
     <div class="page-container hidden" id="rule-container">
@@ -127,9 +146,22 @@
 
     <!-- Prompt Page -->
     <div class="page-container hidden" id="prompt-container">
+<<<<<<< HEAD
       <div id="prompt-page">
         <div id="prompt-header" class="page-header">
           <div id="prompt-page-title" class="page-title">Congratulation</div>
+=======
+        <div id="prompt-page">
+            <div id="prompt-header" class="page-header">
+                <div id="prompt-page-title" class="page-title">Congratulation</div>
+            </div>
+            <div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
+            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
+            <div id="prompt-botton-container">
+                <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
+                <button id="prompt-reject-button" class="prompt-page-button">不填</button>
+            </div>
+>>>>>>> d8b622c999ae6957241c16dba5f9db0a5e2023c9
         </div>
         <div id="prompt-page-main">
           您已經進入前10名, 填寫學號以儲存您的分數
@@ -153,6 +185,7 @@
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
+<<<<<<< HEAD
       <div id="end-game-page-title">GAME OVER</div>
       <div id="score-bar"></div>
       <div id="highestScore"></div>
@@ -170,6 +203,30 @@
       <button id="restart-button">Restart</button>
       <button id="endgame-button">End Game</button>
       <!--傅渝翔 新增-->
+=======
+        <!-- class="hidden" -->
+        <div id="end-game-page-title">GAME OVER</div>
+        <div id="score-bar">Your Score:</div>
+        <div id="score">0</div>
+        <div id="highestScore"></div>
+        <div id="encouragement"></div>
+        <!-- <li id="props-list" style="list-style-type: none">
+            <ul id="props-dance"></ul>
+            <ul id="props-band"></ul>
+            <ul id="props-eater"></ul>
+            <ul id="props-week"></ul>
+            <ul id="props-guitar"></ul>
+        </li> -->
+        <!-- 不須道具資訊 -->
+        <!--傅渝翔 新增-->
+        <div id="endpage-button-set">
+            <button id ="endPage-leaderboard-button" class="end-page-button"><img id = "EP-leaderboard-button-pic" src = "./assets/crown.png"></button>
+            <!-- 拿掉leaderboard-button的class  -->
+            <button id="restart-button" class = "end-page-button"><img id = "EP-restart-button-pic" src = "./assets/replay.png"></button>
+            <button id="endgame-button" class = "end-page-button">&times;</button>
+            <!--傅渝翔 新增-->
+        </div>
+>>>>>>> d8b622c999ae6957241c16dba5f9db0a5e2023c9
     </div>
 
     <!-- Leaderboard Page -->
@@ -255,7 +312,12 @@
         </div>
       </div>
     </div>
-
+   <!-- 金巧芸新增 -->
+    <div id = "weekCard" class="hidden">
+        <div class="box b1" id = "cardBack"><img id = "cardBackPic" src="./assets/logo.jpg"></div>
+        <p class="box b2" id = "cardFront">+0</p>
+    </div>
+    <!-- 新增end -->
     <script>
       // screen.orientation.lock('landscape').then(() => {
       //     console.log('lock');

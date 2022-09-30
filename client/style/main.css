@@ -66,6 +66,9 @@ td {
   font-size: 1rem;
   font-family: "Arvo", sans-serif;
 }
+#creators:hover {
+  background-color: rgb(209, 208, 208);
+}
 
 /* Landscape Page */
 
@@ -108,9 +111,35 @@ td {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: white;
+  background-color: rgb(189, 212, 163);
   color: black;
 }
+#home-page-middle-block {
+  /* margin: 1rem 0 0; */
+  padding: 0.5rem;
+  width: 450px;
+  display: grid;
+  grid-template-rows: 1.5rem 6.5rem 20px 45px 45px 20px 70px 70px;
+  background-color: rgb(228, 246, 207);
+  border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#home-page-middle-block > * {
+  margin: 0.25rem;
+}
+#home-page-middle-block > button {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-self: center;
+  /* background-color: rgba(239, 244, 233, 0.724); */
+}
+/* #home-page-middle-block > button:hover{
+    background-color: rgba(239, 244, 233, 0.861);
+} */
 
 #home-page-suptitle {
   font-size: 1rem;
@@ -122,15 +151,18 @@ td {
   overflow: visible;
   font-size: 6rem;
   font-family: "Pdark", sans-serif;
+  user-select: none;
 }
 
 .home-page-input {
   margin: 1.5rem 0 0;
-  padding: 1rem 0 0;
-  border: none;
   font-size: 1.5rem;
+  padding: 0.25rem 0;
+  border: none;
   font-family: "Arvo", sans-serif;
+  display: flex;
   text-align: center;
+  border-radius: 10px;
 }
 
 .home-page-input:hover {
@@ -170,8 +202,12 @@ td {
 }
 
 #start-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  background-color: rgb(94, 126, 96);
+  color: white;
+  border-color: rgba(255, 255, 255, 0);
+  font-size: 2.5rem;
   transition: all 0.4s ease 0s;
 }
 
@@ -186,8 +222,9 @@ td {
 }
 
 .prop-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  font-size: 2rem;
   transition: all 0.4s ease 0s;
 }
 
@@ -202,11 +239,31 @@ td {
 }
 
 #rule-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  font-size: 2rem;
   transition: all 0.4s ease 0s;
 }
 
+.leaderboard-button {
+  color: black;
+  background-color: white;
+  font-size: 1.5rem;
+  font-family: "Righteous", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
+}
+
+.leaderboard-button:hover {
+  /* letter-spacing: 1rem;
+    margin-right: -1rem; */
+  background-color: rgb(94, 126, 96);
+  color: white;
+  border-color: rgba(255, 255, 255, 0);
+  font-size: 2rem;
+  transition: all 0.4s ease 0s;
+}
 .instruction-button {
   color: black;
   background-color: white;
@@ -216,8 +273,8 @@ td {
   font-family: "Righteous", sans-serif;
   text-decoration: none;
   border-radius: 50%;
-  border: 2px solid;
-  border-color: blue;
+  border: none;
+  /* border-color: blue; */
   right: 1rem;
   bottom: 1rem;
   display: flex;
@@ -226,7 +283,35 @@ td {
   text-align: center;
   position: fixed;
 }
-
+.instruction-button:hover {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  background-color: rgba(94, 126, 96, 0.826);
+  color: white;
+  transition: all 0.4s ease 0s;
+}
+@media screen and (max-height: 435px) {
+  #home-page-title {
+    font-size: 4.5rem;
+  }
+  #home-page-middle-block {
+    width: 350px;
+    grid-template-rows: 1.5rem 5rem 0px 50px 50px 10px 60px 60px;
+  }
+  #start-button {
+    font-size: 1.5rem;
+  }
+  #start-button:hover {
+    font-size: 1.75rem;
+  }
+  .leaderboard-button {
+    font-size: 1.25rem;
+  }
+  .leaderboard-button:hover {
+    font-size: 1.5rem;
+  }
+}
 /* Instruction Page */
 #instruction-container {
   display: flex;
@@ -269,51 +354,35 @@ td {
 
 /* End Game Page */
 
-#end-game-page {
-  top: 50%;
-  left: 50%;
-  position: fixed;
-  transform: translateX(-50%) translateY(-50%);
-  width: fit-content;
-  height: fit-content;
-  min-width: fit-content;
-  min-height: fit-content;
-  padding: 3rem;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: white;
-  color: black;
+/* #end-game-page {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    width: fit-content;
+    height: fit-content;
+    min-width: fit-content;
+    min-height: fit-content;
+    padding: 3rem;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
 }
 
 #end-game-page-title {
-  margin: -0.75rem 0 0;
-  overflow: visible;
-  font-size: 5rem;
-  font-family: "Pdark", sans-serif;
-}
+    margin: -0.75rem 0 0;
+    overflow: visible;
+    font-size: 5rem;
+    font-family: "Pdark", sans-serif;
+} */
 
-.leaderboard-button {
-  color: black;
-  background-color: white;
-  font-size: 1.5rem;
-  font-family: "Righteous", sans-serif;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.4s ease 0s;
-}
-
-.leaderboard-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
-  transition: all 0.4s ease 0s;
-}
-
-#score-bar {
-  font-size: 1.5rem;
-  font-family: "Arvo", sans-serif;
+/* #score-bar {
+    font-size: 1.5rem;
+    font-family: "Arvo", sans-serif;
 }
 
 #restart-button {
@@ -327,10 +396,11 @@ td {
 }
 
 #restart-button:hover {
-  letter-spacing: 1rem;
-  margin-right: -1rem;
-  transition: all 0.4s ease 0s;
-}
+    letter-spacing: 1rem;
+    margin-right: -1rem;
+    transition: all 0.4s ease 0s;
+} */
+/* 搬家了 */
 
 /* Leaderboard Page */
 
@@ -627,33 +697,31 @@ td {
   max-height: 300px;
   font-size: 1.5rem;
   font-family: "Righteous", sans-serif;
-  margin: 1rem;
+  margin: 1rem 1rem 0;
   overflow: hidden;
-  overflow-y: scroll;
   background-color: white;
-  border: 5px solid black;
   padding: 10px;
 }
 
 .prompt-page-input {
-  margin: 1.5rem 0 0;
-  padding: 1rem 0 0;
-  border: none;
+  margin: 0 0 1.5rem;
+  padding: 0.5rem 0 0;
   font-size: 1.5rem;
   font-family: "Arvo", sans-serif;
   text-align: center;
+  border-bottom: 2px solid black;
+  width: 30rem;
 }
 
 .prompt-page-input:hover {
   opacity: 0.5;
-  border-bottom: 0.1rem solid black;
+  border: 0.1rem solid black;
   text-align: center;
-  letter-spacing: 0.5rem;
-  margin-right: -0.5rem;
 }
 
 .prompt-page-input:focus {
-  border-bottom: 0.1rem solid black;
+  border: 0px;
+  border: 0.1rem solid black;
   opacity: 0.5;
   letter-spacing: 0rem;
   margin-right: 0rem;
@@ -667,6 +735,40 @@ td {
   font-family: "Righteous", sans-serif;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+#prompt-confirm-button {
+  margin: 0 1rem 0;
+  box-sizing: border-box;
+  width: 5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-family: "Righteous", sans-serif;
+  background-color: white;
+  text-align: center;
+  border-radius: 0%;
+}
+
+#prompt-confirm-button:hover {
+  text-align: center;
+  background-color: #eeeeee;
+}
+
+#prompt-reject-button {
+  margin: 0 0 0 1rem;
+  box-sizing: border-box;
+  width: 5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-family: "Righteous", sans-serif;
+  background-color: white;
+  text-align: center;
+  border-radius: 0%;
+}
+
+#prompt-reject-button:hover {
+  text-align: center;
+  background-color: #eeeeee;
 }
 
 /* Other Stuff */
