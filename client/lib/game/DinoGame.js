@@ -46,16 +46,16 @@ export default class DinoGame extends GameRunner {
      */
     this.defaultSettings = {
       bgSpeed: 12, // ppf
-      birdSpeed: 7.2, // ppf
+      birdSpeed: 12 * 1.3, // ppf
       birdSpawnRate: 240, // fpa
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
-      cloudSpeed: 2, // ppf
-      dinoGravity: 0.8, // ppf
-      dinoGroundOffset: 160, // px
+      cloudSpeedReletiToBg: 0.7, // ppf
+      dinoGravity: 2, // ppf
+      dinoGroundOffset: -40, // px
       dinoLegsRate: 6, // fpa
       dinoLift: 18, // ppf
       bulletSpawnRate: 20, // fpa
@@ -269,8 +269,8 @@ export default class DinoGame extends GameRunner {
               break;
             case "eater":
               this.state.props.eater++;
-              // this.state.foodHeightMode = randInteger(0, 2);
-              this.state.foodHeightMode = 2;
+              this.state.foodHeightMode = randInteger(0, 2);
+              //this.state.foodHeightMode = 2;
               break;
             case "week":
               this.state.props.week++;
@@ -386,10 +386,10 @@ export default class DinoGame extends GameRunner {
 
     if (level > 4 && level < 8) {
       settings.bgSpeed++;
-      settings.birdSpeed = settings.bgSpeed * 0.8;
+      settings.birdSpeed = settings.bgSpeed * 1.3;
     } else if (level > 7) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1);
-      settings.birdSpeed = settings.bgSpeed * 0.9;
+      settings.birdSpeed = settings.bgSpeed * 1.3;
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98);
 
       if (level > 7 && level % 2 === 0 && dinoLegsRate > 3) {
@@ -410,7 +410,7 @@ export default class DinoGame extends GameRunner {
     }
 
     for (const cloud of clouds) {
-      cloud.speed = settings.bgSpeed;
+      cloud.speed = settings.bgSpeed * settings.cloudSpeedReletiToBg;
     }
 
     dino.legsRate = settings.dinoLegsRate;
@@ -487,9 +487,10 @@ export default class DinoGame extends GameRunner {
     this.progressInstances(clouds);
     if (this.frameCount % settings.cloudSpawnRate === 0) {
       const newCloud = new Cloud();
-      newCloud.speed = settings.bgSpeed;
+      newCloud.speed = settings.bgSpeed * settings.cloudSpeedReletiToBg;
       newCloud.x = this.width;
-      newCloud.y = randInteger(20, 200);
+      newCloud.y = randInteger(this.height * 0.1, this.height * 0.4);
+      //newCloud.y = randInteger(sprites.cloud.h+10, this.state.dinoGroundOffset - sprites.cloud.h - sprites.dinoDuckLeftLeg.h);
       clouds.push(newCloud);
     }
     this.paintInstances(clouds);
@@ -636,13 +637,26 @@ export default class DinoGame extends GameRunner {
   }
 
   drawBirds() {
-    const { birds, settings, dino } = this.state;
+    const { birds, settings, dino, obstacles } = this.state;
     let spawned = false;
 
     this.progressInstances(birds);
     if (this.frameCount % settings.birdSpawnRate === 0) {
+      // When the bird reaches the player, if there is an obstacle being too close to it, don't spawn the bird.
+      const reachPlayerTime = (this.width - dino.x) / settings.birdSpeed;
+      var tooCloseToOb = false;
+      for (const ob of obstacles) {
+        if (
+          Math.abs(ob.x - reachPlayerTime * settings.bgSpeed - dino.x) <
+          dino.width * 2.5
+        ) {
+          tooCloseToOb = true;
+          break;
+        }
+      }
+
       // randomly either do or don't add bird
-      if (randBoolean() && dino.powerUp !== "eater") {
+      if (!tooCloseToOb && randBoolean() && dino.powerUp !== "eater") {
         spawned = true;
         const newBird = new Bird(this.spriteImageData);
         newBird.speed = settings.birdSpeed;
@@ -694,7 +708,7 @@ export default class DinoGame extends GameRunner {
     } else if (this.state.foodHeightMode === 1) {
       return randInteger(-300, -10);
     } else {
-      return -200 * Math.abs(Math.sin(cnt / 15.0));
+      return -220 * Math.abs(Math.sin(cnt / 14.0));
     }
   }
 
@@ -769,7 +783,7 @@ export default class DinoGame extends GameRunner {
   drawFoodScoreTexts() {
     const { state } = this;
     const { foodScoreTextAlpha, dino, settings } = state;
-    const fontSize = 12;
+    const fontSize = 30;
 
     this.paintText(
       "+" + settings.foodScore,
