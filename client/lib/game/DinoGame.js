@@ -685,6 +685,7 @@ export default class DinoGame extends GameRunner {
 			baseline: "top",
 			color: "#535353",
 		});
+		console.log("highestScore");
 	}
 
 	changeToString(number) {
