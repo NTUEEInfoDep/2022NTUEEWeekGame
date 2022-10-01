@@ -61,8 +61,7 @@ const onKeyUp = ({ keyCode }) => {
   }
 }
 function keyStart() {
-  console.log('start')
-  console.log(isTouchDevice)
+  console.log(`isTouchDevice: ${isTouchDevice}`)
   if (isTouchDevice) {
     document.addEventListener('touchstart', ontouchstart)
 
@@ -138,7 +137,25 @@ function startHomePage() {
   // };
 }
 
-function startGame() {
+async function getHighestScore() {
+  const studentID = $id('student-id-input').value
+  return fetch(`${baseURL}highestScore?studentID=${studentID}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      return data.score
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+async function startGame() {
   $id('leaderboard-container').classList.add('hidden')
   $id('home-page').classList.add('hidden')
   $id('end-game-page').classList.add('hidden')
@@ -149,6 +166,7 @@ function startGame() {
   $id('instruction-container').classList.add('hidden')
   if (first) {
     // game.start().catch(console.error);
+    game.highestScore = await getHighestScore()
     game.unpause()
     first = false
   } else {
