@@ -123,50 +123,67 @@
 
     <!-- Prompt Page -->
     <div class="page-container hidden" id="prompt-container">
-        <div id="prompt-page">
-            <div id="prompt-header" class="page-header">
-                <div id="prompt-page-title" class="page-title">Congratulation</div>
-            </div>
-            <div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
-            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
-            <div id="prompt-botton-container">
-                <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
-                <button id="prompt-reject-button" class="prompt-page-button">不填</button>
-            </div>
+      <div id="prompt-page">
+        <div id="prompt-header" class="page-header">
+          <div id="prompt-page-title" class="page-title">Congratulation</div>
         </div>
+        <div id="prompt-page-main">
+          您已經進入前10名, 填寫學號以儲存您的分數
+        </div>
+        <input
+          class="prompt-page-input"
+          id="prompt-student-id-input"
+          type="text"
+          maxlength="9"
+          oninput="this.value = this.value.toUpperCase()"
+          placeholder="輸入學號"
+        />
+        <div id="prompt-botton-container">
+          <button id="prompt-confirm-button" class="prompt-page-button">
+            送出
+          </button>
+          <button id="prompt-reject-button" class="prompt-page-button">
+            不填
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
-        <!-- class="hidden" -->
-        <div id="end-game-page-title">GAME OVER</div>
-        <div id="score-bar">Your Score:</div>
-        <div id="score">0</div>
-        <div id="highestScore"></div>
-        <div id="encouragement"></div>
-        <!-- <li id="props-list" style="list-style-type: none">
+      <!-- class="hidden" -->
+      <div id="end-game-page-title">GAME OVER</div>
+      <div id="score-bar">Your Score:</div>
+      <div id="score">0</div>
+      <div id="highestScore"></div>
+      <div id="encouragement"></div>
+      <!-- <li id="props-list" style="list-style-type: none">
             <ul id="props-dance"></ul>
             <ul id="props-band"></ul>
             <ul id="props-eater"></ul>
             <ul id="props-week"></ul>
             <ul id="props-guitar"></ul>
         </li> -->
-        <!-- 不須道具資訊 -->
+      <!-- 不須道具資訊 -->
+      <!--傅渝翔 新增-->
+      <div id="endpage-button-set">
+        <button id="endPage-leaderboard-button" class="end-page-button">
+          <img id="EP-leaderboard-button-pic" src="./assets/crown.png" />
+        </button>
+        <!-- 拿掉leaderboard-button的class  -->
+        <button id="restart-button" class="end-page-button">
+          <img id="EP-restart-button-pic" src="./assets/replay.png" />
+        </button>
+        <button id="endgame-button" class="end-page-button">&times;</button>
         <!--傅渝翔 新增-->
-        <div id="endpage-button-set">
-            <button id ="endPage-leaderboard-button" class="end-page-button"><img id = "EP-leaderboard-button-pic" src = "./assets/crown.png"></button>
-            <!-- 拿掉leaderboard-button的class  -->
-            <button id="restart-button" class = "end-page-button"><img id = "EP-restart-button-pic" src = "./assets/replay.png"></button>
-            <button id="endgame-button" class = "end-page-button">&times;</button>
-            <!--傅渝翔 新增-->
-        </div>
+      </div>
     </div>
 
     <!-- Leaderboard Page -->
     <div class="page-container hidden" id="leaderboard-container">
       <div id="leaderboard-page">
         <div id="leaderboard-page-title">
-          <div id="heart-decoration"></div>
+          <img id="leaderboard-image" src="./assets/Leaderboard.png" />
         </div>
         <div id="leaderboard-table-container-edge">
           <table id="leaderboard-table-container"></table>
@@ -176,77 +193,81 @@
 
     <!-- Props Page -->
     <div class="page-container hidden" id="prop-container">
-        <div id="prop-page">
-            <button id="prop-close-button" class="close-button">&times;</button>
-            <div id="prop-header">
-                <div id="prop-page-title" class="page-title">道具列表</div>
-            </div>
-
-            <div id="prop-page-main">
-                <div class="prop-list" style="display: block">
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/guitar.png" alt="guitar" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">大合刷</p>
-                            <p class="functionality">
-                                功能: 音符攻擊! 電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/dance.png" alt="dance" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">快閃舞</p>
-                            <p class="functionality">
-                                功能: 來個快閃舞！電機學生獲得N秒的速度提升。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/band.png" alt="band" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">無敵樂隊</p>
-                            <p class="functionality">
-                                功能: 電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/eater.png" alt="eater" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">快食王</p>
-                            <p class="functionality">
-                                功能: 電機學生吞下所有的障碍物，把漢堡都吃掉!
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/week.png" alt="week" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">電機週</p>
-                            <p class="functionality">
-                                功能：NTUEE週真有趣! 電機學生獲得加分！
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div id="prop-page">
+        <button id="prop-close-button" class="close-button">&times;</button>
+        <div id="prop-header">
+          <div id="prop-page-title" class="page-title">道具列表</div>
         </div>
+
+        <div id="prop-page-main">
+          <div class="prop-list" style="display: block">
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/guitar.png" alt="guitar" />
+              </div>
+              <div class="right">
+                <p class="gadget">大合刷</p>
+                <p class="functionality">
+                  功能: 音符攻擊!
+                  電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/dance.png" alt="dance" />
+              </div>
+              <div class="right">
+                <p class="gadget">快閃舞</p>
+                <p class="functionality">
+                  功能: 來個快閃舞！電機學生獲得N秒的速度提升。
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/band.png" alt="band" />
+              </div>
+              <div class="right">
+                <p class="gadget">無敵樂隊</p>
+                <p class="functionality">
+                  功能:
+                  電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/eater.png" alt="eater" />
+              </div>
+              <div class="right">
+                <p class="gadget">快食王</p>
+                <p class="functionality">
+                  功能: 電機學生吞下所有的障碍物，把漢堡都吃掉!
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/week.png" alt="week" />
+              </div>
+              <div class="right">
+                <p class="gadget">電機週</p>
+                <p class="functionality">
+                  功能：NTUEE週真有趣! 電機學生獲得加分！
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-   <!-- 金巧芸新增 -->
-    <div id = "weekCard" class="hidden">
-        <div class="box b1" id = "cardBack"><img id = "cardBackPic" src="./assets/logo.jpg"></div>
-        <p class="box b2" id = "cardFront">+0</p>
+    <!-- 金巧芸新增 -->
+    <div id="weekCard" class="hidden">
+      <div class="box b1" id="cardBack">
+        <img id="cardBackPic" src="./assets/logo.jpg" />
+      </div>
+      <p class="box b2" id="cardFront">+0</p>
     </div>
     <!-- 新增end -->
     <script>
