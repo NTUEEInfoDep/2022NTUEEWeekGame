@@ -35,8 +35,8 @@ export default class DinoGame extends GameRunner {
       y: window.innerHeight - 100,
       radius: 40,
       scale: 1.2,
-    };
-    this.isTouchDevice = "ontouchstart" in document.documentElement;
+    }
+    this.isTouchDevice = 'ontouchstart' in document.documentElement
 
     /*
      * units
@@ -145,14 +145,14 @@ export default class DinoGame extends GameRunner {
   async preload() {
     const { settings } = this.state
     const [spriteImage] = await Promise.all([
-      loadImage("./assets/sprite.png"),
-      loadFont("./assets/PressStart2P-Regular.ttf", "PressStart2P"),
-    ]);
-    this.backgroundImage = await loadImage("./assets/background.png");
-    this.spriteImage = spriteImage;
-    this.spriteImageData = getImageData(spriteImage);
-    this.duck_buttonImage = await loadImage("./assets/down-arrow.png");
-    const dino = new Dino(this.spriteImageData);
+      loadImage('./assets/sprite.png'),
+      loadFont('./assets/PressStart2P-Regular.ttf', 'PressStart2P'),
+    ])
+    this.backgroundImage = await loadImage('./assets/background.png')
+    this.spriteImage = spriteImage
+    this.spriteImageData = getImageData(spriteImage)
+    this.duck_buttonImage = await loadImage('./assets/down-arrow.png')
+    const dino = new Dino(this.spriteImageData)
 
     dino.legsRate = settings.dinoLegsRate
     dino.lift = settings.dinoLift
@@ -169,12 +169,12 @@ export default class DinoGame extends GameRunner {
 
     this.drawBackground()
     // this.drawFPS();
-    this.drawGround();
-    this.drawClouds();
-    this.drawDino();
-    this.drawScore();
+    this.drawGround()
+    this.drawClouds()
+    this.drawDino()
+    this.drawScore()
     if (this.isTouchDevice) {
-      this.drawduckbutton();
+      this.drawduckbutton()
     }
 
     if (state.isRunning) {
@@ -454,7 +454,7 @@ export default class DinoGame extends GameRunner {
       this.circle.y - this.circle.radius * this.circle.scale,
       this.circle.radius * this.circle.scale * 2,
       this.circle.radius * this.circle.scale * 2
-    );
+    )
   }
 
   drawBackground() {

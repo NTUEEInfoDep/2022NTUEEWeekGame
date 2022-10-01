@@ -19,34 +19,34 @@ const isTouchDevice =
   'ontouchstart' in window ||
   navigator.maxTouchPoints > 0 ||
   navigator.msMaxTouchPoints > 0 ||
-  "gesturestart" in window;
+  'gesturestart' in window
 
 const keycodes = {
   // up, spacebar
   JUMP: { 38: 1, 32: 1 },
   // down
   DUCK: { 40: 1 },
-};
+}
 const isradius = (x, y, r) => {
   const center_x = game.circle.x,
     center_y = game.circle.y,
-    center_r = game.circle.radius;
-  return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2;
-};
+    center_r = game.circle.radius
+  return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2
+}
 
 const ontouchstart = ({ touches }) => {
-  console.log(touches[0].clientX);
-  console.log(window.innerHeight, window.innerWidth);
+  console.log(touches[0].clientX)
+  console.log(window.innerHeight, window.innerWidth)
   if (isradius(touches[0].clientX, touches[0].clientY)) {
     // isradius(touches[0].clientX, touches[0].clientY)
-    game.onInput("duck");
+    game.onInput('duck')
   } else if (touches.length === 1) {
-    game.onInput("jump");
+    game.onInput('jump')
   }
-};
+}
 const ontouchend = () => {
-  game.onInput("stop-duck");
-};
+  game.onInput('stop-duck')
+}
 const onKeyDown = ({ keyCode }) => {
   console.log('down')
   if (keycodes.JUMP[keyCode]) {
