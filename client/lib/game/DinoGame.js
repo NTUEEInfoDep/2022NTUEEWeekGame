@@ -134,6 +134,7 @@ export default class DinoGame extends GameRunner {
     this.drawClouds();
     this.drawDino();
     this.drawScore();
+    this.drawHighestScore();
 
     if (state.isRunning) {
       let spawnedObstacle, spawnedBird, spawnedItem;
@@ -322,6 +323,7 @@ export default class DinoGame extends GameRunner {
 
     this.state.isRunning = false;
     this.drawScore();
+
     this.stop();
     setTimeout(this.endGameRoute, 500);
   }
