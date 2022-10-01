@@ -473,6 +473,7 @@ td {
   font-size: 4vh;
   font-family: 'Righteous', sans-serif;
   font-weight: 600;
+  table-layout: fixed;
 }
 
 #leaderboard-tr-header {

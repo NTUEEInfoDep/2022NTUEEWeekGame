@@ -335,7 +335,7 @@ function showLeaderboard() {
           if (gameScore != 0 && checkStudentIDForm(gameStudentID)) {
             var tr = document.createElement('tr')
             tr.classList.add('leaderboard-game-tr-data')
-            ;['your score', name, score, gameStudentID].forEach((text) => {
+            ;['your score', name, score].forEach((text) => {
               var cell = document.createElement('td')
               cell.appendChild(document.createTextNode(text))
               tr.appendChild(cell)
