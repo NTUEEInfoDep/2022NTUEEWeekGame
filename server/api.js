@@ -23,19 +23,19 @@ router.route('/highestScore').get(
   })
 )
 
-router.post(
-  '/highestScores',
-  express.urlencoded({ extended: false }),
-  asyncHandler(async (req, res) => {
-    const { studentID } = req.body
-    const data = await mongo.GameScore.findOne({ studentID })
-    if (data) {
-      res.send({ score: data.score, name: data.name })
-    } else {
-      res.send({ score: 0, name: null })
-    }
-  })
-)
+// router.post(
+//   '/highestScores',
+//   express.urlencoded({ extended: false }),
+//   asyncHandler(async (req, res) => {
+//     const { studentID } = req.body
+//     const data = await mongo.GameScore.findOne({ studentID })
+//     if (data) {
+//       res.send({ score: data.score, name: data.name })
+//     } else {
+//       res.send({ score: 0, name: null })
+//     }
+//   })
+// )
 
 router.get('/tenthHighestScore', (req, res) => {
   //res.send(leaderBoard.tenthHighestScore());

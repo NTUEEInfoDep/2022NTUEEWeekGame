@@ -13,6 +13,7 @@ import {
   getImageData,
   randBoolean,
   randInteger,
+  changeToString,
 } from '../utils.js'
 import GameRunner from './GameRunner.js'
 
@@ -29,6 +30,7 @@ export default class DinoGame extends GameRunner {
     this.spriteImage = null
     this.spriteImageData = null
     this.endGameRoute = endGameRoute
+    this.highestScore = 0
 
     this.circle = {
       x: window.innerWidth - 100,
@@ -375,7 +377,9 @@ export default class DinoGame extends GameRunner {
     //   this.width / 2 - iconSprite.w / 4,
     //   this.height / 2 - iconSprite.h / 4 + padding
     // )
-
+    if (this.state.score.value > this.highestScore) {
+      this.highestScore = this.state.score.value
+    }
     this.state.isRunning = false
     this.drawScore()
     this.stop()
@@ -705,9 +709,9 @@ export default class DinoGame extends GameRunner {
       // at a time where the background isn't re-drawn (i.e. in `endGame`)
       // canvasCtx.fillStyle = "#f7f7f7";
       // canvasCtx.fillRect(this.width - fontSize * 5, 0, fontSize * 5, fontSize);
-
+      
       this.paintText(
-        (drawValue + '').padStart(5, '0'),
+        `HI ${changeToString(this.highestScore)} ${changeToString(drawValue)}`,
         this.width - margin,
         margin,
         {

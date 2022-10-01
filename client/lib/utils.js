@@ -55,3 +55,7 @@ export function randBoolean() {
 export function randItem(arr) {
   return arr[randInteger(0, arr.length - 1)]
 }
+
+export function changeToString(number) {
+  return (number + '').padStart(5, '0')
+}
