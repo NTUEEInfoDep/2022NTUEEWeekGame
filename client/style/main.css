@@ -117,9 +117,11 @@ td {
 #home-page-middle-block {
   /* margin: 1rem 0 0; */
   padding: 0.5rem;
-  width: 450px;
+  min-width: 50vw;
+  min-height: 50vh;
   display: grid;
-  grid-template-rows: 1.5rem 6.5rem 20px 45px 45px 20px 70px 70px;
+  /* grid-template-rows: 1.5rem 6.5rem 20px 45px 45px 20px 70px 70px; */
+  grid-template-rows: auto;
   background-color: rgb(228, 246, 207);
   border-radius: 30px;
   position: absolute;
@@ -170,7 +172,7 @@ td {
   border-bottom: 0.1rem solid black;
   text-align: center;
   letter-spacing: 0.5rem;
-  margin-right: -0.5rem;
+  margin-right: 0rem;
   transition: all 0.4s ease 0s;
 }
 
