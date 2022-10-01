@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui" />
     <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
     <title>EE見鍾情</title>
     <!-- <link rel="stylesheet" href="./style/main.css">
@@ -14,13 +16,13 @@
             margin: 0;
             padding: 0;
         }
-        
+
         html,
         body {
             width: 100%;
             height: 100%;
         }
-        
+
         body {
             align-items: center;
             background-color: #f7f7f7;
@@ -28,20 +30,17 @@
             justify-content: center;
         }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Game -->
     <!-- <script type="module" src="./lib/index.js"></script> -->
     <canvas id="game"></canvas>
 
     <!-- Landscape Page -->
     <div id="landscape-page" class="hidden">
-        <div id="landscape-page-title">
-            Please rotate your phone!
-        </div>
+        <div id="landscape-page-title">Please rotate your phone!</div>
     </div>
-
 
     <!-- Home Page -->
     <div id="home-page" class="hidden">
@@ -64,21 +63,21 @@
     </div>
     <!-- Rule Page-->
     <div class="page-container hidden" id="rule-container">
-      <div id="rule-page">
-        <button id="rule-close-button" class="close-button">&times;</button>
-        <div id="rule-header" class="page-header">
-          <div id="rule-page-title" class="page-title">RULE 規則</div>
+        <div id="rule-page">
+            <button id="rule-close-button" class="close-button">&times;</button>
+            <div id="rule-header" class="page-header">
+                <div id="rule-page-title" class="page-title">RULE 規則</div>
+            </div>
+            <div id="rule-page-main">
+                <div class="rule-list" style="display: block">
+                    <p>
+                        1. ???<br />
+                        2. ???<br />
+                        3. ???<br />
+                    </p>
+                </div>
+            </div>
         </div>
-        <div id="rule-page-main">
-          <div class="rule-list" style="display: block">
-            <p>
-              1. ???<br />
-              2. ???<br />
-              3. ???<br />
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Instruction Page -->
@@ -93,7 +92,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Warning Page -->
     <div class="page-container hidden" id="warning-container">
@@ -128,11 +126,18 @@
             <div id="prompt-header" class="page-header">
                 <div id="prompt-page-title" class="page-title">Congratulation</div>
             </div>
-            <div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
-            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
+            <div id="prompt-page-main">
+                您已經進入前10名, 填寫學號以儲存您的分數
+            </div>
+            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9"
+                oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
             <div id="prompt-botton-container">
-                <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
-                <button id="prompt-reject-button" class="prompt-page-button">不填</button>
+                <button id="prompt-confirm-button" class="prompt-page-button">
+                    送出
+                </button>
+                <button id="prompt-reject-button" class="prompt-page-button">
+                    不填
+                </button>
             </div>
         </div>
     </div>
@@ -155,10 +160,14 @@
         <!-- 不須道具資訊 -->
         <!--傅渝翔 新增-->
         <div id="endpage-button-set">
-            <button id ="endPage-leaderboard-button" class="end-page-button"><img id = "EP-leaderboard-button-pic" src = "./assets/crown.png"></button>
+            <button id="endPage-leaderboard-button" class="end-page-button">
+                <img id="EP-leaderboard-button-pic" src="./assets/crown.png" />
+            </button>
             <!-- 拿掉leaderboard-button的class  -->
-            <button id="restart-button" class = "end-page-button"><img id = "EP-restart-button-pic" src = "./assets/replay.png"></button>
-            <button id="endgame-button" class = "end-page-button">&times;</button>
+            <button id="restart-button" class="end-page-button">
+                <img id="EP-restart-button-pic" src="./assets/replay.png" />
+            </button>
+            <button id="endgame-button" class="end-page-button">&times;</button>
             <!--傅渝翔 新增-->
         </div>
     </div>
@@ -166,8 +175,12 @@
     <!-- Leaderboard Page -->
     <div class="page-container hidden" id="leaderboard-container">
         <div id="leaderboard-page">
-            <div id="leaderboard-page-title">Leaderboard</div>
-            <table id="leaderboard-table-container"></table>
+            <div id="leaderboard-page-title">
+                <img id="leaderboard-image" src="./assets/Leaderboard.png" />
+            </div>
+            <div id="leaderboard-table-container-edge">
+                <table id="leaderboard-table-container"></table>
+            </div>
         </div>
     </div>
 
@@ -188,7 +201,8 @@
                         <div class="right">
                             <p class="gadget">大合刷</p>
                             <p class="functionality">
-                                功能: 音符攻擊! 電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
+                                功能: 音符攻擊!
+                                電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
                             </p>
                         </div>
                     </div>
@@ -210,7 +224,8 @@
                         <div class="right">
                             <p class="gadget">無敵樂隊</p>
                             <p class="functionality">
-                                功能: 電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
+                                功能:
+                                電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
                             </p>
                         </div>
                     </div>
@@ -240,16 +255,18 @@
             </div>
         </div>
     </div>
-   <!-- 金巧芸新增 -->
-    <div id = "weekCard" class="hidden">
-        <div class="box b1" id = "cardBack"><img id = "cardBackPic" src="./assets/logo.jpg"></div>
-        <p class="box b2" id = "cardFront">+0</p>
+    <!-- 金巧芸新增 -->
+    <div id="weekCard" class="hidden">
+        <div class="box b1" id="cardBack">
+            <img id="cardBackPic" src="./assets/logo.jpg" />
+        </div>
+        <p class="box b2" id="cardFront">+0</p>
     </div>
     <!-- 新增end -->
     <script>
-        // screen.orientation.lock('landscape').then(() => {
-        //     console.log('lock');
-        // });
+      // screen.orientation.lock('landscape').then(() => {
+      //     console.log('lock');
+      // });
     </script>
 </body>
 

@@ -193,8 +193,23 @@ export default class DinoGame extends GameRunner {
 
       if (state.dino.hits([state.obstacles[0], state.birds[0]])) {
         if (this.state.dino.powerUp !== 'band') {
-          playSound('game-over')
-          state.gameOver = true
+          if (state.obstacles[0] !== undefined) {
+            if (
+              state.obstacles[0].sprite !== 'obstacleGateHit' &&
+              state.obstacles[0].sprite !== 'obstacleCodeHit'
+            ) {
+              playSound('game-over')
+              state.gameOver = true
+            }
+          } else if (state.birds[0] !== undefined) {
+            if (
+              state.birds[0].sprite !== 'birdCircuitHit' &&
+              state.birds[0].sprite !== 'birdPaperHit'
+            ) {
+              playSound('game-over')
+              state.gameOver = true
+            }
+          }
         }
       }
 
@@ -213,16 +228,13 @@ export default class DinoGame extends GameRunner {
       state.bullets.forEach((bullet) => {
         if (bullet.hits([state.obstacles[0]])) {
           //to-do
-          state.obstacles[0].sprite = `${state.obstacles[0].sprite}Hit`
-          // switch (state.obstacles[0].sprite) {
-          //   case "obstacleCode": {
-          //     state.obstacles[0].sprite = "obstacleCodeHit";
-          //   }
-
-          //   case "obstacleGate": {
-          //     state.obstacles[0].sprite = "obstacleGateHit";
-          //   }
-          // }
+          // state.obstacles[0].sprite = `${state.obstacles[0].sprite}Hit`;
+          switch (state.obstacles[0].sprite) {
+            case 'obstacleCode':
+              state.obstacles[0].sprite = 'obstacleCodeHit'
+            case 'obstacleGate':
+              state.obstacles[0].sprite = 'obstacleGateHit'
+          }
           setTimeout(() => {
             state.obstacles.shift()
           }, 120)
@@ -233,8 +245,16 @@ export default class DinoGame extends GameRunner {
         }
         if (bullet.hits([state.birds[0]])) {
           //to-do
-          state.birds[0].sprite = `${state.birds[0].sprite}Hit`
+          // state.birds[0].sprite = `${state.birds[0].sprite}Hit`;
           // state.obstacles[0].sprite = "birdHit";
+
+          switch (state.birds[0].sprite) {
+            case 'birdCircuit':
+              state.birds[0].sprite = 'birdCircuitHit'
+            case 'birdPaper':
+              state.birds[0].sprite = 'birdPaperHit'
+          }
+
           //to-do
 
           setTimeout(() => {

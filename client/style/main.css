@@ -417,11 +417,10 @@ td {
   left: 50%;
   position: fixed;
   transform: translateX(-50%) translateY(-50%);
-  width: fit-content;
-  height: fit-content;
-  min-width: fit-content;
-  min-height: fit-content;
-  padding: 3rem;
+  width: 80vw;
+  height: 90vh;
+  /* max-height: 65vh; */
+  padding: 0.5rem;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -430,24 +429,55 @@ td {
   background-color: white;
   color: black;
   z-index: 10;
+  background-image: url('../assets/LeaderBoard_background.jpg');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+/*#leaderboard-page-title {
+    margin: -0.75rem 0 0;
+    overflow: visible;
+    font-size: 8rem;
+    font-family: "Pdark", sans-serif;
+}*/
+
 #leaderboard-page-title {
-  margin: -0.75rem 0 0;
   overflow: visible;
-  font-size: 8rem;
-  font-family: 'Pdark', sans-serif;
+  /* height: 123px; */
+  /* width: 750px; */
+  max-width: auto;
+  max-height: 20vh;
+}
+
+#leaderboard-image {
+  height: 100%;
+  width: 100%;
+}
+
+#leaderboard-table-container-edge {
+  max-width: 80vw;
+  max-height: 70vh;
+  width: 100%;
+  height: fit-content;
+  /* max-height: 300px; */
+  min-width: fit-content;
+  min-height: fit-content;
+  overflow-y: scroll;
 }
 
 #leaderboard-table-container {
   width: 100%;
-  font-size: 1.5rem;
+  height: 100%;
+  height: fit-content;
+  font-size: 4vh;
   font-family: 'Righteous', sans-serif;
-  margin: 1rem;
+  font-weight: 600;
+  table-layout: fixed;
 }
 
 #leaderboard-tr-header {
-  font-size: 2rem;
+  font-size: 4vh;
   background-color: black;
   color: white;
 }
@@ -723,7 +753,7 @@ td {
   height: fit-content;
   max-height: 300px;
   font-size: 1.5rem;
-  font-family: "Righteous", sans-serif;
+  font-family: 'Righteous', sans-serif;
   margin: 1rem;
   overflow: hidden;
   overflow-y: scroll;
