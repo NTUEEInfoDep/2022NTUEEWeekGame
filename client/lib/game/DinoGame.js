@@ -55,7 +55,7 @@ export default class DinoGame extends GameRunner {
       foodSpawnRate: 10,
       foodScore: 5,
       cloudSpawnRate: 200, // fpa
-      cloudSpeedReletiToBg: 0.7, // ppf
+      cloudSpeedRelativeToBg: 0.7, // ppf
       dinoGravity: 2, // ppf
       dinoGroundOffset: -40, // px
       dinoLegsRate: 6, // fpa
@@ -141,7 +141,7 @@ export default class DinoGame extends GameRunner {
 
     this.state.groundY =
       this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
-    dino.baseY = this.state.groundY - settings.dinoGroundOffset
+    this.state.dino.baseY = this.state.groundY - this.state.settings.dinoGroundOffset
   }
 
   async preload() {
@@ -162,7 +162,7 @@ export default class DinoGame extends GameRunner {
     dino.x = 25
     this.state.dino = dino
     this.state.groundY =
-      this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
+    this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
     dino.baseY = this.state.groundY - settings.dinoGroundOffset
   }
 
@@ -176,7 +176,7 @@ export default class DinoGame extends GameRunner {
     this.drawDino()
     this.drawScore()
     if (this.isTouchDevice) {
-      this.drawduckbutton()
+      this.drawDuckButton()
     }
 
     if (state.isRunning) {
@@ -437,7 +437,7 @@ export default class DinoGame extends GameRunner {
     }
 
     for (const cloud of clouds) {
-      cloud.speed = settings.bgSpeed * settings.cloudSpeedReletiToBg
+      cloud.speed = settings.bgSpeed * settings.cloudSpeedRelativeToBg
     }
 
     dino.legsRate = settings.dinoLegsRate
@@ -469,7 +469,7 @@ export default class DinoGame extends GameRunner {
       color: '#535353',
     })
   }
-  drawduckbutton() {
+  drawDuckButton() {
     // this.canvasCtx.fillStyle = "#f7f7f7";
     // this.canvasCtx.fillRect(0, 0, this.width, this.height);
     this.canvasCtx.drawImage(
@@ -520,7 +520,7 @@ export default class DinoGame extends GameRunner {
     this.progressInstances(clouds)
     if (this.frameCount % settings.cloudSpawnRate === 0) {
       const newCloud = new Cloud()
-      newCloud.speed = settings.bgSpeed * settings.cloudSpeedReletiToBg
+      newCloud.speed = settings.bgSpeed * settings.cloudSpeedRelativeToBg
       newCloud.x = this.width
       newCloud.y = randInteger(this.height * 0.1, this.height * 0.4)
       //newCloud.y = randInteger(sprites.cloud.h+10, this.state.dinoGroundOffset - sprites.cloud.h - sprites.dinoDuckLeftLeg.h);
@@ -556,7 +556,7 @@ export default class DinoGame extends GameRunner {
             break
         }
         dino.powerUp = 'none'
-        console.log('powerup expired')
+        console.log('powerUp expired')
       }
     }
 
@@ -727,9 +727,9 @@ export default class DinoGame extends GameRunner {
     if (shouldDraw) {
       // draw the background behind it in case this is called
       // at a time where the background isn't re-drawn (i.e. in `endGame`)
-      // canvasCtx.fillStyle = "#f7f7f7";
-      // canvasCtx.fillRect(this.width - fontSize * 5, 0, fontSize * 5, fontSize);
-      
+      canvasCtx.fillStyle = "rgb(211, 231, 181)"
+      canvasCtx.fillRect(this.width - fontSize * 14 - margin, margin, fontSize * 14, fontSize);
+
       this.paintText(
         `HI ${changeToString(this.highestScore)} ${changeToString(drawValue)}`,
         this.width - margin,
