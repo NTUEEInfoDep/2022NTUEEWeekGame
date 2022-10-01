@@ -43,6 +43,7 @@ export default class GameRunner {
 
   unpause() {
     this.paused = false;
+    window.requestAnimationFrame(this.__loop);
   }
 
   step(frames = 1) {

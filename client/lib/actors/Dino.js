@@ -59,7 +59,12 @@ export default class Dino extends Actor {
   nextFrame(speedRatio) {
     if (this.vVelocity !== null) {
       // use gravity to gradually decrease vVelocity
-      this.vVelocity += this.gravity * speedRatio;
+      let acceleration = this.gravity * speedRatio;
+      if (this.isDucking) {
+        this.vVelocity += acceleration * 3;
+      } else {
+        this.vVelocity += acceleration;
+      }
       this.relativeY += this.vVelocity * speedRatio;
     }
 
@@ -77,7 +82,7 @@ export default class Dino extends Actor {
       console.log("owo");
       this.shine += 1;
       if (this.shine < 20) {
-        this.sprite = `dinodisappear`;
+        this.sprite = `dinoDisappear`;
         return;
       } else if (this.shine > 40) {
         this.shine = 0;

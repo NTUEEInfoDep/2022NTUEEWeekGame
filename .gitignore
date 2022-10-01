@@ -105,3 +105,6 @@ dist
 
 .DS_Store
 *.psd
+/build
+_sprite.png
+_sprites.js

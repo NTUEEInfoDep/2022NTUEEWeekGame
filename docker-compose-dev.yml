@@ -6,28 +6,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    expose:
-      - "4000"
+    ports:
+      - "4000:4000"
     environment:
       - "NODE_ENV=production"
     depends_on:
       - weekgame-mongodb
     restart: always
-    networks:
-      - weekgame-game
 
   weekgame-mongodb:
     image: mongo
-    expose:
-      - "27017"
+    ports:
+      - "27017:27017"
     restart: always
-    networks:
-      - weekgame-mongodb
-
-networks:
-  weekgame-game:
-    external:
-      name: eeinfo
-  weekgame-mongodb:
-    external:
-      name: eeinfo
