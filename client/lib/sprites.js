@@ -37,4 +37,4 @@ export default {
   // PowerUps
   bullet: { h: 94, w: 77, x: 2963, y: 355 },
   food: { h: 108, w: 108, x: 3282, y: 354 },
-};
+}

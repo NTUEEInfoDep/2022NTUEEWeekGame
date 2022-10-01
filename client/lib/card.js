@@ -1,23 +1,23 @@
-const $id = (element) => document.getElementById(element);
+const $id = (element) => document.getElementById(element)
 
 function clickB1() {
-  document.querySelector(".b1").style.transform = "rotateY(180deg)";
-  document.querySelector(".b2").style.transform = "rotateY(0deg)";
+  document.querySelector('.b1').style.transform = 'rotateY(180deg)'
+  document.querySelector('.b2').style.transform = 'rotateY(0deg)'
 }
 function clickB2() {
-  document.querySelector(".b2").style.transform = "rotateY(-180deg)";
-  document.querySelector(".b1").style.transform = "rotateY(0deg)";
+  document.querySelector('.b2').style.transform = 'rotateY(-180deg)'
+  document.querySelector('.b1').style.transform = 'rotateY(0deg)'
 }
 export function rotate() {
-  clickB1();
-  document.querySelector(".b2").style.fontSize = "small";
+  clickB1()
+  document.querySelector('.b2').style.fontSize = 'small'
   setTimeout(() => {
-      clickB2();
-      document.querySelector(".b2").style.fontSize = "42px";
-  }, 500); 
+    clickB2()
+    document.querySelector('.b2').style.fontSize = '42px'
+  }, 500)
   setTimeout(() => {
-      clickB1();
-  },1000); 
+    clickB1()
+  }, 1000)
 }
 
 // function createCard(frontText) {
@@ -36,7 +36,7 @@ export function rotate() {
 //   b2.setAttribute("class","box b2");
 //   b2.setAttribute("id","cardFront");
 //   b2.textContent = frontText;
-  
+
 //   div.appendChild(b1);
 //   div.appendChild(b2);
 
@@ -49,14 +49,14 @@ export function rotate() {
 
 export function week(frontText) {
   // createCard(frontText);
-  $id("cardFront").textContent = frontText;
-  $id("weekCard").classList.remove("hidden");
-  setTimeout(()=>{rotate(),500});
-  setTimeout(()=>{
-    $id("weekCard").classList.add("hidden");
-    clickB2();
-    document.querySelector(".b2").style.fontSize = "small";},2500);
-  
-
+  $id('cardFront').textContent = frontText
+  $id('weekCard').classList.remove('hidden')
+  setTimeout(() => {
+    rotate(), 500
+  })
+  setTimeout(() => {
+    $id('weekCard').classList.add('hidden')
+    clickB2()
+    document.querySelector('.b2').style.fontSize = 'small'
+  }, 2500)
 }
-
