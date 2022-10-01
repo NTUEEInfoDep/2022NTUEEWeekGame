@@ -417,11 +417,10 @@ td {
   left: 50%;
   position: fixed;
   transform: translateX(-50%) translateY(-50%);
-  width: fit-content;
-  height: fit-content;
-  max-width: 80vw;
-  max-height: 65vh;
-  padding: 3rem;
+  width: 80vw;
+  height: 90vh;
+  /* max-height: 65vh; */
+  padding: 0.5rem;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -431,6 +430,9 @@ td {
   color: black;
   z-index: 10;
   background-image: url('../assets/LeaderBoard_background.jpg');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /*#leaderboard-page-title {
@@ -442,10 +444,10 @@ td {
 
 #leaderboard-page-title {
   overflow: visible;
-  height: 123px;
-  width: 750px;
-  max-width: 95vw;
-  max-height: 70vh;
+  /* height: 123px; */
+  /* width: 750px; */
+  max-width: auto;
+  max-height: 20vh;
 }
 
 #leaderboard-image {
@@ -458,7 +460,7 @@ td {
   max-height: 70vh;
   width: 100%;
   height: fit-content;
-  max-height: 300px;
+  /* max-height: 300px; */
   min-width: fit-content;
   min-height: fit-content;
   overflow-y: scroll;
@@ -468,13 +470,13 @@ td {
   width: 100%;
   height: 100%;
   height: fit-content;
-  font-size: 5vh;
+  font-size: 4vh;
   font-family: 'Righteous', sans-serif;
   font-weight: 600;
 }
 
 #leaderboard-tr-header {
-  font-size: 6vh;
+  font-size: 4vh;
   background-color: black;
   color: white;
 }
