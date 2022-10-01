@@ -30,6 +30,14 @@ export default class DinoGame extends GameRunner {
     this.spriteImageData = null
     this.endGameRoute = endGameRoute
 
+    this.circle = {
+      x: window.innerWidth - 100,
+      y: window.innerHeight - 100,
+      radius: 40,
+      scale: 1.2,
+    }
+    this.isTouchDevice = 'ontouchstart' in document.documentElement
+
     /*
      * units
      * fpa: frames per action
@@ -143,6 +151,7 @@ export default class DinoGame extends GameRunner {
     this.backgroundImage = await loadImage('./assets/background.png')
     this.spriteImage = spriteImage
     this.spriteImageData = getImageData(spriteImage)
+    this.duck_buttonImage = await loadImage('./assets/down-arrow.png')
     const dino = new Dino(this.spriteImageData)
 
     dino.legsRate = settings.dinoLegsRate
@@ -164,6 +173,9 @@ export default class DinoGame extends GameRunner {
     this.drawClouds()
     this.drawDino()
     this.drawScore()
+    if (this.isTouchDevice) {
+      this.drawduckbutton()
+    }
 
     if (state.isRunning) {
       let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood
@@ -432,6 +444,17 @@ export default class DinoGame extends GameRunner {
       align: 'left',
       color: '#535353',
     })
+  }
+  drawduckbutton() {
+    // this.canvasCtx.fillStyle = "#f7f7f7";
+    // this.canvasCtx.fillRect(0, 0, this.width, this.height);
+    this.canvasCtx.drawImage(
+      this.duck_buttonImage,
+      this.circle.x - this.circle.radius * this.circle.scale,
+      this.circle.y - this.circle.radius * this.circle.scale,
+      this.circle.radius * this.circle.scale * 2,
+      this.circle.radius * this.circle.scale * 2
+    )
   }
 
   drawBackground() {
