@@ -1,6 +1,7 @@
 import '../style/main.css'
 import '../style/card.css'
 import '../style/end.css'
+import '../style/phone.css'
 
 import DinoGame from './game/DinoGame.js'
 
@@ -108,18 +109,18 @@ const checkUserData = () => {
       } else {
         $id('error-container').classList.remove('hidden')
         $id(
-          'error-page-main'
+          'error-page-text'
         ).textContent = `你的學號[${studentID}]似乎有問題喔`
       }
     } else {
       $id('warning-container').classList.remove('hidden')
       $id(
-        'warning-page-main'
+        'warning-page-text'
       ).textContent = `玩家[${name}]你好，確定不填學號齁?不會留紀錄喔`
     }
   } else {
     $id('error-container').classList.remove('hidden')
-    $id('error-page-main').textContent = `請告訴我們你是誰 >_<`
+    $id('error-page-text').textContent = `請告訴我們你是誰 >_<`
   }
 }
 
@@ -406,7 +407,7 @@ $id('prompt-confirm-button').onclick = () => {
   } else {
     $id('error-container').classList.remove('hidden')
     $id(
-      'error-page-main'
+      'error-page-text'
     ).textContent = `你的學號[${promptStudentID}]似乎有問題喔`
   }
 }

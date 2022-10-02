@@ -1,0 +1,39 @@
+@media only screen and (max-width: 916px) {
+    .page-title {
+        margin: 0 0 0;
+        overflow: visible;
+        font-size: 2.5rem;
+        font-family: 'Pdark', sans-serif;
+        font-weight: bold;
+        text-align: center;
+    }
+    .page {
+        max-width: 80vw !important;
+        max-height: 80vh !important;
+        padding: 1rem !important;
+    }
+    .page-header {
+        margin-top: 10px;
+    }
+    #prop-page-main {
+        max-height: 50vh;
+        margin: 0.5rem 1rem;
+    }
+    #prop-header {
+        max-height: 30vh;
+    }
+    #rule-page-main {
+        max-height: 50vh;
+        margin: 0.5rem 1rem;
+    }
+    #rule-header {
+        max-height: 30vh;
+    }
+    #error-header {
+        max-height: 30vh;
+    }
+    #error-page-main {
+        max-height: 50vh;
+        margin: 0.5rem 1rem;
+    }
+}
