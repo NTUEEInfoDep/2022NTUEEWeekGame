@@ -62,7 +62,7 @@ module.exports = {
     }),
     new Dotenv({
       path:
-        process.env.NODE_ENV === "./env",
+        process.env.NODE_ENV === "./.env",
       systemvars: true, // 允許讀取 process.env 下的任意系統變量
     }),
     new webpack.ProvidePlugin({
