@@ -14,13 +14,19 @@ const pub_key = base64ToArrayBuffer(process.env.PUBLIC_KEY)
 let key = ''
 
 async function importKey() {
-  key = await crypto.subtle.importKey('raw', pub_key,{name: 'AES-CBC', length: 256}, true, ['encrypt', 'decrypt'])
+  key = await crypto.subtle.importKey(
+    'raw',
+    pub_key,
+    { name: 'AES-CBC', length: 256 },
+    true,
+    ['encrypt', 'decrypt']
+  )
 }
 
 async function testMessage() {
-  const {key, keyStr} = await generateKey()
+  const { key, keyStr } = await generateKey()
   console.log(`string key for the node server: ${keyStr}`)
-  const {iv, encrypted} = await encrypt(key, 'test message')
+  const { iv, encrypted } = await encrypt(key, 'test message')
   const raw = await crypto.subtle.exportKey('raw', key)
   console.log(`string key for the browser: ${buf2base64(raw)}`)
   console.log(`base64 iv: ${iv}, base64 encrypted message: ${encrypted}`)
@@ -28,31 +34,31 @@ async function testMessage() {
 // testMessage();
 
 function base64ToArrayBuffer(base64) {
-    var binary_string = window.atob(base64);
-    var len = binary_string.length;
-    var bytes = new Uint8Array(len);
-    for (var i = 0; i < len; i++) {
-        bytes[i] = binary_string.charCodeAt(i);
-    }
-    return bytes.buffer;
+  var binary_string = window.atob(base64)
+  var len = binary_string.length
+  var bytes = new Uint8Array(len)
+  for (var i = 0; i < len; i++) {
+    bytes[i] = binary_string.charCodeAt(i)
+  }
+  return bytes.buffer
 }
 
 async function generateKey() {
   const key = await crypto.subtle.generateKey(
-    {name: 'AES-CBC', length: 256},
+    { name: 'AES-CBC', length: 256 },
     true,
     ['encrypt', 'decrypt']
   )
   const jwk = await crypto.subtle.exportKey('jwk', key)
-  return {key, keyStr: jwk.k}
+  return { key, keyStr: jwk.k }
 }
 
 async function encrypt(key, text) {
   const iv = crypto.getRandomValues(new Uint8Array(16))
   const encrypted = await crypto.subtle.encrypt(
-    {name: 'AES-CBC', iv},
+    { name: 'AES-CBC', iv },
     key,
-    str2buf(text),
+    str2buf(text)
   )
   return {
     iv: buf2base64(iv),
@@ -73,7 +79,6 @@ function buf2base64(buf) {
   for (let i = 0; i < len; i++) binary += String.fromCharCode(bytes[i])
   return btoa(binary)
 }
-
 
 const game = new DinoGame(
   window.innerWidth,
@@ -193,7 +198,7 @@ const checkUserData = () => {
   }
 }
 
-function startHomePage() {
+async function startHomePage() {
   $id('home-page').classList.remove('hidden')
   $id('end-game-page').classList.add('hidden')
   $id('prop-container').classList.add('hidden') //Lawra
@@ -205,6 +210,9 @@ function startHomePage() {
   // $id("name-input").onkeydown = (e) => {
   //   if (e.code === "Enter") startGame();
   // };
+  await game.start(true).catch(console.error)
+  $id('start-button').textContent = '開始遊戲'
+  $id('start-button').onclick = checkUserData
 }
 
 async function getHighestScore() {
@@ -301,9 +309,9 @@ function endGameRoute() {
       },
     })
       .then((response) => response.json())
-      .then(async(data) => {
-        const encoded = JSON.stringify({ studentID, score });
-        const {iv, encrypted} = await encrypt(key, encoded)
+      .then(async (data) => {
+        const encoded = JSON.stringify({ studentID, score })
+        const { iv, encrypted } = await encrypt(key, encoded)
 
         fetch(`${baseURL}reportScore`, {
           method: 'POST',
@@ -441,7 +449,6 @@ function showLeaderboard() {
   node.onclick = showLeaderboard
 })
 $id('endPage-leaderboard-button').onclick = showLeaderboard
-$id('start-button').onclick = checkUserData
 ;[].forEach.call($class('prop-button'), (node) => {
   node.onclick = showPropList
 })
@@ -530,6 +537,5 @@ window.addEventListener('resize', function () {
 
 startHomePage()
 importKey()
-game.start(true).catch(console.error)
 // $('body').show();
 // showLeaderboard()
