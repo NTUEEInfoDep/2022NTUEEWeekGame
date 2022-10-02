@@ -134,16 +134,19 @@
                 <div id="prompt-page-title" class="page-title">Congratulation</div>
             </div>
             <div id="prompt-page-main">
-                您已經進入前10名, 填寫學號以儲存您的分數
-            </div>
-            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
-            <div id="prompt-botton-container">
-                <button id="prompt-confirm-button" class="prompt-page-button">
-                    送出
-                </button>
-                <button id="prompt-reject-button" class="prompt-page-button">
-                    不填
-                </button>
+                <div id="prompt-page-text">
+                    您已進入前10名, 填寫學號以儲存您的分數
+                </div>
+                <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
+                <br/>
+                <div id="prompt-botton-container">
+                    <button id="prompt-confirm-button" class="prompt-page-button">
+                        送出
+                    </button>
+                    <button id="prompt-reject-button" class="prompt-page-button">
+                        不填
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -152,26 +155,22 @@
     <div id="end-game-page" class="hidden">
         <!-- class="hidden" -->
         <div id="end-game-page-title">GAME OVER</div>
+        <br/>
         <div id="score-bar">Your Score:</div>
         <div id="score">0</div>
         <div id="highestScore"></div>
         <div id="encouragement"></div>
-        <!-- <li id="props-list" style="list-style-type: none">
-            <ul id="props-dance"></ul>
-            <ul id="props-band"></ul>
-            <ul id="props-eater"></ul>
-            <ul id="props-week"></ul>
-            <ul id="props-guitar"></ul>
-        </li> -->
-        <!-- 不須道具資訊 -->
+        <br/>
         <!--傅渝翔 新增-->
         <div id="endpage-button-set">
             <button id="endPage-leaderboard-button" class="end-page-button">
-                <img id="EP-leaderboard-button-pic" src="./assets/crown.png" />
+                <!-- <img id="EP-leaderboard-button-pic" src="./assets/crown.png" /> -->
+                &times;
             </button>
             <!-- 拿掉leaderboard-button的class  -->
             <button id="restart-button" class="end-page-button">
-                <img id="EP-restart-button-pic" src="./assets/replay.png" />
+                <!-- <img id="EP-restart-button-pic" src="./assets/replay.png" /> -->
+                &times;
             </button>
             <button id="endgame-button" class="end-page-button">&times;</button>
             <!--傅渝翔 新增-->

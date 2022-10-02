@@ -729,6 +729,7 @@ td {
 }
 
 #warning-page-main,
+#prompt-page-main,
 #error-page-main {
     width: 90%;
     height: fit-content;
@@ -743,6 +744,7 @@ td {
 }
 
 #warning-page-text,
+#prompt-page-text,
 #error-page-text {
     width: 90%;
     height: fit-content;
@@ -805,36 +807,46 @@ td {
 }
 
 #prompt-page-main {
-    width: fit-content;
+    width: 800px;
+    max-width: 90%;
     height: fit-content;
     max-height: 300px;
     font-size: 1.5rem;
     font-family: 'Righteous', sans-serif;
-    margin: 1rem 1rem 0;
+    margin: 0 1rem 0;
     overflow: hidden;
     background-color: white;
+    text-align: center;
+    align-items: center;
     padding: 10px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .prompt-page-input {
-    margin: 0 0 1.5rem;
-    padding: 0.5rem 0 0;
+    margin: 0 0 0;
+    width: 100%;
     font-size: 1.5rem;
+    border: 0.1rem solid black;
+    padding: 0.25rem 0;
+    /* border: none; */
     font-family: 'Arvo', sans-serif;
+    display: flex;
     text-align: center;
-    border-bottom: 2px solid black;
-    width: 30rem;
+    border-radius: 10px;
 }
 
 .prompt-page-input:hover {
     opacity: 0.5;
-    border: 0.1rem solid black;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.7);
     text-align: center;
+    letter-spacing: 0.5rem;
+    margin-right: 0rem;
+    transition: all 0.4s ease 0s;
 }
 
 .prompt-page-input:focus {
-    border: 0px;
-    border: 0.1rem solid black;
+    border-bottom: 0.1rem solid black;
     opacity: 0.5;
     letter-spacing: 0rem;
     margin-right: 0rem;

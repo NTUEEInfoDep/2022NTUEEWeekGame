@@ -1,112 +1,137 @@
 /* 將開始遊戲和html中的hidden加回去 */
-/* index.js 115 130 html 132*/
-/* 刪除記錄道具的code */
-#end-game-page {
-  top: 50%;
-  left: 50%;
-  position: fixed;
-  transform: translateX(-50%) translateY(-50%);
-  height: 50%;
-  width: auto;
-  aspect-ratio: 25/20;
 
-  padding: 15vh;
-  border-width: 2vh;
-  border-color: rgb(131, 132, 123);
-  border-style: double;
-  border-radius: 15vh;
-  /* min-width: fit-content;
-    min-height: fit-content;*/
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  background-color: white;
-  color: black;
-  /* new */
+
+/* index.js 115 130 html 132*/
+
+
+/* 刪除記錄道具的code */
+
+#end-game-page {
+    padding: 2rem 2rem 0;
+    min-width: 50vw;
+    min-height: 50vh;
+    display: grid;
+    grid-template-rows: auto;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    max-height: 90vh;
+    overflow: hidden;
+    overflow-y: auto;
+    border-radius: 60px;
+    border-width: 1rem;
+    border-color: rgb(131, 132, 123);
+    border-style: double;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+    /* new */
+}
+
+#end-game-page>* {
+    margin: 0.25rem;
+    overflow: visible;
 }
 
 #end-game-page-title {
-  /* margin: -3vh 0 0; */
-  overflow: visible;
-  position: fixed;
-  top: 10vh;
-  font-size: 10vh;
-  font-family: 'Pdark', sans-serif;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
+    margin: -0.75rem 0 0;
+    overflow: visible;
+    font-size: 5rem;
+    font-family: 'Pdark', sans-serif;
+    user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 10px 15px;
 }
 
 #score-bar {
-  position: fixed;
-  top: 23vh;
-  font-size: 6vh;
-  font-family: 'Arvo', sans-serif;
+    font-size: 2.5rem;
+    font-family: 'Arvo', sans-serif;
 }
 
 #score {
-  top: 30vh;
-  position: fixed;
-  font-size: 15vh;
+    font-size: 4rem;
 }
 
-/* #restart-button {
-    color: black;
-    background-color: white;
-    font-size: 2rem;
-    font-family: "Righteous", sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease 0s;
-}
-
-#restart-button:hover {
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-    transition: all 0.4s ease 0s;
-} */
 #endpage-button-set {
-  position: fixed;
-  bottom: 7vh;
-  height: 20vh;
-  width: 80%;
-  align-items: center;
-  text-align: center;
+    height: 8rem;
+    width: 100%;
+    align-items: center;
+    text-align: center;
 }
+
 .end-page-button {
-  height: 12vh;
-  width: auto;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  font-size: large;
-  display: inline;
-  margin: 0 3vh 3vh 3vh;
-  background-color: transparent;
-  font-size: 10vh;
-  border-color: silver;
-  color: rgb(91, 91, 91);
+    top: 0;
+    height: 5rem;
+    width: auto;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    font-size: large;
+    display: inline;
+    margin: 0;
+    background-color: transparent;
+    font-size: 2rem;
+    border-color: silver;
+    color: rgb(91, 91, 91);
 }
 
 .end-page-button:hover {
-  background-color: rgba(192, 192, 192, 0.5);
+    background-color: rgba(192, 192, 192, 0.5);
 }
 
-/* #restart-button{
-    height: 12vh;
-} */
-#EP-leaderboard-button-pic {
-  max-width: 85%;
-  max-height: 85%;
+#endPage-leaderboard-button {
+    background-image: url("../assets/crown.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 85%;
+    color: rgba(0, 0, 0, 0);
 }
-#EP-restart-button-pic {
-  max-width: 95%;
-  max-height: 95%;
+
+#restart-button {
+    background-image: url("../assets/replay.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 85%;
+    color: rgba(0, 0, 0, 0);
 }
+
 #highestScore {
-  position: fixed;
-  top: 47vh;
-  font-size: 3.5vh;
+    font-size: 1.25rem;
 }
+
 #encouragement {
-  position: fixed;
-  top: 72vh;
-  font-size: 3.5vh;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-height: 560px) {
+    #end-game-page-title {
+        font-size: 3.5rem;
+    }
+    #end-game-page {
+        width: 350px;
+        grid-template-rows: 3.5rem 1rem 2rem 3rem 1rem 1.5rem 0.5rem 5rem;
+    }
+    #score-bar {
+        font-size: 2rem;
+    }
+    #score {
+        font-size: 3rem;
+    }
+    .end-page-button {
+        height: 3rem;
+    }
+    #endpage-button-set {
+        height: 5rem;
+    }
+}
+
+@media screen and (max-height: 370px) {
+    #end-game-page {
+        max-height: 70vh;
+    }
 }
