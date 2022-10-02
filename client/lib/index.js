@@ -257,9 +257,7 @@ function endGameRoute() {
         })
         const highestScore = data.score
         if (highestScore !== 0) {
-          $id(
-            'highestScore'
-          ).textContent = `Your previous highest score is ${highestScore}`
+          $id('highestScore').textContent = `你的最高分是${highestScore}`
         } else {
           $id('highestScore').textContent = `Good first try!`
         }
@@ -315,7 +313,7 @@ function showLeaderboard() {
   tr.id = 'leaderboard-tr-header'
 
   $id('leaderboard-table-container').innerHTML = ''
-  ;['Rank', 'Name', 'Score'].forEach((text) => {
+  ;['排名', '名字', '分數'].forEach((text) => {
     var cell = document.createElement('th')
     cell.appendChild(document.createTextNode(text))
     tr.appendChild(cell)

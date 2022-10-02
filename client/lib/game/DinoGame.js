@@ -141,7 +141,8 @@ export default class DinoGame extends GameRunner {
 
     this.state.groundY =
       this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
-    this.state.dino.baseY = this.state.groundY - this.state.settings.dinoGroundOffset
+    this.state.dino.baseY =
+      this.state.groundY - this.state.settings.dinoGroundOffset
   }
 
   async preload() {
@@ -162,7 +163,7 @@ export default class DinoGame extends GameRunner {
     dino.x = 25
     this.state.dino = dino
     this.state.groundY =
-    this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
+      this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
     dino.baseY = this.state.groundY - settings.dinoGroundOffset
   }
 
@@ -727,8 +728,13 @@ export default class DinoGame extends GameRunner {
     if (shouldDraw) {
       // draw the background behind it in case this is called
       // at a time where the background isn't re-drawn (i.e. in `endGame`)
-      canvasCtx.fillStyle = "rgb(211, 231, 181)"
-      canvasCtx.fillRect(this.width - fontSize * 14 - margin, margin, fontSize * 14, fontSize);
+      canvasCtx.fillStyle = 'rgb(211, 231, 181)'
+      canvasCtx.fillRect(
+        this.width - fontSize * 14 - margin,
+        margin,
+        fontSize * 14,
+        fontSize
+      )
 
       this.paintText(
         `HI ${changeToString(this.highestScore)} ${changeToString(drawValue)}`,

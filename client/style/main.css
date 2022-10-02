@@ -25,6 +25,7 @@ body {
     background-color: #f7f7f7;
     display: flex;
     justify-content: center;
+    font-family: 'Noto Sans TC', sans-serif;
 }
 
 canvas {
@@ -64,7 +65,7 @@ td {
     background-color: #eeeeee;
     color: #001116;
     font-size: 1rem;
-    font-family: 'Arvo', sans-serif;
+    /* font-family: 'Arvo', sans-serif; */
 }
 
 #creators:hover {
@@ -88,7 +89,7 @@ td {
     margin: auto;
     overflow: visible;
     font-size: 5rem;
-    font-family: 'Pdark', sans-serif;
+    /* font-family: 'Pdark', sans-serif; */
     margin: 0;
     position: absolute;
     top: 50%;
@@ -116,6 +117,11 @@ td {
     text-align: center;
     background-color: rgb(189, 212, 163);
     color: black;
+    /* font-family: 'Noto Sans TC', sans-serif; */
+    background-image: url('../assets/main.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
 }
 
 #home-page-middle-block {
@@ -126,7 +132,7 @@ td {
     display: grid;
     /* grid-template-rows: 1.5rem 6.5rem 20px 45px 45px 20px 70px 70px; */
     grid-template-rows: auto;
-    background-color: rgb(228, 246, 207);
+    background-color: rgba(228, 246, 207, 0.8);
     border-radius: 30px;
     position: absolute;
     top: 50%;
@@ -157,14 +163,14 @@ td {
 
 #home-page-suptitle {
     font-size: 1rem;
-    font-family: 'Arvo', sans-serif;
+    /* font-family: 'Arvo', sans-serif; */
 }
 
 #home-page-title {
     margin: -0.75rem 0 0;
     overflow: visible;
     font-size: 6rem;
-    font-family: 'Pdark', sans-serif;
+    /* font-family: 'Pdark', sans-serif; */
     user-select: none;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -175,7 +181,7 @@ td {
     font-size: 1.5rem;
     padding: 0.25rem 0;
     border: none;
-    font-family: 'Arvo', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
     display: flex;
     text-align: center;
     border-radius: 10px;
@@ -202,7 +208,7 @@ td {
     opacity: 1;
     background-color: white;
     font-size: 2rem;
-    font-family: 'Righteous', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
     text-transform: uppercase;
     text-decoration: none;
 }
@@ -211,7 +217,7 @@ td {
     color: black;
     background-color: white;
     font-size: 2rem;
-    font-family: 'Righteous', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.4s ease 0s;
@@ -231,7 +237,7 @@ td {
     color: black;
     background-color: white;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.4s ease 0s;
@@ -259,7 +265,7 @@ td {
     color: black;
     background-color: white;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.4s ease 0s;
@@ -276,7 +282,7 @@ td {
     color: black;
     background-color: white;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.4s ease 0s;
@@ -295,14 +301,12 @@ td {
 .instruction-button {
     color: black;
     background-color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
     width: 2rem;
     height: 2rem;
-    font-family: 'Righteous', sans-serif;
     text-decoration: none;
     border-radius: 50%;
-    border: none;
-    /* border-color: blue; */
+    border: 0.2rem solid black;
     right: 1rem;
     bottom: 1rem;
     display: flex;
@@ -371,7 +375,7 @@ td {
     height: fit-content;
     max-height: 300px;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     margin: 1rem;
     /* overflow: hidden;
     overflow-y: scroll; */
@@ -498,7 +502,7 @@ td {
     height: 100%;
     height: fit-content;
     font-size: 4vh;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     font-weight: 600;
     table-layout: fixed;
 }
@@ -552,7 +556,7 @@ td {
     max-height: 50vh;
     max-width: 80vw;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     margin: 1rem;
     overflow: hidden;
     overflow-y: scroll;
@@ -674,7 +678,7 @@ td {
     height: fit-content;
     max-height: 300px;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     margin: 1rem;
     overflow: hidden;
     overflow-y: scroll;
@@ -735,7 +739,7 @@ td {
     height: fit-content;
     max-height: 300px;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-align: left;
     overflow: hidden;
     overflow-y: auto;
@@ -750,7 +754,7 @@ td {
     height: fit-content;
     max-height: 300px;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-align: left;
     margin-bottom: 1rem;
     overflow: hidden;
@@ -777,7 +781,7 @@ td {
     color: black;
     background-color: white;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.4s ease 0s;
@@ -812,7 +816,7 @@ td {
     height: fit-content;
     max-height: 300px;
     font-size: 1.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     margin: 0 1rem 0;
     overflow: hidden;
     background-color: white;
@@ -830,7 +834,7 @@ td {
     border: 0.1rem solid black;
     padding: 0.25rem 0;
     /* border: none; */
-    font-family: 'Arvo', sans-serif;
+    /* font-family: 'Arvo', sans-serif; */
     display: flex;
     text-align: center;
     border-radius: 10px;
@@ -857,7 +861,7 @@ td {
     opacity: 1;
     background-color: white;
     font-size: 2rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-transform: uppercase;
     text-decoration: none;
 }
@@ -868,7 +872,7 @@ td {
     width: 5rem;
     height: 2.5rem;
     font-size: 1.2rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     background-color: white;
     text-align: center;
     border-radius: 0%;
@@ -885,7 +889,7 @@ td {
     width: 5rem;
     height: 2.5rem;
     font-size: 1.2rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     background-color: white;
     text-align: center;
     border-radius: 0%;
@@ -912,7 +916,7 @@ td {
     color: red;
     text-align: center;
     font-size: 4.5rem;
-    font-family: 'Righteous', sans-serif;
+    /* font-family: 'Righteous', sans-serif; */
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.4s ease 0s;
@@ -957,7 +961,7 @@ td {
     margin: 0 0 0;
     overflow: visible;
     font-size: 3rem;
-    font-family: 'Pdark', sans-serif;
+    /* font-family: 'Pdark', sans-serif; */
     font-weight: bold;
     text-align: center;
 }

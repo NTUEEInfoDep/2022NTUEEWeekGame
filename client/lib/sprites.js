@@ -28,7 +28,7 @@ export default {
   ground: { h: 354, w: 4000, x: 0, y: 0 },
 
   // Items
-  week: { h: 169, w: 180, x: 2102, y: 355 },
+  week: { h: 169, w: 169, x: 2102, y: 355 },
   guitar: { h: 169, w: 169, x: 2273, y: 355 },
   dance: { h: 169, w: 169, x: 2442, y: 355 },
   band: { h: 169, w: 169, x: 2613, y: 355 },
@@ -36,5 +36,5 @@ export default {
 
   // PowerUps
   bullet: { h: 94, w: 77, x: 2963, y: 355 },
-  food: { h: 108, w: 108, x: 3282, y: 354 },
+  food: { h: 108, w: 108, x: 3282, y: 355 },
 }

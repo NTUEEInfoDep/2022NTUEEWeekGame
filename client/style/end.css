@@ -1,137 +1,149 @@
 /* 將開始遊戲和html中的hidden加回去 */
 
-
 /* index.js 115 130 html 132*/
-
 
 /* 刪除記錄道具的code */
 
 #end-game-page {
-    padding: 2rem 2rem 0;
-    min-width: 50vw;
-    min-height: 50vh;
-    display: grid;
-    grid-template-rows: auto;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%) translateY(-50%);
-    max-height: 90vh;
-    overflow: hidden;
-    overflow-y: auto;
-    border-radius: 60px;
-    border-width: 1rem;
-    border-color: rgb(131, 132, 123);
-    border-style: double;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-    color: black;
-    /* new */
+  padding: 1.5rem 1.5rem 0;
+  min-width: 50vw;
+  min-height: 50vh;
+  display: grid;
+  grid-template-rows: auto;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  max-height: 85vh;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 60px;
+  border-width: 1rem;
+  border-color: rgb(131, 132, 123);
+  border-style: double;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: black;
+  background-image: url('../assets/LeaderBoard_background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  font-family: 'Noto Sans TC', sans-serif;
+  /* new */
 }
 
-#end-game-page>* {
-    margin: 0.25rem;
-    overflow: visible;
+#end-game-page > * {
+  margin: 0.25rem;
+  overflow: visible;
 }
 
 #end-game-page-title {
-    border-bottom: 5px solid black;
-    border-top: 5px solid black;
-    margin: -0.75rem 0 0;
-    overflow: visible;
-    font-size: 5rem;
-    font-family: 'Pdark', sans-serif;
-    user-select: none;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 10px 15px;
+  border-bottom: 5px solid black;
+  border-top: 5px solid black;
+  margin: -0.75rem 0 0;
+  overflow: visible;
+  font-size: 4rem;
+  /* font-family: 'Press Start 2P', sans-serif; */
+  user-select: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 10px 15px;
 }
 
 #score-bar {
-    font-size: 2.5rem;
-    font-family: 'Arvo', sans-serif;
+  font-size: 2.5rem;
 }
 
 #score {
-    font-size: 4rem;
+  font-size: 3rem;
+  /* font-family: 'Press Start 2P', sans-serif; */
 }
 
 #endpage-button-set {
-    height: 8rem;
-    width: 100%;
-    align-items: center;
-    text-align: center;
+  height: 8rem;
+  width: 100%;
+  align-items: center;
+  text-align: center;
 }
 
 .end-page-button {
-    top: 0;
-    height: 5rem;
-    width: auto;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    font-size: large;
-    display: inline;
-    margin: 0;
-    background-color: transparent;
-    font-size: 2rem;
-    border-color: silver;
-    color: rgb(91, 91, 91);
+  top: 0;
+  height: 5rem;
+  width: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  font-size: large;
+  display: inline;
+  margin: 0;
+  background-color: white;
+  font-size: 2rem;
+  border-color: silver;
+  border-width: 0.2rem;
+  color: rgb(91, 91, 91);
 }
 
 .end-page-button:hover {
-    background-color: rgba(192, 192, 192, 0.5);
+  background-color: rgba(192, 192, 192, 0.8);
 }
 
 #endPage-leaderboard-button {
-    background-image: url("../assets/crown.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 85%;
-    color: rgba(0, 0, 0, 0);
+  background-image: url('../assets/crown.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 85%;
+  color: rgba(0, 0, 0, 0);
 }
 
 #restart-button {
-    background-image: url("../assets/replay.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 85%;
-    color: rgba(0, 0, 0, 0);
+  background-image: url('../assets/replay.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 85%;
+  color: rgba(0, 0, 0, 0);
+}
+
+#endgame-button {
+  background-image: url('../assets/return.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 85%;
+  color: rgba(0, 0, 0, 0);
 }
 
 #highestScore {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 #encouragement {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 @media screen and (max-height: 560px) {
-    #end-game-page-title {
-        font-size: 3.5rem;
-    }
-    #end-game-page {
-        width: 350px;
-        grid-template-rows: 3.5rem 1rem 2rem 3rem 1rem 1.5rem 0.5rem 5rem;
-    }
-    #score-bar {
-        font-size: 2rem;
-    }
-    #score {
-        font-size: 3rem;
-    }
-    .end-page-button {
-        height: 3rem;
-    }
-    #endpage-button-set {
-        height: 5rem;
-    }
+  #end-game-page-title {
+    font-size: 3.5rem;
+  }
+  #end-game-page {
+    width: 350px;
+    grid-template-rows: 3.5rem 1rem 2rem 3rem 1rem 1.5rem 0.5rem 5rem;
+  }
+  #score-bar {
+    font-size: 2rem;
+  }
+  #score {
+    font-size: 3rem;
+  }
+  .end-page-button {
+    height: 3rem;
+  }
+  #endpage-button-set {
+    height: 5rem;
+  }
 }
 
 @media screen and (max-height: 370px) {
-    #end-game-page {
-        max-height: 70vh;
-    }
+  #end-game-page {
+    max-height: 70vh;
+  }
 }
