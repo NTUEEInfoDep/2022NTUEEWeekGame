@@ -772,30 +772,29 @@ export default class DinoGame extends GameRunner {
       }
     }
 
+    let drawValueStr = ''
     if (shouldDraw) {
-      // draw the background behind it in case this is called
-      // at a time where the background isn't re-drawn (i.e. in `endGame`)
-      canvasCtx.fillStyle = 'rgb(211, 231, 181)'
-      canvasCtx.fillRect(
-        this.width - fontSize * 14 - margin,
-        margin,
-        fontSize * 14,
-        fontSize
-      )
-
-      this.paintText(
-        `HI ${changeToString(this.highestScore)} ${changeToString(drawValue)}`,
-        this.width - margin,
-        margin,
-        {
-          font: 'PressStart2P',
-          size: `${fontSize}px`,
-          align: 'right',
-          baseline: 'top',
-          color: '#535353',
-        }
-      )
+      drawValueStr = `HI ${changeToString(this.highestScore)} ${changeToString(
+        drawValue
+      )}`
+    } else {
+      drawValueStr = `HI ${changeToString(this.highestScore)}      `
     }
+    canvasCtx.fillStyle = 'rgb(211, 231, 181)'
+    canvasCtx.fillRect(
+      this.width - fontSize * 14 - margin,
+      margin,
+      fontSize * 14,
+      fontSize
+    )
+
+    this.paintText(drawValueStr, this.width - margin, margin, {
+      font: 'PressStart2P',
+      size: `${fontSize}px`,
+      align: 'right',
+      baseline: 'top',
+      color: '#535353',
+    })
   }
 
   drawFoodScoreTexts() {
