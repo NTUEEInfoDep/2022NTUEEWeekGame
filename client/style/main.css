@@ -681,7 +681,7 @@ td {
     /* font-family: 'Righteous', sans-serif; */
     margin: 1rem;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: white;
     border: 5px solid black;
     padding: 10px;
