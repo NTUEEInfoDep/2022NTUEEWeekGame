@@ -6,6 +6,7 @@ export default class Dino extends Actor {
     this.isDucking = false
     this.powerUp = 'none'
     this.powerUpTime = 0
+    this.powerUpMaxTime = 0
     this.legFrames = 0
     this.legShowing = 'Left'
     this.sprite = `dino${this.legShowing}Leg`
@@ -79,7 +80,7 @@ export default class Dino extends Actor {
 
   determineSprite() {
     if (this.blink) {
-      console.log('owo')
+      // console.log('owo')
       this.shine += 1
       if (this.shine < 20) {
         this.sprite = `dinoDisappear`

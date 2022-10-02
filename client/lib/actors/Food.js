@@ -15,7 +15,7 @@ export default class Food extends Actor {
   }
 
   destroy() {
-    console.log('Food destroyed')
+    // console.log('Food destroyed')
     this.x = -100
     this.y = -100
   }
