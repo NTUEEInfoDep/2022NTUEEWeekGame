@@ -49,7 +49,7 @@ const ontouchend = () => {
   game.onInput('stop-duck')
 }
 const onKeyDown = ({ keyCode }) => {
-  console.log('down')
+  console.log('key down')
   if (keycodes.JUMP[keyCode]) {
     game.onInput('jump')
   } else if (keycodes.DUCK[keyCode]) {

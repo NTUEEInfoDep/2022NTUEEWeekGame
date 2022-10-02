@@ -15,7 +15,7 @@ export default class Bullet extends Actor {
   }
 
   destroy() {
-    console.log('Bullet destroyed')
+    // console.log('Bullet destroyed')
     this.x = -100
     this.y = -100
   }

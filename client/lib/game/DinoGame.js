@@ -602,7 +602,6 @@ export default class DinoGame extends GameRunner {
       const progressWidth = (width * progress) / 100
 
       canvasCtx.fillStyle = '#535353'
-      // canvasCtx.roundRect(0, 0, width, height, height / 2).fill()
       canvasCtx
         .roundRect(margin.left, margin.top, width, height, height / 2)
         .fill()
