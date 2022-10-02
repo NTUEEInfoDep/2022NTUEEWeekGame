@@ -150,18 +150,20 @@ export default class DinoGame extends GameRunner {
   }
 
   resize() {
-    this.width = window.innerWidth
-    this.height = window.innerHeight
-    this.canvas.style.width = this.width + 'px'
-    this.canvas.style.height = this.height + 'px'
-    this.canvas.width = Math.floor(this.width * window.devicePixelRatio)
-    this.canvas.height = Math.floor(this.height * window.devicePixelRatio)
-    this.canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio)
+    if (this.state.isRunning) {
+      this.width = window.innerWidth
+      this.height = window.innerHeight
+      this.canvas.style.width = this.width + 'px'
+      this.canvas.style.height = this.height + 'px'
+      this.canvas.width = Math.floor(this.width * window.devicePixelRatio)
+      this.canvas.height = Math.floor(this.height * window.devicePixelRatio)
+      this.canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio)
 
-    this.state.groundY =
-      this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
-    this.state.dino.baseY =
-      this.state.groundY - this.state.settings.dinoGroundOffset
+      this.state.groundY =
+        this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
+      this.state.dino.baseY =
+        this.state.groundY - this.state.settings.dinoGroundOffset
+    }
   }
 
   async preload() {
