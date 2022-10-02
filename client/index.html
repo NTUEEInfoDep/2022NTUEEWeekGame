@@ -12,8 +12,8 @@
     <meta name="og:title" content="EE見鍾情-電機週小遊戲" />
     <meta name="og:description" content="2022電機週小遊戲" />
 
-    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="apple-touch-icon" href="./assets/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/favicon.png" />
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +21,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <title>EE見鍾情</title>
+
+    <link rel="preload" as="image" href="assets/main.jpg" />
+    <link rel="preload" as="image" href="assets/sprite.png" />
+    <link rel="preload" as="image" href="assets/background.png" />
 
     <!-- <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/card.css">加入Card css -->
@@ -183,12 +187,12 @@
         <!--傅渝翔 新增-->
         <div id="endpage-button-set">
             <button id="endPage-leaderboard-button" class="end-page-button">
-                <!-- <img id="EP-leaderboard-button-pic" src="./assets/crown.png" /> -->
+                <!-- <img id="EP-leaderboard-button-pic" src="assets/crown.png" /> -->
                 &times;
             </button>
             <!-- 拿掉leaderboard-button的class  -->
             <button id="restart-button" class="end-page-button">
-                <!-- <img id="EP-restart-button-pic" src="./assets/replay.png" /> -->
+                <!-- <img id="EP-restart-button-pic" src="assets/replay.png" /> -->
                 &times;
             </button>
             <button id="endgame-button" class="end-page-button">&times;</button>
@@ -200,7 +204,7 @@
     <div class="page-container hidden" id="leaderboard-container">
         <div id="leaderboard-page">
             <div id="leaderboard-page-title">
-                <img id="leaderboard-image" src="./assets/Leaderboard.png" />
+                <img id="leaderboard-image" src="assets/Leaderboard.png" />
             </div>
             <div id="leaderboard-table-container-edge">
                 <table id="leaderboard-table-container"></table>
@@ -280,7 +284,7 @@
     <!-- 金巧芸新增 -->
     <div id="weekCard" class="hidden">
         <div class="box b1" id="cardBack">
-            <img id="cardBackPic" src="./assets/logo.jpg" />
+            <img id="cardBackPic" src="assets/logo.jpg" />
         </div>
         <p class="box b2" id="cardFront">+0</p>
     </div>
