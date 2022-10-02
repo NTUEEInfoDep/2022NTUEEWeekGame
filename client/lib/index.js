@@ -210,7 +210,7 @@ async function startHomePage() {
   // $id("name-input").onkeydown = (e) => {
   //   if (e.code === "Enter") startGame();
   // };
-  await game.start(true).catch(console.error)
+  if (first) await game.start(true).catch(console.error)
   $id('start-button').textContent = '開始遊戲'
   $id('start-button').onclick = checkUserData
 }
@@ -249,6 +249,7 @@ async function startGame() {
     first = false
   } else {
     game.resetGame()
+    console.log('reset')
   }
   // console.log("start");
   keyStart()
