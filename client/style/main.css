@@ -1001,3 +1001,24 @@ td {
 .page-header {
     overflow: visible;
 }
+
+#itemtime {
+    position: absolute;
+    transform: translate(560px, -225px);
+    border-radius: 15px;
+    width: 140px;
+    height: 25px;
+    background-color: rgb(70, 71, 71);
+    opacity: 80%;
+    visibility: hidden;
+    text-align: right;
+  }
+  #hideitemtime {
+    position: absolute;
+    transform: translate(630px, -225px);
+    width: 290px;
+    height: 30px;
+    background-color: rgb(207, 234, 176);
+    visibility: hidden;
+    text-align: right;
+  }

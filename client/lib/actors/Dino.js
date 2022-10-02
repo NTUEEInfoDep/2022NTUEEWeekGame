@@ -79,7 +79,6 @@ export default class Dino extends Actor {
 
   determineSprite() {
     if (this.blink) {
-      console.log('owo')
       this.shine += 1
       if (this.shine < 20) {
         this.sprite = `dinoDisappear`

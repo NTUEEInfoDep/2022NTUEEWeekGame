@@ -72,6 +72,7 @@ export default class DinoGame extends GameRunner {
         band: 5,
         eater: 5,
         week: 1,
+        covid: 0,
       },
       scoreBlinkRate: 20, // fpa
       scoreIncreaseRate: 6, // fpa
@@ -94,6 +95,7 @@ export default class DinoGame extends GameRunner {
       isRunning: true,
       level: 0,
       speedRatio: 1,
+      changetime: 0,
       scoreRatio: 1,
       score: {
         blinkFrames: 0,
@@ -108,6 +110,7 @@ export default class DinoGame extends GameRunner {
         week: 0,
         guitar: 0,
       },
+
     }
   }
 
@@ -267,15 +270,20 @@ export default class DinoGame extends GameRunner {
           // playSound("hit");
         }
       })
-
       // items hit
       state.items.forEach((item) => {
         if (item.hits([state.dino])) {
           item.destroy()
           state.dino.powerUp = item.sprite
           state.dino.powerUpTime =
-            state.settings.powerUpTimes[item.sprite] * this.frameRate
-          playSound('level-up')
+            state.settings.powerUpTimes[item.sprite] * this.frameRate;
+          playSound('level-up');
+          var itemtime = document.getElementById("itemtime");
+          itemtime.style.visibility = "visible";
+          itemtime = document.getElementById("hideitemtime");
+          itemtime.style.width = "0px";
+          itemtime.style.visibility = "visible";
+
 
           switch ((this, state.dino.powerUp)) {
             case 'guitar':
@@ -305,6 +313,7 @@ export default class DinoGame extends GameRunner {
               this.state.score.value += week_plus //碰到電機週，加分!
               break
           }
+          this.state.changetime=140/state.settings.powerUpTimes[state.dino.powerUp]/this.frameRate;
         }
       })
 
@@ -377,6 +386,11 @@ export default class DinoGame extends GameRunner {
         week: 0,
       },
     })
+    var hide = document.getElementById("hideitemtime");
+    hide.style.visibility = "hidden";
+    hide = document.getElementById("itemtime");
+    hide.style.visibility = "hidden";
+    this.start();
 
     this.start()
   }
@@ -537,11 +551,17 @@ export default class DinoGame extends GameRunner {
     if (dino.powerUp !== 'none') {
       console.log(dino.powerUp)
       dino.powerUpTime--
+     
       if (dino.powerUpTime <= 0) {
+        this.state.changetime=0;
+        var hide = document.getElementById("hideitemtime");
+        hide.style.visibility = "hidden";
+        hide = document.getElementById("itemtime");
+        hide.style.visibility = "hidden";
         switch (dino.powerUp) {
-          case 'guitar':
+          case 'guitar': 
             break
-          case 'dance':
+          case 'dance':         
             this.state.speedRatio = 1
             this.state.scoreRatio = 1
             break
@@ -556,8 +576,16 @@ export default class DinoGame extends GameRunner {
           case 'covid':
             break
         }
+        
         dino.powerUp = 'none'
         console.log('powerUp expired')
+      }
+      if (dino.powerUpTime >= 0) {
+        
+        var itemtime = document.getElementById("hideitemtime");
+        itemtime.style.width = 280 - this.state.changetime*dino.powerUpTime*2 + "px";
+        
+        console.log(280 - this.state.changetime*dino.powerUpTime*2 + "px");
       }
     }
 
@@ -583,12 +611,14 @@ export default class DinoGame extends GameRunner {
     this.paintInstances(bullets)
   }
 
+  
   drawItems(spawnedObstacle, spawnedBird) {
     const { state } = this
     const { items, settings } = this.state
     let spawned = false
-
+  
     this.progressInstances(items)
+   
     if (this.frameCount % settings.itemSpawnRate === 0) {
       if (randBoolean() && state.dino.powerUp === 'none') {
         spawned = true
@@ -811,4 +841,6 @@ export default class DinoGame extends GameRunner {
     if (opts.color) canvasCtx.fillStyle = opts.color
     canvasCtx.fillText(text, x, y)
   }
+
+
 }
