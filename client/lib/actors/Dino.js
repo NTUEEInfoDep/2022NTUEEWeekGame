@@ -6,6 +6,7 @@ export default class Dino extends Actor {
     this.isDucking = false
     this.powerUp = 'none'
     this.powerUpTime = 0
+    this.powerUpMaxTime = 0
     this.legFrames = 0
     this.legShowing = 'Left'
     this.sprite = `dino${this.legShowing}Leg`

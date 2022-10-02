@@ -19,6 +19,25 @@ import GameRunner from './GameRunner.js'
 
 import { week } from '../card.js'
 
+CanvasRenderingContext2D.prototype.roundRect = function (
+  x,
+  y,
+  width,
+  height,
+  radius
+) {
+  if (width < 2 * radius) radius = width / 2
+  if (height < 2 * radius) radius = height / 2
+  this.beginPath()
+  this.moveTo(x + radius, y)
+  this.arcTo(x + width, y, x + width, y + height, radius)
+  this.arcTo(x + width, y + height, x, y + height, radius)
+  this.arcTo(x, y + height, x, y, radius)
+  this.arcTo(x, y, x + width, y, radius)
+  this.closePath()
+  return this
+}
+
 export default class DinoGame extends GameRunner {
   constructor(width, height, endGameRoute) {
     super()
@@ -71,7 +90,7 @@ export default class DinoGame extends GameRunner {
         dance: 5,
         band: 5,
         eater: 5,
-        week: 1,
+        week: 0.5,
       },
       scoreBlinkRate: 20, // fpa
       scoreIncreaseRate: 6, // fpa
@@ -175,6 +194,7 @@ export default class DinoGame extends GameRunner {
     this.drawGround()
     this.drawClouds()
     this.drawDino()
+    this.drawProgressBar()
     this.drawScore()
     if (this.isTouchDevice) {
       this.drawDuckButton()
@@ -275,6 +295,7 @@ export default class DinoGame extends GameRunner {
           state.dino.powerUp = item.sprite
           state.dino.powerUpTime =
             state.settings.powerUpTimes[item.sprite] * this.frameRate
+          state.dino.powerUpMaxTime = state.dino.powerUpTime
           playSound('level-up')
 
           switch ((this, state.dino.powerUp)) {
@@ -563,6 +584,33 @@ export default class DinoGame extends GameRunner {
 
     dino.nextFrame(this.state.speedRatio)
     this.paintSprite(dino.sprite, dino.x, dino.y)
+  }
+
+  drawProgressBar() {
+    const { canvasCtx, state } = this
+    const { dino } = state
+    const { powerUpTime, powerUpMaxTime, powerUp } = dino
+    const width = 200
+    const height = 30
+    const margin = {
+      top: 10,
+      left: 10,
+    }
+
+    if (powerUp !== 'none' && powerUp !== 'week') {
+      const progress = (powerUpTime / powerUpMaxTime) * 100
+      const progressWidth = (width * progress) / 100
+
+      canvasCtx.fillStyle = '#535353'
+      // canvasCtx.roundRect(0, 0, width, height, height / 2).fill()
+      canvasCtx
+        .roundRect(margin.left, margin.top, width, height, height / 2)
+        .fill()
+      canvasCtx.fillStyle = '#f7f7f7'
+      canvasCtx
+        .roundRect(margin.left, margin.top, progressWidth, height, height / 2)
+        .fill()
+    }
   }
 
   drawBullets() {
