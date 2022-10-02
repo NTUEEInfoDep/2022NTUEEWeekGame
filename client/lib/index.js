@@ -2,7 +2,6 @@ import '../style/main.css'
 import '../style/card.css'
 import '../style/end.css'
 import '../style/phone.css'
-
 import DinoGame from './game/DinoGame.js'
 
 const $id = (element) => document.getElementById(element)
@@ -10,6 +9,71 @@ const $class = (element) => document.getElementsByClassName(element)
 
 const baseURL = window.location.href.toString() + 'api/'
 let first = true
+
+const pub_key = base64ToArrayBuffer(process.env.PUBLIC_KEY)
+let key = ''
+
+async function importKey() {
+  key = await crypto.subtle.importKey('raw', pub_key,{name: 'AES-CBC', length: 256}, true, ['encrypt', 'decrypt'])
+}
+
+async function testMessage() {
+  const {key, keyStr} = await generateKey()
+  console.log(`string key for the node server: ${keyStr}`)
+  const {iv, encrypted} = await encrypt(key, 'test message')
+  const raw = await crypto.subtle.exportKey('raw', key)
+  console.log(`string key for the browser: ${buf2base64(raw)}`)
+  console.log(`base64 iv: ${iv}, base64 encrypted message: ${encrypted}`)
+}
+// testMessage();
+
+function base64ToArrayBuffer(base64) {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+
+async function generateKey() {
+  const key = await crypto.subtle.generateKey(
+    {name: 'AES-CBC', length: 256},
+    true,
+    ['encrypt', 'decrypt']
+  )
+  const jwk = await crypto.subtle.exportKey('jwk', key)
+  return {key, keyStr: jwk.k}
+}
+
+async function encrypt(key, text) {
+  const iv = crypto.getRandomValues(new Uint8Array(16))
+  const encrypted = await crypto.subtle.encrypt(
+    {name: 'AES-CBC', iv},
+    key,
+    str2buf(text),
+  )
+  return {
+    iv: buf2base64(iv),
+    encrypted: buf2base64(encrypted),
+  }
+}
+
+// helpers
+function str2buf(str) {
+  const bytes = new Uint8Array(str.length)
+  for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i)
+  return bytes
+}
+function buf2base64(buf) {
+  let binary = ''
+  let bytes = new Uint8Array(buf)
+  let len = bytes.byteLength
+  for (let i = 0; i < len; i++) binary += String.fromCharCode(bytes[i])
+  return btoa(binary)
+}
+
 
 const game = new DinoGame(
   window.innerWidth,
@@ -34,6 +98,13 @@ const isradius = (x, y, r) => {
     center_r = game.circle.radius
   return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2
 }
+
+// function encrypt(toEncrypt) {
+//   const publicKey = process.env.PUBLIC_KEY;
+//   const buffer = Buffer.from(toEncrypt, 'utf8')
+//   const encrypted = publicEncrypt(publicKey, buffer)
+//   return encrypted.toString('base64')
+// }
 
 const ontouchstart = ({ touches }) => {
   console.log(touches[0].clientX)
@@ -230,14 +301,17 @@ function endGameRoute() {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(async(data) => {
+        const encoded = JSON.stringify({ studentID, score });
+        const {iv, encrypted} = await encrypt(key, encoded)
+
         fetch(`${baseURL}reportScore`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, studentID, score }),
+          body: JSON.stringify({ name, iv, encrypted }),
         }).then(() => {
           $id('leaderboard-container').classList.add('hidden')
           $id('end-game-page').classList.remove('hidden')
@@ -455,6 +529,7 @@ window.addEventListener('resize', function () {
 //   window.scrollBy(0, clientHeight);
 
 startHomePage()
+importKey()
 game.start(true).catch(console.error)
 // $('body').show();
 // showLeaderboard()

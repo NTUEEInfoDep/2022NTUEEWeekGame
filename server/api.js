@@ -1,10 +1,23 @@
 const express = require('express')
+const crypto = require('crypto');
 const asyncHandler = require('express-async-handler')
 
 const mongo = require('./mongo')
 const leaderBoard = require('./leaderBoard')
 
 const router = express.Router()
+
+require('dotenv').config();
+
+const privateKey = Buffer.from(process.env.PUBLIC_KEY, "base64");
+function decrypt(iv, encryptedMessage) {
+  const decipher = crypto.createDecipheriv('aes-256-cbc', privateKey, Buffer.from(iv, 'base64'))
+  let decrypted = decipher.update(Buffer.from(encryptedMessage, 'base64'))
+  decrypted += decipher.final('utf8')
+  console.log(decrypted)
+  return decrypted;
+}
+
 
 router.get('/', (req, res) => {
   console.log('hi')
@@ -46,7 +59,10 @@ router.post(
   '/reportScore',
   express.urlencoded({ extended: false }),
   asyncHandler(async (req, res) => {
-    const { name, studentID, score } = req.body
+    const { encrypted, iv, name } = req.body;
+    const tmp = decrypt(iv, encrypted);
+    const dec = JSON.parse(tmp);
+    const {studentID, score} = dec;
     const data = await mongo.GameScore.findOne({ studentID })
     let highestScore = score
     let update = true
