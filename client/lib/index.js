@@ -329,7 +329,7 @@ function endGameRoute() {
         })
         const highestScore = data.score
         if (highestScore !== 0) {
-          $id('highestScore').textContent = `你的最高分是${highestScore}`
+          $id('highestScore').textContent = `你之前的最高分是${highestScore}`
         } else {
           $id('highestScore').textContent = `Good first try!`
         }
