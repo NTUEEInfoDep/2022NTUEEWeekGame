@@ -61,7 +61,7 @@ export default class Dino extends Actor {
       // use gravity to gradually decrease vVelocity
       let acceleration = this.gravity * speedRatio
       if (this.isDucking) {
-        this.vVelocity += acceleration * 3
+        this.vVelocity += acceleration * 5
       } else {
         this.vVelocity += acceleration
       }

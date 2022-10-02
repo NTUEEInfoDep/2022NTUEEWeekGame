@@ -58,7 +58,7 @@ export default class DinoGame extends GameRunner {
       cloudSpeedRelativeToBg: 0.7, // ppf
       dinoGravity: 2, // ppf
       dinoGroundOffset: -40, // px
-      dinoLegsRate: 6, // fpa
+      dinoLegsRate: 10, // fpa
       dinoLift: 34, // ppf
       bulletSpawnRate: 20, // fpa
       bulletSpeed: 10, // ppf
@@ -68,10 +68,10 @@ export default class DinoGame extends GameRunner {
       powerUpTimes: {
         // seconds
         guitar: 3,
-        dance: 3,
-        band: 3,
-        eater: 3,
-        week: 0.1,
+        dance: 5,
+        band: 5,
+        eater: 5,
+        week: 1,
       },
       scoreBlinkRate: 20, // fpa
       scoreIncreaseRate: 6, // fpa
