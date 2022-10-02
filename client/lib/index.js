@@ -67,22 +67,20 @@ function keyStart() {
     document.addEventListener('touchstart', ontouchstart)
 
     document.addEventListener('touchend', ontouchend)
-  } else {
-    document.addEventListener('keydown', onKeyDown)
-
-    document.addEventListener('keyup', onKeyUp)
   }
+  document.addEventListener('keydown', onKeyDown)
+
+  document.addEventListener('keyup', onKeyUp)
 }
 function keyStop() {
   if (isTouchDevice) {
     document.removeEventListener('touchstart', ontouchstart)
 
     document.removeEventListener('touchend', ontouchend)
-  } else {
-    document.removeEventListener('keydown', onKeyDown)
-
-    document.removeEventListener('keyup', onKeyUp)
   }
+  document.removeEventListener('keydown', onKeyDown)
+
+  document.removeEventListener('keyup', onKeyUp)
 }
 
 // TODO: Complete this function
@@ -352,7 +350,7 @@ function showLeaderboard() {
           if (gameScore != 0 && checkStudentIDForm(gameStudentID)) {
             var tr = document.createElement('tr')
             tr.classList.add('leaderboard-game-tr-data')
-            ;['your score', name, score].forEach((text) => {
+            ;['你的分數', name, score].forEach((text) => {
               var cell = document.createElement('td')
               cell.appendChild(document.createTextNode(text))
               tr.appendChild(cell)
