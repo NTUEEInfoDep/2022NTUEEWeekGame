@@ -3,7 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack') //to access built-in plugins
-const Dotenv = require("dotenv-webpack");
+// const Dotenv = require("dotenv-webpack");
+require('dotenv').config({ path: './.env' }); 
 
 module.exports = {
   context: path.resolve(__dirname, 'client'),
@@ -60,10 +61,15 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: 'assets', to: 'assets' }],
     }),
-    new Dotenv({
-      path:
-        process.env.NODE_ENV === "./.env",
-      systemvars: true, // 允許讀取 process.env 下的任意系統變量
+    // new Dotenv({
+    //   path:
+    //     process.env.NODE_ENV === "./.env",
+    //   systemvars: true, // 允許讀取 process.env 下的任意系統變量
+    // }),
+    new webpack.DefinePlugin({
+      'process.env': {
+         'PUBLIC_KEY': JSON.stringify(process.env.PUBLIC_KEY)
+      }
     }),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
