@@ -14,6 +14,7 @@ const baseURL =
     : 'https://weekgame.ntuee.org/api/'
 
 let first = true
+let pageidx = 1
 
 const pub_key = base64ToArrayBuffer(process.env.PUBLIC_KEY)
 let key = ''
@@ -385,18 +386,31 @@ function showPropList() {
   $id('prop-container').classList.remove('hidden') //Lawra
 }
 
+function prevPage() {
+  pageidx -= 1;
+  showLeaderboard();
+}
+
+function nextPage(){
+  pageidx += 1;
+  showLeaderboard();
+}
+
 function showLeaderboard() {
   // $id("home-page").classList.add("hidden");
   // $id("end-game-page").classList.add("hidden");
   // $id("prop-container").classList.add("hidden");//Lawra
 
+  
   const gameStudentID = $id('student-id-input').value
   const gameName = $id('name-input').value
   const gameScore = game.state.score.value
 
-  var rankCount = 1
+  let canNext = false
+  var rankCount = pageidx * 10 - 9
   var tr = document.createElement('tr')
   tr.id = 'leaderboard-tr-header'
+  
 
   $id('leaderboard-table-container').innerHTML = ''
   ;['排名', '名字', '分數'].forEach((text) => {
@@ -406,11 +420,19 @@ function showLeaderboard() {
   })
   $id('leaderboard-table-container').appendChild(tr)
 
-  fetch(`${baseURL}leaderBoard`)
-    .then((response) => response.json())
-    .then((dataList) => {
+  fetch(`${baseURL}pagedLeaderBoard`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({page: pageidx}),
+  }).then((response) => response.json())
+    .then((data) => {
       // console.log(dataList)
-      dataList.map((data) => {
+      if (data.last) canNext = false
+      else canNext = true
+      data.data.map((data) => {
         const { name, score, studentID } = data
         var tr = document.createElement('tr')
         tr.classList.add('leaderboard-tr-data')
@@ -448,12 +470,28 @@ function showLeaderboard() {
         })
       $id('leaderboard-container').classList.remove('hidden')
     })
+    .then(() => {
+      if(pageidx === 1){
+        $id('prev-button').disabled = true;
+      }
+      else{
+        $id('prev-button').disabled = false;
+      }
+      if(!canNext){
+        $id('next-button').disabled = true;
+      }
+      else{
+        $id('next-button').disabled = false;
+      }
+    })
 }
 
 // Global function
 ;[].forEach.call($class('leaderboard-button'), (node) => {
   node.onclick = showLeaderboard
 })
+$id('prev-button').onclick = prevPage;
+$id('next-button').onclick = nextPage;
 $id('endPage-leaderboard-button').onclick = showLeaderboard
 ;[].forEach.call($class('prop-button'), (node) => {
   node.onclick = showPropList
