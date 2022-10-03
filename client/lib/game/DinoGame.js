@@ -310,8 +310,8 @@ export default class DinoGame extends GameRunner {
               break
             case 'dance':
               this.state.props.dance++
-              this.state.speedRatio = 2
-              this.state.scoreRatio = 5
+              this.state.speedRatio = 1.5
+              this.state.scoreRatio = 3
               break
             case 'band':
               this.state.props.band++
@@ -424,8 +424,9 @@ export default class DinoGame extends GameRunner {
     //   this.width / 2 - iconSprite.w / 4,
     //   this.height / 2 - iconSprite.h / 4 + padding
     // )
-    if (this.state.score.value > this.highestScore) {
-      this.highestScore = this.state.score.value
+    const score = this.state.score.value
+    if (score > this.highestScore) {
+      this.highestScore = score
     }
     this.state.isRunning = false
     this.drawScore()
@@ -441,7 +442,7 @@ export default class DinoGame extends GameRunner {
     if (level > 4 && level < 8) {
       settings.bgSpeed++
       settings.birdSpeed = settings.bgSpeed * 1.2
-    } else if (level > 7 && level < 12) {
+    } else if (level > 7 && level < 14) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1)
       settings.birdSpeed = settings.bgSpeed * 1.2
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98)
