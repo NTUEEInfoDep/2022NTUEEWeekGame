@@ -39,9 +39,9 @@ CanvasRenderingContext2D.prototype.roundRect = function (
 }
 
 export default class DinoGame extends GameRunner {
-  constructor(width, height, endGameRoute) {
+  constructor(width, height, endGameRoute, isTouchDevice) {
     super()
-
+    // console.log(isTouchDevice)
     this.width = null
     this.height = null
     this.canvas = this.createCanvas(width, height)
@@ -52,12 +52,12 @@ export default class DinoGame extends GameRunner {
     this.highestScore = 0
 
     this.circle = {
-      x: window.innerWidth * 0.1,
-      y: window.innerHeight * 0.36,
-      radius: window.innerWidth * 0.04,
+      x: width * 0.9,
+      y: height * 0.35,
+      radius: width * 0.04,
       scale: 1.2,
     }
-    this.isTouchDevice = 'ontouchstart' in document.documentElement
+    this.isTouchDevice = isTouchDevice
 
     /*
      * units
@@ -196,6 +196,7 @@ export default class DinoGame extends GameRunner {
     this.drawGround()
     this.drawClouds()
     if (this.isTouchDevice) {
+      // console.log('1111')
       this.drawDuckButton()
     }
     this.drawDino()

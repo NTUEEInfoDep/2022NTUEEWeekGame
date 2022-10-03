@@ -84,17 +84,18 @@ function buf2base64(buf) {
   for (let i = 0; i < len; i++) binary += String.fromCharCode(bytes[i])
   return btoa(binary)
 }
-
-const game = new DinoGame(
-  window.innerWidth,
-  window.innerHeight,
-  preEndGameRoute
-)
 const isTouchDevice =
   'ontouchstart' in window ||
   navigator.maxTouchPoints > 0 ||
   navigator.msMaxTouchPoints > 0 ||
   'gesturestart' in window
+
+const game = new DinoGame(
+  window.innerWidth,
+  window.innerHeight,
+  preEndGameRoute,
+  isTouchDevice
+)
 
 const keycodes = {
   // up, spacebar
@@ -105,7 +106,7 @@ const keycodes = {
 const isradius = (x, y) => {
   const center_x = game.circle.x,
     center_y = game.circle.y,
-    center_r = game.circle.radius * 1.1
+    center_r = game.circle.radius * game.circle.scale
   return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2
 }
 
