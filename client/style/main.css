@@ -146,7 +146,8 @@ td {
 }
 
 #home-page-middle-block>* {
-    margin: 0.25rem;
+    max-width: 95%;
+    margin: 0.4rem;
     overflow: visible;
 }
 
@@ -336,16 +337,16 @@ td {
         grid-template-rows: 1.5rem 5rem 0px 50px 50px 10px 60px 60px;
     }
     #start-button {
-        font-size: 1.5rem;
-    }
-    #start-button:hover {
-        font-size: 1.75rem;
-    }
-    .leaderboard-button {
         font-size: 1.25rem;
     }
-    .leaderboard-button:hover {
+    #start-button:hover {
         font-size: 1.5rem;
+    }
+    .leaderboard-button {
+        font-size: 1rem;
+    }
+    .leaderboard-button:hover {
+        font-size: 1.25rem;
     }
 }
 
