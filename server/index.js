@@ -32,9 +32,9 @@ const db = mongoose.connection
 db.on('error', (err) => console.log(err))
 db.once('open', () => {
   const app = express()
+  app.use(logger('dev'))
   app.use(express.json())
   app.use('/api', api)
-  app.use(logger('dev'))
   if (process.env.NODE_ENV !== 'development') {
     app.use(express.static(path.join(__dirname, '../build')))
   } else {
