@@ -7,7 +7,8 @@ import DinoGame from './game/DinoGame.js'
 const $id = (element) => document.getElementById(element)
 const $class = (element) => document.getElementsByClassName(element)
 
-const baseURL = window.location.href.toString() + 'api/'
+// const baseURL = window.location.href.toString() + 'api/'
+const baseURL = "https://weekgame.ntuee.ntu.tw/api/";
 let first = true
 let pageidx = 1
 
