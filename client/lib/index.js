@@ -7,7 +7,9 @@ import DinoGame from './game/DinoGame.js'
 const $id = (element) => document.getElementById(element)
 const $class = (element) => document.getElementsByClassName(element)
 
-const baseURL = window.location.href.toString() + 'api/'
+// const baseURL = window.location.href.toString() + 'api/'
+const baseURL = "https://weekgame.ntuee.org/api/";
+
 let first = true
 
 const pub_key = base64ToArrayBuffer(process.env.PUBLIC_KEY)
