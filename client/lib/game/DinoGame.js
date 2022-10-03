@@ -52,9 +52,9 @@ export default class DinoGame extends GameRunner {
     this.highestScore = 0
 
     this.circle = {
-      x: window.innerWidth - 100,
-      y: window.innerHeight - 100,
-      radius: 40,
+      x: window.innerWidth * 0.1,
+      y: window.innerHeight * 0.36,
+      radius: window.innerWidth * 0.04,
       scale: 1.2,
     }
     this.isTouchDevice = 'ontouchstart' in document.documentElement
@@ -195,12 +195,12 @@ export default class DinoGame extends GameRunner {
     // this.drawFPS();
     this.drawGround()
     this.drawClouds()
-    this.drawDino()
-    this.drawProgressBar()
-    this.drawScore()
     if (this.isTouchDevice) {
       this.drawDuckButton()
     }
+    this.drawDino()
+    this.drawProgressBar()
+    this.drawScore()
 
     if (state.isRunning) {
       let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood

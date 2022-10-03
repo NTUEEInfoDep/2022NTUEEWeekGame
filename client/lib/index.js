@@ -102,10 +102,10 @@ const keycodes = {
   // down
   DUCK: { 40: 1 },
 }
-const isradius = (x, y, r) => {
+const isradius = (x, y) => {
   const center_x = game.circle.x,
     center_y = game.circle.y,
-    center_r = game.circle.radius
+    center_r = game.circle.radius * 1.1
   return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2
 }
 
@@ -117,8 +117,8 @@ const isradius = (x, y, r) => {
 // }
 
 const ontouchstart = ({ touches }) => {
-  console.log(touches[0].clientX)
-  console.log(window.innerHeight, window.innerWidth)
+  // console.log(touches[0].clientX)
+  // console.log(window.innerHeight, window.innerWidth)
   if (isradius(touches[0].clientX, touches[0].clientY)) {
     // isradius(touches[0].clientX, touches[0].clientY)
     game.onInput('duck')

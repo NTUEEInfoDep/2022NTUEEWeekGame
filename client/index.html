@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport"
-        content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui"
+    />
 
-    <meta name="og:image" content="https://weekgame.ntuee.org/assets/main.jpg" />
+    <meta
+      name="og:image"
+      content="https://weekgame.ntuee.org/assets/main.jpg"
+    />
     <meta name="og:title" content="EE見鍾情-電機週小遊戲" />
     <meta name="og:description" content="2022電機週小遊戲" />
 
     <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/favicon.png" />
     <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
+      rel="stylesheet"
+    />
 
     <title>EE見鍾情</title>
 
@@ -30,16 +41,16 @@
     <!-- <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/card.css">加入Card css -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
 
         body {
             align-items: center;
@@ -56,16 +67,16 @@
             z-index:-1;
         }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Game -->
     <!-- <script type="module" src="./lib/index.js"></script> -->
     <canvas id="game"></canvas>
 
     <!-- Landscape Page -->
     <div id="landscape-page" class="hidden">
-        <div id="landscape-page-title">Please rotate your phone!</div>
+      <div id="landscape-page-title">Please rotate your phone!</div>
     </div>
 
     <!-- Home Page -->
@@ -91,72 +102,72 @@
     </div>
     <!-- Rule Page-->
     <div class="page-container hidden" id="rule-container">
-        <div id="rule-page" class="page">
-            <button id="rule-close-button" class="close-button">&times;</button>
-            <div id="rule-header" class="page-header">
-                <div id="rule-page-title" class="page-title">RULE 規則</div>
-            </div>
-            <div id="rule-page-main">
-                <div class="rule-list" style="display: block">
-                    <p>
-                        按方向上或空白鍵跳躍<br>
-                        按方向下鍵蹲下<br>
-                        吃道具獲得效果，效果詳見道具列表<br>
-                        躲避障礙物，獲得最高分數<br>
-                    </p>
-                </div>
-            </div>
+      <div id="rule-page" class="page">
+        <button id="rule-close-button" class="close-button">&times;</button>
+        <div id="rule-header" class="page-header">
+          <div id="rule-page-title" class="page-title">規則</div>
         </div>
+        <div id="rule-page-main">
+          <div class="rule-list">
+            <p>
+              按方向上或空白鍵跳躍<br />
+              按方向下鍵蹲下<br />
+              吃道具獲得效果，效果詳見道具列表<br />
+              躲避障礙物，獲得最高分數<br />
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Instruction Page -->
     <div class="page-container hidden" id="instruction-container">
-        <div id="instruction-page" class="page">
-            <div id="instruction-header" class="page-header">
-                <div id="instruction-page-title" class="page-title">教學</div>
-            </div>
-            <div id="instruction-page-main">
-                <button class="prop-button" id="home-prop-button">&nbsp;道具&nbsp;</button>
-                <button id="rule-button">&nbsp;規則&nbsp;</button>
-            </div>
+      <div id="instruction-page" class="page">
+        <div id="instruction-header" class="page-header">
+          <div id="instruction-page-title" class="page-title">教學</div>
         </div>
+        <div id="instruction-page-main">
+          <button class="prop-button" id="home-prop-button">
+            &nbsp;道具&nbsp;
+          </button>
+          <button id="rule-button">&nbsp;規則&nbsp;</button>
+        </div>
+      </div>
     </div>
 
     <!-- Warning Page -->
     <div class="page-container hidden" id="warning-container">
-        <div id="warning-page" class="page">
-            <div id="warning-header" class="page-header">
-                <div id="warning-page-title" class="page-title">Warning</div>
-            </div>
-            <div id="warning-page-main">
-                <div id="warning-page-text">
-                    玩家你好，確定不填學號齁?不會留紀錄喔
-                </div>
-                <div id="warning-page-button-container">
-                    <button id="warning-go-back-button">返回</button>
-                    <button id="warning-start-button">開始遊戲！</button>
-                </div>
-            </div>
+      <div id="warning-page" class="page">
+        <div id="warning-header" class="page-header">
+          <div id="warning-page-title" class="page-title">Warning</div>
         </div>
+        <div id="warning-page-main">
+          <div id="warning-page-text">
+            玩家你好，確定不填學號齁?不會留紀錄喔
+          </div>
+          <div id="warning-page-button-container">
+            <button id="warning-go-back-button">返回</button>
+            <button id="warning-start-button">開始遊戲！</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Error Page -->
     <div class="page-container hidden" id="error-container">
-        <div id="error-page" class="page">
-            <div id="error-header" class="page-header">
-                <div id="error-page-title" class="page-title">Error</div>
-            </div>
-            <div id="error-page-main">
-                <div id="error-page-main-block" style="display: block">
-                    <div id="error-page-text">
-                        ERRRRRRROR
-                    </div>
-                    <div id="error-page-button-container">
-                        <button id="error-go-back-button">返回</button>
-                    </div>
-                </div>
-            </div>
+      <div id="error-page" class="page">
+        <div id="error-header" class="page-header">
+          <div id="error-page-title" class="page-title">Error</div>
         </div>
+        <div id="error-page-main">
+          <div id="error-page-main-block" style="display: block">
+            <div id="error-page-text">ERRRRRRROR</div>
+            <div id="error-page-button-container">
+              <button id="error-go-back-button">返回</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Prompt Page -->
@@ -186,124 +197,125 @@
 
     <!-- End Game Page -->
     <div id="end-game-page" class="hidden">
-        <!-- class="hidden" -->
-        <div id="end-game-page-title">GAME OVER</div>
-        <br />
-        <div id="score-bar">你的分數:</div>
-        <div id="score">0</div>
-        <div id="highestScore"></div>
-        <div id="encouragement"></div>
-        <br />
+      <!-- class="hidden" -->
+      <div id="end-game-page-title">GAME OVER</div>
+      <br />
+      <div id="score-bar">你的分數:</div>
+      <div id="score">0</div>
+      <div id="highestScore"></div>
+      <div id="encouragement"></div>
+      <br />
+      <!--傅渝翔 新增-->
+      <div id="endpage-button-set">
+        <button id="endPage-leaderboard-button" class="end-page-button">
+          <!-- <img id="EP-leaderboard-button-pic" src="assets/crown.png" /> -->
+          &times;
+        </button>
+        <!-- 拿掉leaderboard-button的class  -->
+        <button id="restart-button" class="end-page-button">
+          <!-- <img id="EP-restart-button-pic" src="assets/replay.png" /> -->
+          &times;
+        </button>
+        <button id="endgame-button" class="end-page-button">&times;</button>
         <!--傅渝翔 新增-->
-        <div id="endpage-button-set">
-            <button id="endPage-leaderboard-button" class="end-page-button">
-                <!-- <img id="EP-leaderboard-button-pic" src="assets/crown.png" /> -->
-                &times;
-            </button>
-            <!-- 拿掉leaderboard-button的class  -->
-            <button id="restart-button" class="end-page-button">
-                <!-- <img id="EP-restart-button-pic" src="assets/replay.png" /> -->
-                &times;
-            </button>
-            <button id="endgame-button" class="end-page-button">&times;</button>
-            <!--傅渝翔 新增-->
-        </div>
+      </div>
     </div>
 
     <!-- Leaderboard Page -->
     <div class="page-container hidden" id="leaderboard-container">
-        <div id="leaderboard-page">
-            <div id="leaderboard-page-title">
-                <img id="leaderboard-image" src="assets/Leaderboard.png" />
-            </div>
-            <div id="leaderboard-table-container-edge">
-                <table id="leaderboard-table-container"></table>
-            </div>
+      <div id="leaderboard-page">
+        <div id="leaderboard-page-title">
+          <img id="leaderboard-image" src="assets/Leaderboard.png" />
         </div>
+        <div id="leaderboard-table-container-edge">
+          <table id="leaderboard-table-container"></table>
+        </div>
+      </div>
     </div>
 
     <!-- Props Page -->
     <div class="page-container hidden" id="prop-container">
-        <div id="prop-page" class="page">
-            <button id="prop-close-button" class="close-button">&times;</button>
-            <div id="prop-header">
-                <div id="prop-page-title" class="page-title">道具列表</div>
-            </div>
-
-            <div id="prop-page-main">
-                <div class="prop-list" style="display: block">
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/guitar.png" alt="guitar" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">大合刷</p>
-                            <p class="functionality">
-                                功能: 音符攻擊! 電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/dance.png" alt="dance" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">快閃舞</p>
-                            <p class="functionality">
-                                功能: 來個快閃舞！電機學生獲得N秒的速度提升。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/band.png" alt="band" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">無敵樂隊</p>
-                            <p class="functionality">
-                                功能: 電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/eater.png" alt="eater" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">快食王</p>
-                            <p class="functionality">
-                                功能: 電機學生吞下所有的障碍物，把漢堡都吃掉!
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="left">
-                            <img id="prop-img" src="assets/week.png" alt="week" />
-                        </div>
-                        <div class="right">
-                            <p class="gadget">電機週</p>
-                            <p class="functionality">
-                                功能：NTUEE週真有趣! 電機學生獲得加分！
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div id="prop-page" class="page">
+        <button id="prop-close-button" class="close-button">&times;</button>
+        <div id="prop-header">
+          <div id="prop-page-title" class="page-title">道具列表</div>
         </div>
+
+        <div id="prop-page-main">
+          <div class="prop-list" style="display: block">
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/guitar.png" alt="guitar" />
+              </div>
+              <div class="right">
+                <p class="gadget">大合刷</p>
+                <p class="functionality">
+                  功能: 音符攻擊!
+                  電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/dance.png" alt="dance" />
+              </div>
+              <div class="right">
+                <p class="gadget">快閃舞</p>
+                <p class="functionality">
+                  功能: 來個快閃舞！電機學生獲得N秒的速度提升。
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/band.png" alt="band" />
+              </div>
+              <div class="right">
+                <p class="gadget">無敵樂隊</p>
+                <p class="functionality">
+                  功能:
+                  電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/eater.png" alt="eater" />
+              </div>
+              <div class="right">
+                <p class="gadget">快食王</p>
+                <p class="functionality">
+                  功能: 電機學生吞下所有的障碍物，把漢堡都吃掉!
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="left">
+                <img id="prop-img" src="assets/week.png" alt="week" />
+              </div>
+              <div class="right">
+                <p class="gadget">電機週</p>
+                <p class="functionality">
+                  功能：NTUEE週真有趣! 電機學生獲得加分！
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- 金巧芸新增 -->
     <div id="weekCard" class="hidden">
-        <div class="box b1" id="cardBack">
-            <img id="cardBackPic" src="assets/logo.jpg" />
-        </div>
-        <p class="box b2" id="cardFront">+0</p>
+      <div class="box b1" id="cardBack">
+        <img id="cardBackPic" src="assets/logo.jpg" />
+      </div>
+      <p class="box b2" id="cardFront">+0</p>
     </div>
     <!-- 新增end -->
     <script>
-        // screen.orientation.lock('landscape').then(() => {
-        //     console.log('lock');
-        // });
+      // screen.orientation.lock('landscape').then(() => {
+      //     console.log('lock');
+      // });
     </script>
-</body>
-
+  </body>
 </html>
