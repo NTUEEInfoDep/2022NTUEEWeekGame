@@ -98,4 +98,35 @@ router.post(
   })
 )
 
+router.post(
+  "/pagedLeaderBoard",
+  asyncHandler(async(req, res) =>{
+    const {page} = req.body;
+    if(Number.isInteger(page) && page > 0){
+      const DBdata = await mongo.GameScore.find().sort({ score: -1 });
+      const board = DBdata.map((obj) => {
+        const { name, score, studentID } = obj
+        return { name, score, studentID }
+      });
+      if((page - 1) * 10 < board.length){
+        if(page * 10 <= board.length){
+          res.send({data: board.slice((page - 1) * 10, page * 10), last: false});
+          res.status(204);
+        }
+        else{
+          res.send({data: board.slice((page - 1) * 10, board.length), last: true});
+          res.status(204);
+        }
+      }
+      else{
+        res.status(400).end();
+        return;
+      }
+    }
+    else{
+      res.status(400).end();
+      return;
+    }
+}))
+
 module.exports = router
