@@ -124,13 +124,13 @@ router.post(
         const { name, score, studentID } = obj
         return { name, score, studentID }
       });
-      if((page - 1) * 10 < board.length){
-        if(page * 10 <= board.length){
-          res.send({data: board.slice((page - 1) * 10, page * 10), last: false});
+      if((page - 1) * 5 < board.length){
+        if(page * 5 <= board.length){
+          res.send({data: board.slice((page - 1) * 5, page * 5), last: false});
           res.status(204);
         }
         else{
-          res.send({data: board.slice((page - 1) * 10, board.length), last: true});
+          res.send({data: board.slice((page - 1) * 5, board.length), last: true});
           res.status(204);
         }
       }

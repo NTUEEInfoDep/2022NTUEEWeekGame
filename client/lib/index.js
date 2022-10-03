@@ -407,7 +407,7 @@ function showLeaderboard() {
   const gameScore = game.state.score.value
 
   let canNext = false
-  var rankCount = pageidx * 10 - 9
+  var rankCount = pageidx * 5 - 4
   var tr = document.createElement('tr')
   tr.id = 'leaderboard-tr-header'
   
