@@ -167,7 +167,7 @@ function keyStop() {
 // TODO: Complete this function
 const checkStudentIDForm = (studentID) => {
   if (studentID) {
-    const regex = /[BSTKRYAPJMDZCFQEN]\d{2}[0-9ABE][01][A-Z0-9]{4}/
+    const regex = /[BSTKRYAPJMDZCFQEN]\d{2}[0-9ABE][0-9][A-Z0-9]{4}/
     return regex.test(studentID)
   } else {
     return false
