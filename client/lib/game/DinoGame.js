@@ -474,16 +474,20 @@ export default class DinoGame extends GameRunner {
     const { state } = this
 
     if (this.frameCount % state.settings.scoreIncreaseRate === 0) {
-      const oldLevel = Math.floor((state.score.value + state.score.bonus) / 100)
+      const oldHundred = Math.floor((state.score.value + state.score.bonus) / 100)
+      const oldLevel = state.level
 
       state.score.value += 1
       state.score.bonus += state.scoreRatio - 1
       state.level = Math.floor(state.score.value / 100)
 
-      if (Math.floor((state.score.value + state.score.bonus) / 100) !== oldLevel) {
+      if (Math.floor((state.score.value + state.score.bonus) / 100) !== oldHundred) {
         playSound('level-up')
-        this.increaseDifficulty()
         state.score.isBlinking = true
+      }
+
+      if (state.level !== oldLevel) {
+        this.increaseDifficulty()
       }
     }
   }
