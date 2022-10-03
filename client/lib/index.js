@@ -106,7 +106,7 @@ const keycodes = {
 const isradius = (x, y) => {
   const center_x = game.circle.x,
     center_y = game.circle.y,
-    center_r = game.circle.radius * game.circle.scale
+    center_r = game.circle.radius * 1.1
   return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2
 }
 
