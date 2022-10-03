@@ -442,7 +442,7 @@ export default class DinoGame extends GameRunner {
     if (level > 4 && level < 8) {
       settings.bgSpeed++
       settings.birdSpeed = settings.bgSpeed * 1.2
-    } else if (level > 7 && level < 14) {
+    } else if ((level > 7 && level < 14) || (level > 13 && level % 5 === 0)) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1)
       settings.birdSpeed = settings.bgSpeed * 1.2
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98)
@@ -475,14 +475,18 @@ export default class DinoGame extends GameRunner {
     const { state } = this
 
     if (this.frameCount % state.settings.scoreIncreaseRate === 0) {
-      const oldHundred = Math.floor((state.score.value + state.score.bonus) / 100)
+      const oldHundred = Math.floor(
+        (state.score.value + state.score.bonus) / 100
+      )
       const oldLevel = state.level
 
       state.score.value += 1
       state.score.bonus += state.scoreRatio - 1
       state.level = Math.floor(state.score.value / 100)
 
-      if (Math.floor((state.score.value + state.score.bonus) / 100) !== oldHundred) {
+      if (
+        Math.floor((state.score.value + state.score.bonus) / 100) !== oldHundred
+      ) {
         playSound('level-up')
         state.score.isBlinking = true
       }
