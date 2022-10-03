@@ -119,7 +119,7 @@ td {
   padding: 0.5rem;
   width: 450px;
   display: grid;
-  grid-template-rows: 1.5rem 6.5rem 0px 45px 45px 70px 70px;
+  grid-template-rows: 1.5rem 6.5rem 20px 45px 45px 20px 70px 70px;
   background-color: rgb(228, 246, 207);
   border-radius: 30px;
   position: absolute;
@@ -156,10 +156,11 @@ td {
 
 .home-page-input {
   margin: 1.5rem 0 0;
-  padding: 1rem 0 0;
-  border: none;
   font-size: 1.5rem;
+  padding: 0.25rem 0;
+  border: none;
   font-family: "Arvo", sans-serif;
+  display: flex;
   text-align: center;
   border-radius: 10px;
 }
@@ -203,6 +204,9 @@ td {
 #start-button:hover {
   /* letter-spacing: 1rem;
     margin-right: -1rem; */
+  background-color: rgb(94, 126, 96);
+  color: white;
+  border-color: rgba(255, 255, 255, 0);
   font-size: 2.5rem;
   transition: all 0.4s ease 0s;
 }
@@ -254,6 +258,9 @@ td {
 .leaderboard-button:hover {
   /* letter-spacing: 1rem;
     margin-right: -1rem; */
+  background-color: rgb(94, 126, 96);
+  color: white;
+  border-color: rgba(255, 255, 255, 0);
   font-size: 2rem;
   transition: all 0.4s ease 0s;
 }
@@ -752,7 +759,8 @@ td {
 }
 
 .prompt-page-input:focus {
-  border-bottom: 0.1rem solid black;
+  border: 0px;
+  border: 0.1rem solid black;
   opacity: 0.5;
   letter-spacing: 0rem;
   margin-right: 0rem;
@@ -766,6 +774,40 @@ td {
   font-family: "Righteous", sans-serif;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+#prompt-confirm-button {
+  margin: 0 1rem 0;
+  box-sizing: border-box;
+  width: 5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-family: "Righteous", sans-serif;
+  background-color: white;
+  text-align: center;
+  border-radius: 0%;
+}
+
+#prompt-confirm-button:hover {
+  text-align: center;
+  background-color: #eeeeee;
+}
+
+#prompt-reject-button {
+  margin: 0 0 0 1rem;
+  box-sizing: border-box;
+  width: 5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-family: "Righteous", sans-serif;
+  background-color: white;
+  text-align: center;
+  border-radius: 0%;
+}
+
+#prompt-reject-button:hover {
+  text-align: center;
+  background-color: #eeeeee;
 }
 
 /* Other Stuff */

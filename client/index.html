@@ -3,30 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui"
+    />
     <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
     <title>EE見鍾情</title>
     <!-- <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/card.css">加入Card css -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
-        
-        body {
-            align-items: center;
-            background-color: #f7f7f7;
-            display: none;
-            justify-content: center;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        align-items: center;
+        background-color: #f7f7f7;
+        display: none;
+        justify-content: center;
+      }
     </style>
   </head>
 
@@ -37,11 +40,8 @@
 
     <!-- Landscape Page -->
     <div id="landscape-page" class="hidden">
-        <div id="landscape-page-title">
-            Please rotate your phone!
-        </div>
+      <div id="landscape-page-title">Please rotate your phone!</div>
     </div>
-
 
     <!-- Home Page -->
     <div id="home-page" class="hidden">
@@ -92,6 +92,20 @@
                 <button id="rule-button">RULES!</button>
             </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Instruction Page -->
+    <div class="page-container hidden" id="instruction-container">
+      <div id="instruction-page">
+        <div id="instruction-header" class="page-header">
+          <div id="instruction-page-title" class="page-title">Instructions</div>
+        </div>
+        <div id="instruction-page-main">
+          <button class="prop-button" id="home-prop-button">PROPS!</button>
+          <button id="rule-button">RULES!</button>
+        </div>
+      </div>
     </div>
 
 
@@ -179,10 +193,10 @@
 
     <!-- Leaderboard Page -->
     <div class="page-container hidden" id="leaderboard-container">
-        <div id="leaderboard-page">
-            <div id="leaderboard-page-title">Leaderboard</div>
-            <table id="leaderboard-table-container"></table>
-        </div>
+      <div id="leaderboard-page">
+        <div id="leaderboard-page-title">Leaderboard</div>
+        <table id="leaderboard-table-container"></table>
+      </div>
     </div>
 
     <!-- Props Page -->
@@ -312,10 +326,9 @@
     </div>
     <!-- 新增end -->
     <script>
-        // screen.orientation.lock('landscape').then(() => {
-        //     console.log('lock');
-        // });
+      // screen.orientation.lock('landscape').then(() => {
+      //     console.log('lock');
+      // });
     </script>
-</body>
-
+  </body>
 </html>
