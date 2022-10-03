@@ -1,6 +1,6 @@
 const mongo = require('./mongo')
 require('dotenv').config()
-const max = process.env.LEADERBOARD_HIGHEST_NUMBER || 3
+const max = process.env.LEADERBOARD_HIGHEST_NUMBER || 20
 
 class LeaderBoard {
   constructor(max) {
@@ -64,8 +64,8 @@ class LeaderBoard {
   }
 
   tenthHighestScore() {
-    if (this._number > 9) {
-      const score = this.board[9].score
+    if (this._number > 19) {
+      const score = this.board[19].score
       return score
     } else {
       return 0

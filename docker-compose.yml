@@ -21,6 +21,8 @@ services:
     expose:
       - "27017"
     restart: always
+    volumes:
+      - ./mongo/data:/data/db
     networks:
       - weekgame-mongodb
 

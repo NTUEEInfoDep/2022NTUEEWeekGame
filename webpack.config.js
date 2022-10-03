@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack') //to access built-in plugins
 // const Dotenv = require("dotenv-webpack");
-require('dotenv').config({ path: './.env' }); 
+require('dotenv').config({ path: './.env' })
 
 module.exports = {
   context: path.resolve(__dirname, 'client'),
@@ -68,12 +68,12 @@ module.exports = {
     // }),
     new webpack.DefinePlugin({
       'process.env': {
-         'PUBLIC_KEY': JSON.stringify(process.env.PUBLIC_KEY)
-      }
+        PUBLIC_KEY: JSON.stringify(process.env.PUBLIC_KEY),
+      },
     }),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
-      process: 'process/browser'
-    })
+      process: 'process/browser',
+    }),
   ],
 }
