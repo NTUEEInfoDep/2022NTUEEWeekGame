@@ -72,7 +72,7 @@ export default class DinoGame extends GameRunner {
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
-      foodScore: 10,
+      foodScore: 5,
       cloudSpawnRate: 200, // fpa
       cloudSpeedRelativeToBg: 0.7, // ppf
       dinoGravity: 2, // ppf
@@ -119,6 +119,7 @@ export default class DinoGame extends GameRunner {
         blinks: 0,
         isBlinking: false,
         value: 0,
+        bonus: 0,
       },
       props: {
         dance: 0,
@@ -243,7 +244,7 @@ export default class DinoGame extends GameRunner {
 
       if (state.dino.hits([state.foods[0]])) {
         // Maybe play an "Eating sound" here
-        state.score.value += state.settings.foodScore
+        state.score.bonus += state.settings.foodScore
         state.foodScoreTextAlpha = 1
         state.foods[0].destroy()
       }
@@ -326,7 +327,7 @@ export default class DinoGame extends GameRunner {
               this.state.props.week++
               const week_plus = Math.floor(Math.random() * 100) + 1
               week(`+${week_plus}`)
-              this.state.score.value += week_plus //碰到電機週，加分!
+              this.state.score.bonus += week_plus //碰到電機週，加分!
               break
           }
         }
@@ -392,6 +393,7 @@ export default class DinoGame extends GameRunner {
         blinks: 0,
         isBlinking: false,
         value: 0,
+        bonus: 0,
       },
       props: {
         guitar: 0,
@@ -439,7 +441,7 @@ export default class DinoGame extends GameRunner {
     if (level > 4 && level < 8) {
       settings.bgSpeed++
       settings.birdSpeed = settings.bgSpeed * 1.2
-    } else if (level > 7) {
+    } else if (level > 7 && level < 12) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1)
       settings.birdSpeed = settings.bgSpeed * 1.2
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98)
@@ -472,12 +474,13 @@ export default class DinoGame extends GameRunner {
     const { state } = this
 
     if (this.frameCount % state.settings.scoreIncreaseRate === 0) {
-      const oldLevel = state.level
+      const oldLevel = Math.floor((state.score.value + state.score.bonus) / 100)
 
-      state.score.value += state.scoreRatio
+      state.score.value += 1
+      state.score.bonus += state.scoreRatio - 1
       state.level = Math.floor(state.score.value / 100)
 
-      if (state.level !== oldLevel) {
+      if (Math.floor((state.score.value + state.score.bonus) / 100) !== oldLevel) {
         playSound('level-up')
         this.increaseDifficulty()
         state.score.isBlinking = true
@@ -748,12 +751,13 @@ export default class DinoGame extends GameRunner {
   }
 
   drawScore() {
+    // console.log(this.state.score)
     const { canvasCtx, state } = this
     const { isRunning, score, settings } = state
     const fontSize = 30
     const margin = 10
     let shouldDraw = true
-    let drawValue = score.value
+    let drawValue = score.value + score.bonus
 
     if (isRunning && score.isBlinking) {
       score.blinkFrames++

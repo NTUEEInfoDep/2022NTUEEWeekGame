@@ -302,12 +302,12 @@ function preEndGameRoute() {
 function endGameRoute() {
   let studentID = $id('student-id-input').value
   const name = $id('name-input').value
-  const score = game.state.score.value
-  const dance = game.state.props.dance
-  const band = game.state.props.band
-  const eater = game.state.props.eater
-  const week = game.state.props.week
-  const guitar = game.state.props.guitar
+  const score = game.state.score.value + game.state.score.bonus
+  // const dance = game.state.props.dance
+  // const band = game.state.props.band
+  // const eater = game.state.props.eater
+  // const week = game.state.props.week
+  // const guitar = game.state.props.guitar
   if (checkStudentIDForm(studentID)) {
     fetch(`${baseURL}highestScore?studentID=${studentID}`, {
       method: 'GET',
