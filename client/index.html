@@ -4,32 +4,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui"
-    />
-    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,viewport-fit=cover, minimal-ui" />
+
+    <meta name="og:image" content="https://weekgame.ntuee.org/assets/main.jpg" />
+    <meta name="og:title" content="EE見鍾情-電機週小遊戲" />
+    <meta name="og:description" content="2022電機週小遊戲" />
+
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/favicon.png" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
     <title>EE見鍾情</title>
+
+    <link rel="preload" as="image" href="assets/main.jpg" />
+    <link rel="preload" as="image" href="assets/sprite.png" />
+    <link rel="preload" as="image" href="assets/background.png" />
+    <link rel="preload" as="image" href="assets/LeaderBoard_background.jpg" />
+
     <!-- <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/card.css">加入Card css -->
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-      }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
 
-      body {
-        align-items: center;
-        background-color: #f7f7f7;
-        display: none;
-        justify-content: center;
-      }
+        body {
+            align-items: center;
+            background-color: #f7f7f7;
+            display: none;
+            justify-content: center;
+        }
     </style>
   </head>
 
@@ -40,56 +56,59 @@
 
     <!-- Landscape Page -->
     <div id="landscape-page" class="hidden">
-      <div id="landscape-page-title">Please rotate your phone!</div>
+        <div id="landscape-page-title">Please rotate your phone!</div>
     </div>
 
     <!-- Home Page -->
     <div id="home-page" class="hidden">
         <a href="https://github.com/NTUEEInfoDep">
-            <div id="creators">by&nbsp;EEInfo</div>
+            <div id="creators">By&nbsp;電機資訊部</div>
         </a>
         <div id="home-page-middle-block">
             <div id="home-page-suptitle">
-                2022&nbsp;NTUEE&nbsp;Week&nbsp;Game
+                2022&nbsp;NTUEE&nbsp;電機週小遊戲
             </div>
             <div id="home-page-title">EE見鍾情</div>
             <div id=""></div>
-            <input class="home-page-input" id="name-input" type="text" maxlength="18" placeholder="輸入遊戲名稱" />
-            <input class="home-page-input" id="student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
+            <input class="home-page-input" id="name-input" type="text" maxlength="18" placeholder="輸入遊戲暱稱" />
+            <input class="home-page-input" id="student-id-input" type="text" maxlength="9"
+                oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
             <div></div>
-            <button id="start-button">Game Start!</button>
+            <button id="start-button">Loading</button>
             <button class="leaderboard-button">排行榜</button>
         </div>
         <button class="instruction-button">?</button>
     </div>
     <!-- Rule Page-->
     <div class="page-container hidden" id="rule-container">
-      <div id="rule-page">
-        <button id="rule-close-button" class="close-button">&times;</button>
-        <div id="rule-header" class="page-header">
-          <div id="rule-page-title" class="page-title">RULE 規則</div>
-        </div>
-        <div id="rule-page-main">
-          <div class="rule-list" style="display: block">
-            <p>
-              1. ???<br />
-              2. ???<br />
-              3. ???<br />
-            </p>
-          </div>
+        <div id="rule-page" class="page">
+            <button id="rule-close-button" class="close-button">&times;</button>
+            <div id="rule-header" class="page-header">
+                <div id="rule-page-title" class="page-title">RULE 規則</div>
+            </div>
+            <div id="rule-page-main">
+                <div class="rule-list" style="display: block">
+                    <p>
+                        按方向上或空白鍵跳躍<br>
+                        按方向下鍵蹲下<br>
+                        吃道具獲得效果，效果詳見道具列表<br>
+                        躲避障礙物，獲得最高分數<br>
+                    </p>
+                </div>
+            </div>
         </div>
       </div>
     </div>
 
     <!-- Instruction Page -->
     <div class="page-container hidden" id="instruction-container">
-        <div id="instruction-page">
+        <div id="instruction-page" class="page">
             <div id="instruction-header" class="page-header">
-                <div id="instruction-page-title" class="page-title">Instructions</div>
+                <div id="instruction-page-title" class="page-title">教學</div>
             </div>
             <div id="instruction-page-main">
-                <button class="prop-button" id="home-prop-button">PROPS!</button>
-                <button id="rule-button">RULES!</button>
+                <button class="prop-button" id="home-prop-button">&nbsp;道具&nbsp;</button>
+                <button id="rule-button">&nbsp;規則&nbsp;</button>
             </div>
         </div>
       </div>
@@ -108,12 +127,21 @@
       </div>
     </div>
 
-
     <!-- Warning Page -->
     <div class="page-container hidden" id="warning-container">
-      <div id="warning-page">
-        <div id="warning-header" class="page-header">
-          <div id="warning-page-title" class="page-title">Warning</div>
+        <div id="warning-page" class="page">
+            <div id="warning-header" class="page-header">
+                <div id="warning-page-title" class="page-title">Warning</div>
+            </div>
+            <div id="warning-page-main">
+                <div id="warning-page-text">
+                    玩家你好，確定不填學號齁?不會留紀錄喔
+                </div>
+                <div id="warning-page-button-container">
+                    <button id="warning-go-back-button">返回</button>
+                    <button id="warning-start-button">開始遊戲！</button>
+                </div>
+            </div>
         </div>
         <div id="warning-page-main">玩家你好，確定不填學號齁?不會留紀錄喔</div>
         <button id="warning-go-back-button">返回</button>
@@ -123,10 +151,20 @@
 
     <!-- Error Page -->
     <div class="page-container hidden" id="error-container">
-      <div id="error-page">
-        <button id="error-close-button" class="close-button">&times;</button>
-        <div id="error-header" class="page-header">
-          <div id="error-page-title" class="page-title">Error</div>
+        <div id="error-page" class="page">
+            <div id="error-header" class="page-header">
+                <div id="error-page-title" class="page-title">Error</div>
+            </div>
+            <div id="error-page-main">
+                <div id="error-page-main-block" style="display: block">
+                    <div id="error-page-text">
+                        ERRRRRRROR
+                    </div>
+                    <div id="error-page-button-container">
+                        <button id="error-go-back-button">返回</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="error-page-main">ERRRRRRROR</div>
       </div>
@@ -134,15 +172,25 @@
 
     <!-- Prompt Page -->
     <div class="page-container hidden" id="prompt-container">
-        <div id="prompt-page">
+        <div id="prompt-page" class="page">
             <div id="prompt-header" class="page-header">
                 <div id="prompt-page-title" class="page-title">Congratulation</div>
             </div>
-            <div id="prompt-page-main">您已經進入前10名, 填寫學號以儲存您的分數</div>
-            <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9" oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
-            <div id="prompt-botton-container">
-                <button id="prompt-confirm-button" class="prompt-page-button">送出</button>
-                <button id="prompt-reject-button" class="prompt-page-button">不填</button>
+            <div id="prompt-page-main">
+                <div id="prompt-page-text">
+                    您已進入前20名, 填寫學號以儲存分數
+                </div>
+                <input class="prompt-page-input" id="prompt-student-id-input" type="text" maxlength="9"
+                    oninput="this.value = this.value.toUpperCase()" placeholder="輸入學號" />
+                <br />
+                <div id="prompt-botton-container">
+                    <button id="prompt-confirm-button" class="prompt-page-button">
+                        送出
+                    </button>
+                    <button id="prompt-reject-button" class="prompt-page-button">
+                        不填
+                    </button>
+                </div>
             </div>
         </div>
         <!-- <div id="prompt-page-main">
@@ -169,43 +217,47 @@
     <div id="end-game-page" class="hidden">
         <!-- class="hidden" -->
         <div id="end-game-page-title">GAME OVER</div>
-        <div id="score-bar">Your Score:</div>
+        <br />
+        <div id="score-bar">你的分數:</div>
         <div id="score">0</div>
         <div id="highestScore"></div>
         <div id="encouragement"></div>
-        <!-- <li id="props-list" style="list-style-type: none">
-            <ul id="props-dance"></ul>
-            <ul id="props-band"></ul>
-            <ul id="props-eater"></ul>
-            <ul id="props-week"></ul>
-            <ul id="props-guitar"></ul>
-        </li> -->
-        <!-- 不須道具資訊 -->
+        <br />
         <!--傅渝翔 新增-->
         <div id="endpage-button-set">
-            <button id ="endPage-leaderboard-button" class="end-page-button"><img id = "EP-leaderboard-button-pic" src = "./assets/crown.png"></button>
+            <button id="endPage-leaderboard-button" class="end-page-button">
+                <!-- <img id="EP-leaderboard-button-pic" src="assets/crown.png" /> -->
+                &times;
+            </button>
             <!-- 拿掉leaderboard-button的class  -->
-            <button id="restart-button" class = "end-page-button"><img id = "EP-restart-button-pic" src = "./assets/replay.png"></button>
-            <button id="endgame-button" class = "end-page-button">&times;</button>
+            <button id="restart-button" class="end-page-button">
+                <!-- <img id="EP-restart-button-pic" src="assets/replay.png" /> -->
+                &times;
+            </button>
+            <button id="endgame-button" class="end-page-button">&times;</button>
             <!--傅渝翔 新增-->
         </div>
     </div>
 
     <!-- Leaderboard Page -->
     <div class="page-container hidden" id="leaderboard-container">
-      <div id="leaderboard-page">
-        <div id="leaderboard-page-title">Leaderboard</div>
-        <table id="leaderboard-table-container"></table>
-      </div>
+        <div id="leaderboard-page">
+            <div id="leaderboard-page-title">
+                <img id="leaderboard-image" src="assets/Leaderboard.png" />
+            </div>
+            <div id="leaderboard-table-container-edge">
+                <table id="leaderboard-table-container"></table>
+            </div>
+        </div>
     </div>
 
     <!-- Props Page -->
     <div class="page-container hidden" id="prop-container">
-      <div id="prop-page">
-        <button id="prop-close-button" class="close-button">&times;</button>
-        <div id="prop-header" class="page-header">
-          <div id="prop-page-title" class="page-title">Prop List</div>
-        </div>
+        <div id="prop-page" class="page">
+            <button id="prop-close-button" class="close-button">&times;</button>
+            <div id="prop-header">
+                <div id="prop-page-title" class="page-title">道具列表</div>
+            </div>
 
             <div id="prop-page-main">
                 <div class="prop-list" style="display: block">
@@ -214,9 +266,9 @@
                             <img id="prop-img" src="assets/guitar.png" alt="guitar" />
                         </div>
                         <div class="right">
-                            <p class="gadget">Guitar</p>
+                            <p class="gadget">大合刷</p>
                             <p class="functionality">
-                                Function: Music note attacks! Dino turns into a professional guitarist, shooting musical notes to destroy all obstacles.
+                                功能: 音符攻擊! 電機學生變成了一個專業的吉他手，發射音符來摧毀所有的障礙。
                             </p>
                         </div>
                     </div>
@@ -225,9 +277,9 @@
                             <img id="prop-img" src="assets/dance.png" alt="dance" />
                         </div>
                         <div class="right">
-                            <p class="gadget">Dance</p>
+                            <p class="gadget">快閃舞</p>
                             <p class="functionality">
-                                Function: Dance causes ADRENALINE RUSH. Dino turn on the jets and receive a speed boost for n seconds.
+                                功能: 來個快閃舞！電機學生獲得N秒的速度提升。
                             </p>
                         </div>
                     </div>
@@ -236,9 +288,9 @@
                             <img id="prop-img" src="assets/band.png" alt="band" />
                         </div>
                         <div class="right">
-                            <p class="gadget">Band</p>
+                            <p class="gadget">無敵樂隊</p>
                             <p class="functionality">
-                                Function: Dino becomes invincible for a certain period of time and destroy everything in its path. The speed will also be faster.
+                                功能: 電機學生在限定時間內變得無敵，並無視道路上的一切障礙。速度也會變快。
                             </p>
                         </div>
                     </div>
@@ -247,20 +299,20 @@
                             <img id="prop-img" src="assets/eater.png" alt="eater" />
                         </div>
                         <div class="right">
-                            <p class="gadget">Eater</p>
+                            <p class="gadget">快食王</p>
                             <p class="functionality">
-                                Function: Yum Yum ~ Dino ate all the obstables. Eat as many burgers as you can!
+                                功能: 電機學生吞下所有的障碍物，把漢堡都吃掉!
                             </p>
                         </div>
                     </div>
                     <div class="item">
                         <div class="left">
-                            <img id="prop-img" src="assets/example.png" alt="week" />
+                            <img id="prop-img" src="assets/week.png" alt="week" />
                         </div>
                         <div class="right">
-                            <p class="gadget">Week</p>
+                            <p class="gadget">電機週</p>
                             <p class="functionality">
-                                Function: NTUEE Week is fun! Dino gets extra points, unlike NTUEE students asking professor for grades
+                                功能：NTUEE週真有趣! 電機學生獲得加分！
                             </p>
                         </div>
                     </div>
@@ -319,10 +371,12 @@
         </div>
       </div>
     </div>
-   <!-- 金巧芸新增 -->
-    <div id = "weekCard" class="hidden">
-        <div class="box b1" id = "cardBack"><img id = "cardBackPic" src="./assets/logo.jpg"></div>
-        <p class="box b2" id = "cardFront">+0</p>
+    <!-- 金巧芸新增 -->
+    <div id="weekCard" class="hidden">
+        <div class="box b1" id="cardBack">
+            <img id="cardBackPic" src="assets/logo.jpg" />
+        </div>
+        <p class="box b2" id="cardFront">+0</p>
     </div>
     <!-- 新增end -->
     <script>

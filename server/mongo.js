@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const GameScoreSchema = new mongoose.Schema({
   name: {
@@ -26,8 +26,8 @@ const GameScoreSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-});
+})
 
-const GameScore = mongoose.model("GameScore", GameScoreSchema);
+const GameScore = mongoose.model('GameScore', GameScoreSchema)
 
-module.exports = { GameScore };
+module.exports = { GameScore }
