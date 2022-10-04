@@ -193,7 +193,6 @@ export default class DinoGame extends GameRunner {
     const { state } = this
 
     this.drawBackground()
-    // this.drawFPS();
     this.drawGround()
     this.drawClouds()
     if (this.isTouchDevice) {
@@ -203,8 +202,13 @@ export default class DinoGame extends GameRunner {
     this.drawDino()
     this.drawProgressBar()
     this.drawScore()
+    this.drawFPS()
 
     if (state.isRunning) {
+      if (state.dino.powerUp === 'none') {
+        state.speedRatio = 60 / this.frameRate
+      }
+
       let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood
       this.drawBullets()
 
@@ -304,18 +308,18 @@ export default class DinoGame extends GameRunner {
 
           switch ((this, state.dino.powerUp)) {
             case 'guitar':
-              this.state.speedRatio = 1
-              this.state.scoreRatio = 1
+              // this.state.speedRatio = 1
+              // this.state.scoreRatio = 1
               this.state.props.guitar++
               break
             case 'dance':
               this.state.props.dance++
-              this.state.speedRatio = 1.5
+              this.state.speedRatio *= 1.5
               this.state.scoreRatio = 3
               break
             case 'band':
               this.state.props.band++
-              this.state.speedRatio = 0.8
+              this.state.speedRatio *= 0.8
               state.dino.blinking(true)
               break
             case 'eater':
@@ -498,12 +502,18 @@ export default class DinoGame extends GameRunner {
   }
 
   drawFPS() {
-    this.paintText('fps: ' + Math.round(this.frameRate), 0, 0, {
+    let text = 'fps: ' + Math.round(this.frameRate)
+    let color = '#ffffff'
+    if (this.frameRate < 50) {
+      text += ' Low FPS, your score may be lower than expected'
+      color = '#ff0000'
+    }
+    this.paintText(text, this.width, this.height, {
       font: 'PressStart2P',
       size: '12px',
-      baseline: 'top',
-      align: 'left',
-      color: '#535353',
+      baseline: 'bottom',
+      align: 'right',
+      color: color,
     })
   }
   drawDuckButton() {
@@ -578,11 +588,11 @@ export default class DinoGame extends GameRunner {
           case 'guitar':
             break
           case 'dance':
-            this.state.speedRatio = 1
+            this.state.speedRatio = 60 / this.frameRate
             this.state.scoreRatio = 1
             break
           case 'band':
-            this.state.speedRatio = 1
+            this.state.speedRatio = 60 / this.frameRate
             this.state.dino.blinking(false)
             break
           case 'eater':

@@ -248,8 +248,7 @@ async function startGame() {
   $id('error-container').classList.add('hidden')
   $id('warning-container').classList.add('hidden')
   $id('instruction-container').classList.add('hidden')
-  
-    game.highestScore = await getHighestScore()
+  game.highestScore = await getHighestScore()
   if (first) {
     // game.start().catch(console.error);
     game.unpause()
