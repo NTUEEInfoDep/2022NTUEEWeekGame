@@ -375,6 +375,7 @@ export default class DinoGame extends GameRunner {
 
   resetGame() {
     this.state.dino.reset()
+    this.highestScore = 0;
     Object.assign(this.state, {
       settings: { ...this.defaultSettings },
       birds: [],
