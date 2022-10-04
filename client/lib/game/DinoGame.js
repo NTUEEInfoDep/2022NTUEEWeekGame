@@ -50,6 +50,7 @@ export default class DinoGame extends GameRunner {
     this.spriteImageData = null
     this.endGameRoute = endGameRoute
     this.highestScore = 0
+    this.lowFrameRateCounter = 0
 
     this.circle = {
       x: width * 0.9,
@@ -72,7 +73,7 @@ export default class DinoGame extends GameRunner {
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
-      foodScore: 10,
+      foodScore: 5,
       cloudSpawnRate: 200, // fpa
       cloudSpeedRelativeToBg: 0.7, // ppf
       dinoGravity: 2, // ppf
@@ -119,6 +120,7 @@ export default class DinoGame extends GameRunner {
         blinks: 0,
         isBlinking: false,
         value: 0,
+        bonus: 0,
       },
       props: {
         dance: 0,
@@ -150,7 +152,6 @@ export default class DinoGame extends GameRunner {
   }
 
   resize() {
-    // if (this.state.isRunning || this.state.score === 0) {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.canvas.style.width = this.width + 'px'
@@ -159,11 +160,29 @@ export default class DinoGame extends GameRunner {
     this.canvas.height = Math.floor(this.height * window.devicePixelRatio)
     this.canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio)
 
+    const oldBaseY = this.state.dino.baseY
     this.state.groundY =
       this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
     this.state.dino.baseY =
       this.state.groundY - this.state.settings.dinoGroundOffset
-    // }
+
+    // set Y position of items
+    const delta = this.state.dino.baseY - oldBaseY
+    this.state.items.forEach((item) => {
+      item.y += delta
+    })
+    this.state.bullets.forEach((bullet) => {
+      bullet.y += delta
+    })
+    this.state.foods.forEach((food) => {
+      food.y += delta
+    })
+    this.state.obstacles.forEach((obstacle) => {
+      obstacle.y += delta
+    })
+    this.state.birds.forEach((bird) => {
+      bird.y += delta
+    })
   }
 
   async preload() {
@@ -192,7 +211,6 @@ export default class DinoGame extends GameRunner {
     const { state } = this
 
     this.drawBackground()
-    // this.drawFPS();
     this.drawGround()
     this.drawClouds()
     if (this.isTouchDevice) {
@@ -202,8 +220,13 @@ export default class DinoGame extends GameRunner {
     this.drawDino()
     this.drawProgressBar()
     this.drawScore()
+    this.drawFPS()
 
     if (state.isRunning) {
+      if (state.dino.powerUp === 'none') {
+        state.speedRatio = 60 / this.frameRate
+      }
+
       let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood
       this.drawBullets()
 
@@ -243,7 +266,7 @@ export default class DinoGame extends GameRunner {
 
       if (state.dino.hits([state.foods[0]])) {
         // Maybe play an "Eating sound" here
-        state.score.value += state.settings.foodScore
+        state.score.bonus += state.settings.foodScore
         state.foodScoreTextAlpha = 1
         state.foods[0].destroy()
       }
@@ -303,18 +326,18 @@ export default class DinoGame extends GameRunner {
 
           switch ((this, state.dino.powerUp)) {
             case 'guitar':
-              this.state.speedRatio = 1
-              this.state.scoreRatio = 1
+              // this.state.speedRatio = 1
+              // this.state.scoreRatio = 1
               this.state.props.guitar++
               break
             case 'dance':
               this.state.props.dance++
-              this.state.speedRatio = 2
-              this.state.scoreRatio = 5
+              this.state.speedRatio *= 1.5
+              this.state.scoreRatio = 3
               break
             case 'band':
               this.state.props.band++
-              this.state.speedRatio = 0.8
+              this.state.speedRatio *= 0.8
               state.dino.blinking(true)
               break
             case 'eater':
@@ -326,7 +349,7 @@ export default class DinoGame extends GameRunner {
               this.state.props.week++
               const week_plus = Math.floor(Math.random() * 100) + 1
               week(`+${week_plus}`)
-              this.state.score.value += week_plus //碰到電機週，加分!
+              this.state.score.bonus += week_plus //碰到電機週，加分!
               break
           }
         }
@@ -392,6 +415,7 @@ export default class DinoGame extends GameRunner {
         blinks: 0,
         isBlinking: false,
         value: 0,
+        bonus: 0,
       },
       props: {
         guitar: 0,
@@ -422,8 +446,9 @@ export default class DinoGame extends GameRunner {
     //   this.width / 2 - iconSprite.w / 4,
     //   this.height / 2 - iconSprite.h / 4 + padding
     // )
-    if (this.state.score.value > this.highestScore) {
-      this.highestScore = this.state.score.value
+    const score = this.state.score.value
+    if (score > this.highestScore) {
+      this.highestScore = score
     }
     this.state.isRunning = false
     this.drawScore()
@@ -439,7 +464,7 @@ export default class DinoGame extends GameRunner {
     if (level > 4 && level < 8) {
       settings.bgSpeed++
       settings.birdSpeed = settings.bgSpeed * 1.2
-    } else if (level > 7) {
+    } else if ((level > 7 && level < 14) || (level > 13 && level % 5 === 0)) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1)
       settings.birdSpeed = settings.bgSpeed * 1.2
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98)
@@ -472,26 +497,48 @@ export default class DinoGame extends GameRunner {
     const { state } = this
 
     if (this.frameCount % state.settings.scoreIncreaseRate === 0) {
+      const oldHundred = Math.floor(
+        (state.score.value + state.score.bonus) / 100
+      )
       const oldLevel = state.level
 
-      state.score.value += state.scoreRatio
+      state.score.value += 1
+      state.score.bonus += state.scoreRatio - 1
       state.level = Math.floor(state.score.value / 100)
 
-      if (state.level !== oldLevel) {
+      if (
+        Math.floor((state.score.value + state.score.bonus) / 100) !== oldHundred
+      ) {
         playSound('level-up')
-        this.increaseDifficulty()
         state.score.isBlinking = true
+      }
+
+      if (state.level !== oldLevel) {
+        this.increaseDifficulty()
       }
     }
   }
 
   drawFPS() {
-    this.paintText('fps: ' + Math.round(this.frameRate), 0, 0, {
+    let text = 'FPS: ' + Math.round(this.frameRate)
+    let color = '#ffffff'
+
+    if (this.frameRate < 50) {
+      this.lowFrameRateCounter++
+    } else {
+      this.lowFrameRateCounter = 0
+    }
+    if (this.lowFrameRateCounter > 10) {
+      text += ' Low FPS, your score may be lower than expected'
+      color = '#ff0000'
+    }
+
+    this.paintText(text, this.width, this.height, {
       font: 'PressStart2P',
       size: '12px',
-      baseline: 'top',
-      align: 'left',
-      color: '#535353',
+      baseline: 'bottom',
+      align: 'right',
+      color: color,
     })
   }
   drawDuckButton() {
@@ -566,11 +613,11 @@ export default class DinoGame extends GameRunner {
           case 'guitar':
             break
           case 'dance':
-            this.state.speedRatio = 1
+            this.state.speedRatio = 60 / this.frameRate
             this.state.scoreRatio = 1
             break
           case 'band':
-            this.state.speedRatio = 1
+            this.state.speedRatio = 60 / this.frameRate
             this.state.dino.blinking(false)
             break
           case 'eater':
@@ -748,12 +795,13 @@ export default class DinoGame extends GameRunner {
   }
 
   drawScore() {
+    // console.log(this.state.score)
     const { canvasCtx, state } = this
     const { isRunning, score, settings } = state
     const fontSize = 30
     const margin = 10
     let shouldDraw = true
-    let drawValue = score.value
+    let drawValue = score.value + score.bonus
 
     if (isRunning && score.isBlinking) {
       score.blinkFrames++

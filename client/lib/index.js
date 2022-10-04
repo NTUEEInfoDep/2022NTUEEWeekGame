@@ -248,8 +248,7 @@ async function startGame() {
   $id('error-container').classList.add('hidden')
   $id('warning-container').classList.add('hidden')
   $id('instruction-container').classList.add('hidden')
-  
-    game.highestScore = await getHighestScore()
+  game.highestScore = await getHighestScore()
   if (first) {
     // game.start().catch(console.error);
     game.unpause()
@@ -302,12 +301,12 @@ function preEndGameRoute() {
 function endGameRoute() {
   let studentID = $id('student-id-input').value
   const name = $id('name-input').value
-  const score = game.state.score.value
-  const dance = game.state.props.dance
-  const band = game.state.props.band
-  const eater = game.state.props.eater
-  const week = game.state.props.week
-  const guitar = game.state.props.guitar
+  const score = game.state.score.value + game.state.score.bonus
+  // const dance = game.state.props.dance
+  // const band = game.state.props.band
+  // const eater = game.state.props.eater
+  // const week = game.state.props.week
+  // const guitar = game.state.props.guitar
   if (checkStudentIDForm(studentID)) {
     fetch(`${baseURL}highestScore?studentID=${studentID}`, {
       method: 'GET',
