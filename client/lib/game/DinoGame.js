@@ -50,6 +50,7 @@ export default class DinoGame extends GameRunner {
     this.spriteImageData = null
     this.endGameRoute = endGameRoute
     this.highestScore = 0
+    this.lowFrameRateCounter = 0
 
     this.circle = {
       x: width * 0.9,
@@ -151,7 +152,6 @@ export default class DinoGame extends GameRunner {
   }
 
   resize() {
-    // if (this.state.isRunning || this.state.score === 0) {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.canvas.style.width = this.width + 'px'
@@ -160,11 +160,29 @@ export default class DinoGame extends GameRunner {
     this.canvas.height = Math.floor(this.height * window.devicePixelRatio)
     this.canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio)
 
+    const oldBaseY = this.state.dino.baseY
     this.state.groundY =
       this.height - Math.min(sprites.ground.h / 2, this.height * 0.2)
     this.state.dino.baseY =
       this.state.groundY - this.state.settings.dinoGroundOffset
-    // }
+
+    // set Y position of items
+    const delta = this.state.dino.baseY - oldBaseY
+    this.state.items.forEach((item) => {
+      item.y += delta
+    })
+    this.state.bullets.forEach((bullet) => {
+      bullet.y += delta
+    })
+    this.state.foods.forEach((food) => {
+      food.y += delta
+    })
+    this.state.obstacles.forEach((obstacle) => {
+      obstacle.y += delta
+    })
+    this.state.birds.forEach((bird) => {
+      bird.y += delta
+    })
   }
 
   async preload() {
@@ -502,12 +520,19 @@ export default class DinoGame extends GameRunner {
   }
 
   drawFPS() {
-    let text = 'fps: ' + Math.round(this.frameRate)
+    let text = 'FPS: ' + Math.round(this.frameRate)
     let color = '#ffffff'
+
     if (this.frameRate < 50) {
+      this.lowFrameRateCounter++
+    } else {
+      this.lowFrameRateCounter = 0
+    }
+    if (this.lowFrameRateCounter > 10) {
       text += ' Low FPS, your score may be lower than expected'
       color = '#ff0000'
     }
+
     this.paintText(text, this.width, this.height, {
       font: 'PressStart2P',
       size: '12px',
