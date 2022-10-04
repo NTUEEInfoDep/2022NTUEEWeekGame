@@ -154,6 +154,13 @@ export default class DinoGame extends GameRunner {
   }
 
   resize() {
+    this._resize()
+    setTimeout(() => {
+      this._resize()
+    }, 500)
+  }
+
+  _resize() {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.canvas.style.width = this.width + 'px'
