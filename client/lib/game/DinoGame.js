@@ -521,26 +521,24 @@ export default class DinoGame extends GameRunner {
   }
 
   drawFPS() {
-    let text = 'FPS: ' + Math.round(this.frameRate)
-    let color = '#ffffff'
-
     if (this.frameRate < 50) {
       this.lowFrameRateCounter++
     } else {
       this.lowFrameRateCounter = 0
     }
-    if (this.lowFrameRateCounter > 10) {
-      text += ' Low FPS, your score may be lower than expected'
-      color = '#ff0000'
-    }
 
-    this.paintText(text, this.width, this.height, {
-      font: 'PressStart2P',
-      size: '12px',
-      baseline: 'bottom',
-      align: 'right',
-      color: color,
-    })
+    // let text = 'FPS: ' + Math.round(this.frameRate)
+
+    if (this.lowFrameRateCounter > 100) {
+      const text = 'Low FPS, your score may be lower than expected'
+      this.paintText(text, this.width, this.height, {
+        font: 'PressStart2P',
+        size: '12px',
+        baseline: 'bottom',
+        align: 'right',
+        color: '#ff0000',
+      })
+    }
   }
   drawDuckButton() {
     // this.canvasCtx.fillStyle = "#f7f7f7";
