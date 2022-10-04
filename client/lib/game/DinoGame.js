@@ -53,7 +53,7 @@ export default class DinoGame extends GameRunner {
     this.lowFrameRateCounter = 0
 
     this.circle = {
-      x: 0.85,
+      x: 0.9,
       y: 0.4,
       x_center: null,
       y_center: null,

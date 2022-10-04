@@ -249,6 +249,7 @@ async function startGame() {
   $id('warning-container').classList.add('hidden')
   $id('instruction-container').classList.add('hidden')
   game.highestScore = await getHighestScore()
+  game.resize()
   if (first) {
     // game.start().catch(console.error);
     game.unpause()
