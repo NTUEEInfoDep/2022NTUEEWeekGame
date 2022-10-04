@@ -104,8 +104,8 @@ const keycodes = {
   DUCK: { 40: 1 },
 }
 const isradius = (x, y) => {
-  const center_x = game.circle.x,
-    center_y = game.circle.y,
+  const center_x = game.circle.x_center,
+    center_y = game.circle.y_center,
     center_r = game.circle.radius * game.circle.scale
   return (x - center_x) ** 2 + (y - center_y) ** 2 <= center_r ** 2
 }
@@ -249,6 +249,7 @@ async function startGame() {
   $id('warning-container').classList.add('hidden')
   $id('instruction-container').classList.add('hidden')
   game.highestScore = await getHighestScore()
+  game.resize()
   if (first) {
     // game.start().catch(console.error);
     game.unpause()
