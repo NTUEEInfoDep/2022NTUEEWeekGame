@@ -53,9 +53,11 @@ export default class DinoGame extends GameRunner {
     this.lowFrameRateCounter = 0
 
     this.circle = {
-      x: window.innerWidth * 0.1,
-      y: window.innerHeight * 0.36,
-      radius: window.innerWidth * 0.04,
+      x: 0.85,
+      y: 0.4,
+      x_center: null,
+      y_center: null,
+      radius: Math.max((width + height) / 30, 45),
       scale: 1.2,
     }
     this.isTouchDevice = isTouchDevice
@@ -543,12 +545,26 @@ export default class DinoGame extends GameRunner {
   drawDuckButton() {
     // this.canvasCtx.fillStyle = "#f7f7f7";
     // this.canvasCtx.fillRect(0, 0, this.width, this.height);
-    this.canvasCtx.drawImage(
+    const { circle, canvasCtx, width, height } = this
+
+    circle.x_center = Math.max(width, height) * circle.x
+    circle.y_center = Math.min(width, height) * circle.y
+    // circle.radius = 45
+    circle.radius = Math.max(Math.min(80, (width + height) / 35), 45)
+
+    const x = circle.x_center,
+      y = circle.y_center
+
+    // console.log(x, y)
+    console.log(circle.radius)
+    // Math.max(Math.max(150, Math.max(width, height) * 0.08), 40),
+
+    canvasCtx.drawImage(
       this.duck_buttonImage,
-      this.circle.x - this.circle.radius * this.circle.scale,
-      this.circle.y - this.circle.radius * this.circle.scale,
-      this.circle.radius * this.circle.scale * 2,
-      this.circle.radius * this.circle.scale * 2
+      x - circle.radius * circle.scale,
+      y - circle.radius * circle.scale,
+      circle.radius * circle.scale * 2,
+      circle.radius * circle.scale * 2
     )
   }
 
