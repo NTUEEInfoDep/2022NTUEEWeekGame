@@ -71,7 +71,7 @@ export default class DinoGame extends GameRunner {
     this.defaultSettings = {
       bgSpeed: 12, // ppf
       birdSpeed: 12 * 1.2, // ppf
-      birdSpawnRate: 240, // fpa
+      birdSpawnRate: 190, // fpa
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
