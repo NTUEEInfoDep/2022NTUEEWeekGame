@@ -71,7 +71,7 @@ export default class DinoGame extends GameRunner {
     this.defaultSettings = {
       bgSpeed: 12, // ppf
       birdSpeed: 12 * 1.2, // ppf
-      birdSpawnRate: 160, // fpa
+      birdSpawnRate: 190, // fpa
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
@@ -503,7 +503,7 @@ export default class DinoGame extends GameRunner {
 
   updateScore() {
     const { state } = this
-    const levelGap = 300
+    const levelGap = 200
 
     if (this.frameCount % state.settings.scoreIncreaseRate === 0) {
       const oldHundred = Math.floor(
