@@ -71,7 +71,7 @@ export default class DinoGame extends GameRunner {
     this.defaultSettings = {
       bgSpeed: 12, // ppf
       birdSpeed: 12 * 1.2, // ppf
-      birdSpawnRate: 190, // fpa
+      birdSpawnRate: 160, // fpa
       birdWingsRate: 15, // fpa
       obstaclesSpawnRate: 50, // fpa
       foodSpawnRate: 10,
@@ -630,24 +630,6 @@ export default class DinoGame extends GameRunner {
       console.log(dino.powerUp)
       dino.powerUpTime--
       if (dino.powerUpTime <= 0) {
-        // switch (dino.powerUp) {
-        //   case 'guitar':
-        //     break
-        //   case 'dance':
-        //     this.state.speedRatio = 60 / this.frameRate
-        //     this.state.scoreRatio = 1
-        //     break
-        //   case 'band':
-        //     this.state.speedRatio = 60 / this.frameRate
-        //     this.state.dino.blinking(false)
-        //     break
-        //   case 'eater':
-        //     break
-        //   case 'week':
-        //     break
-        //   case 'covid':
-        //     break
-        // }
         this.state.dino.blinking(false)
         dino.powerUp = 'none'
         console.log('powerUp expired')
