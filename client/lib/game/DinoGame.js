@@ -472,7 +472,7 @@ export default class DinoGame extends GameRunner {
     if (level > 4 && level < 8) {
       settings.bgSpeed++
       settings.birdSpeed = settings.bgSpeed * 1.2
-    } else if ((level > 7 && level < 14) || (level > 13 && level % 5 === 0)) {
+    } else if ((level > 7 && level < 14) || (level > 13 && level % 10 === 0)) {
       settings.bgSpeed = Math.ceil(bgSpeed * 1.1)
       settings.birdSpeed = settings.bgSpeed * 1.2
       settings.obstaclesSpawnRate = Math.floor(obstaclesSpawnRate * 0.98)
