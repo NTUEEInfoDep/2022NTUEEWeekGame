@@ -141,7 +141,7 @@ export default class DinoGame extends GameRunner {
     const ctx = canvas.getContext('2d')
     const scale = window.devicePixelRatio
 
-    this.width = window.innerWidth
+    this.width = Math.min(window.innerWidth, 1500)
     this.height = window.innerHeight
     canvas.style.width = this.width + 'px'
     canvas.style.height = this.height + 'px'
@@ -161,7 +161,7 @@ export default class DinoGame extends GameRunner {
   }
 
   _resize() {
-    this.width = window.innerWidth
+    this.width = Math.min(window.innerWidth, 1500)
     this.height = window.innerHeight
     this.canvas.style.width = this.width + 'px'
     this.canvas.style.height = this.height + 'px'
@@ -629,24 +629,25 @@ export default class DinoGame extends GameRunner {
       console.log(dino.powerUp)
       dino.powerUpTime--
       if (dino.powerUpTime <= 0) {
-        switch (dino.powerUp) {
-          case 'guitar':
-            break
-          case 'dance':
-            this.state.speedRatio = 60 / this.frameRate
-            this.state.scoreRatio = 1
-            break
-          case 'band':
-            this.state.speedRatio = 60 / this.frameRate
-            this.state.dino.blinking(false)
-            break
-          case 'eater':
-            break
-          case 'week':
-            break
-          case 'covid':
-            break
-        }
+        // switch (dino.powerUp) {
+        //   case 'guitar':
+        //     break
+        //   case 'dance':
+        //     this.state.speedRatio = 60 / this.frameRate
+        //     this.state.scoreRatio = 1
+        //     break
+        //   case 'band':
+        //     this.state.speedRatio = 60 / this.frameRate
+        //     this.state.dino.blinking(false)
+        //     break
+        //   case 'eater':
+        //     break
+        //   case 'week':
+        //     break
+        //   case 'covid':
+        //     break
+        // }
+        this.state.dino.blinking(false)
         dino.powerUp = 'none'
         console.log('powerUp expired')
       }

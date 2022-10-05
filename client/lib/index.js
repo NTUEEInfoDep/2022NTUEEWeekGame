@@ -130,17 +130,28 @@ const ontouchstart = ({ touches }) => {
 const ontouchend = () => {
   game.onInput('stop-duck')
 }
+
+let ctrl = false;
 const onKeyDown = ({ keyCode }) => {
-  console.log('key down')
+  console.log('key down' + keyCode)
   if (keycodes.JUMP[keyCode]) {
     game.onInput('jump')
   } else if (keycodes.DUCK[keyCode]) {
     game.onInput('duck')
+  } else if (keyCode === 91 || keyCode === 17) {
+    ctrl = true
+  }
+  if (ctrl && (keyCode === 187 || keyCode === 189)) {
+    // zoom
+    alert('Zooming is not allowed')
+    game.endGame()
   }
 }
 const onKeyUp = ({ keyCode }) => {
   if (keycodes.DUCK[keyCode]) {
     game.onInput('stop-duck')
+  } else if (keyCode === 91 || keyCode === 17) {
+    ctrl = false
   }
 }
 function keyStart() {
