@@ -96,7 +96,7 @@ export default class DinoGame extends GameRunner {
         week: 0.5,
       },
       scoreBlinkRate: 20, // fpa
-      scoreIncreaseRate: 5, // fpa
+      scoreIncreaseRate: 2, // fpa
     }
 
     this.state = {
