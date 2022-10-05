@@ -289,6 +289,7 @@ function restartGame() {
 function preEndGameRoute() {
   keyStop()
   const score = game.state.score.value
+  $id('weekCard').classList.add('hidden')
   let studentID = $id('student-id-input').value
   if (checkStudentIDForm(studentID)) {
     endGameRoute()

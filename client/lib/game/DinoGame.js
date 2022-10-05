@@ -96,7 +96,7 @@ export default class DinoGame extends GameRunner {
         week: 0.5,
       },
       scoreBlinkRate: 20, // fpa
-      scoreIncreaseRate: 6, // fpa
+      scoreIncreaseRate: 5, // fpa
     }
 
     this.state = {
@@ -233,6 +233,7 @@ export default class DinoGame extends GameRunner {
     if (state.isRunning) {
       if (state.dino.powerUp === 'none') {
         state.speedRatio = 60 / this.frameRate
+        state.scoreRatio = 1
       }
 
       let spawnedObstacle, spawnedBird, spawnedItem, spawnedFood
@@ -351,11 +352,10 @@ export default class DinoGame extends GameRunner {
             case 'eater':
               this.state.props.eater++
               this.state.foodHeightMode = randInteger(0, 2)
-              //this.state.foodHeightMode = 2;
               break
             case 'week':
               this.state.props.week++
-              const week_plus = Math.floor(Math.random() * 100) + 1
+              const week_plus = randInteger(1, 100)
               week(`+${week_plus}`)
               this.state.score.bonus += week_plus //碰到電機週，加分!
               break
