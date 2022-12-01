@@ -1,4 +1,6 @@
 # 2022NTUEEWeekGame
+2022電機週小遊戲 -- [EE見鐘情](https://weekgame.ntuee.org)
+
 
 ## Install
 ```bash
